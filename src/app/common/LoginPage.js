@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {injectIntl} from 'react-intl';
 import {Field, reduxForm} from 'redux-form';
-import {Col, Row} from 'react-bootstrap';
+import {Col, Grid, Row} from 'react-bootstrap';
 import {hashHistory, Link} from 'react-router';
 import Debug from 'debug';
 
@@ -70,7 +70,7 @@ class LoginForm extends React.Component {
                 <PageConfiguration key='pageConfiguration' className='skin-default'/>
 
                 <div key='body' className='login-body'>
-                    <form className='login-form container' onSubmit={handleSubmit(this.handleSubmit)}>
+                    <Grid componentClass='FORM' className='login-form' onSubmit={handleSubmit(this.handleSubmit)}>
                         <Row>
                             <Col xs={12} sm={6} md={4} className='login-fields'>
                                 <Field name='username'
@@ -111,9 +111,9 @@ class LoginForm extends React.Component {
                                 </button>
                             </Col>
                         </Row>
-                    </form>
+                    </Grid>
 
-                    <div className="container">
+                    <Grid>
                         <Row className='login-unregistred'>
                             <Col xs={12}>
                                 <button type='button' onClick={this.handleRegisterButton}>
@@ -121,7 +121,7 @@ class LoginForm extends React.Component {
                                 </button>
                             </Col>
                         </Row>
-                    </div>
+                    </Grid>
                 </div>
             </div>
         );

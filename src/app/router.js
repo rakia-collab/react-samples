@@ -41,7 +41,7 @@ export default (history, modules, store) => {
 
     // Create router rules
     return (
-        {/* Use the specified history */}
+        /* Use the specified history */
         <Router history={history}>
 
             {/* surround all pages with  AppPage */}

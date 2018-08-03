@@ -11,7 +11,8 @@ class AppPage extends React.Component {
         const {main, children} = this.props;
 
         return (<div className="app-page">
-                <H1>Sopra/Steria</H1>
+                {/*Drawn in all pages, even Login, Logout ...*/}
+                <h1>Sopra/Steria</h1>
 
                 {main || children}
             </div>
