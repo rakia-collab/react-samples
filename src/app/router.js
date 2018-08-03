@@ -21,8 +21,14 @@ export const Routes = {
 // Default landing page if the user profile does not specify one
 export const DEFAULT_LANDING_PAGE = Routes.HOMEPAGE;
 
-// Export routes
-export default (history, onLogout, modules, store) => {
+/**
+ *
+ * @param {object} history
+ * @param {array} modules List of modules
+ * @param {object} store Redux store
+ * @returns {React.Component} Router tree
+ */
+export default (history, modules, store) => {
 
     // List all routes from modules
     const modulesRoutes = modules.map(module => {
@@ -35,24 +41,51 @@ export default (history, onLogout, modules, store) => {
 
     // Create router rules
     return (
+        {/* Use the specified history */}
         <Router history={history}>
+
+            {/* surround all pages with  AppPage */}
             <Route path="/" component={AppPage}>
-                <Route path="/" name="app" component={privateRoute({
-                    wrapped: MainPage
-                })} key="/">
+
+                {/* surround main page with 'privateRoute' to make sure that only authenticated users can see the page (and its children)*/}
+                <Route path="/"
+                       key="/"
+                       name="app"
+                       component={privateRoute({
+                           wrapped: MainPage
+                       })}>
+
                     <IndexRoute components={{main: LandingPage}}/>
+
                     {modulesRoutes}
 
                 </Route>
-                <Route path={Routes.LOGIN} key={Routes.LOGIN}
+
+                {/* surround login page with 'publicRoute' to automatically forward authenticated users to home page */}
+                <Route path={Routes.LOGIN}
+                       key={Routes.LOGIN}
                        component={publicRoute({
                            wrapped: LoginPage,
                            authenticatedRoute: Routes.HOMEPAGE
-                       })}/>
-                <Route path={Routes.LOGOUT} component={LogoutPage} key={Routes.LOGOUT}/>
-                <Route path={Routes.ERROR} component={ErrorPage} key={Routes.ERROR}/>
+                       })}
+                />
 
-                <IndexRedirect to={Routes.LOGIN}/>
+                {/* logout page  no specific rules */}
+                <Route path={Routes.LOGOUT}
+                       key={Routes.LOGOUT}
+                       component={LogoutPage}
+                />
+
+                {/* error page  no specific rules */}
+                <Route path={Routes.ERROR}
+                       key={Routes.ERROR}
+                       component={ErrorPage}
+                />
+
+                {/* redirect / path to Login */}
+                <IndexRedirect to={Routes.LOGIN}
+                               key='IndexRedirect'
+                />
             </Route>
         </Router>
     )

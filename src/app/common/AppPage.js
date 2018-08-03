@@ -11,6 +11,8 @@ class AppPage extends React.Component {
         const {main, children} = this.props;
 
         return (<div className="app-page">
+                <H1>Sopra/Steria</H1>
+
                 {main || children}
             </div>
         )

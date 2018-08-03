@@ -2,7 +2,10 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Router, hashHistory} from 'react-router';
+
+// We use hashHistory as history engine
+import {hashHistory} from 'react-router';
+
 import {syncHistoryWithStore} from 'react-router-redux';
 import {bindActionCreators} from 'redux';
 import {
@@ -17,7 +20,7 @@ import {
 } from 'cassiopae-core'
 
 // Extract actions we will use
-const {logout, showFields} = authenticationActions;
+const {showFields} = authenticationActions;
 
 import config from './config'
 import './app.less';
@@ -65,7 +68,7 @@ const modulesReducers = modules.reduce((reducers, module) => ({...reducers, ...m
 const store = configureStore(EMPTY_OBJECT, modulesReducers);
 
 // Bind actions  with store's dispatch function
-const actions = bindActionCreators({logout, showFields}, store.dispatch);
+const actions = bindActionCreators({showFields}, store.dispatch);
 window.showFields = actions.showFields;  // showFields is used by
 
 // Setup axios configuration
@@ -78,7 +81,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 import initRouter from './router';
 
 // Initialise router with modules
-const router = initRouter(history, actions.logout, modules, store);
+const router = initRouter(history, modules, store);
 
 function startApplication() {
     // Search the HTML component which will receive our react application
