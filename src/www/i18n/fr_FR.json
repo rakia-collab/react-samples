@@ -1,0 +1,14 @@
+{
+  "home.homePage.title": "Bienvenue !",
+  "home.homePage.user": "Utilisateur : {uticode}",
+
+  "common.loginPage.userEmail": "Email",
+  "common.loginPage.password": "Mot de passe",
+  "common.loginPage.rememberPassword": "Retrouver son mot de passe",
+  "common.loginPage.validate": "Valider",
+  "common.loginPage.forgotYourPassword": "Mot de passe perdu ?",
+  "common.loginPage.createAnAccount": "Création d'un compte",
+  "common.loginPage.identificationFailed": "L'identication a échoué",
+
+  "common.logoutPage.processingLogout": "En cours de déconnexion"
+}

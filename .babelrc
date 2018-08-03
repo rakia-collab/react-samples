@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "env",
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    ["react-intl", {
+      "messagesDir": "./build/messages/"
+    }],
+    ["transform-es2015-spread", {
+      "loose": false
+    }],
+    "transform-proto-to-assign"
+  ]
+}

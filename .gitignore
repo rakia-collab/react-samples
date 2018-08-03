@@ -1,0 +1,21 @@
+node_modules/*
+build/*
+src/www/bower_components/*
+/.externalToolBuilders/
+/.settings/
+/.project
+/.tern-project
+/node_modules/
+/build/
+/.idea/
+
+VWAPP\.iml
+
+resources/appli VWFS/\.DS_Store
+
+resources/appli VWFS/jpg/\.DS_Store
+/tmp/
+
+src/www/config\.js
+
+startup\.iml
