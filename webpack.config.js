@@ -31,7 +31,6 @@ module.exports = {
             "eventemitter3",
             "lodash",
             "moment",
-            // "moment-range",
             "react",
             "react-autocomplete",
             "react-bootstrap",
@@ -73,7 +72,6 @@ module.exports = {
     },
     externals: {
         './config': 'cassioPosConfig',
-        //'./cptable': 'var cptable',  // For xlsx.js
     },
 
     plugins: [
