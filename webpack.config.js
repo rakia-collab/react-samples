@@ -81,8 +81,8 @@ module.exports = {
             IS_DEV: IS_DEV
         }),
         new webpack.ProvidePlugin({
-            // lodash
-            '_': 'lodash',
+            // Needed by bootstrap
+            jQuery: 'jquery',
         }),
 
         new HtmlWebpackPlugin({
