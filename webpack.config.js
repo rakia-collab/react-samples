@@ -82,7 +82,7 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             // lodash
-            '_': 'lodash'
+            '_': 'lodash',
         }),
 
         new HtmlWebpackPlugin({

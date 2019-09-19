@@ -8,7 +8,6 @@ src/www/bower_components/*
 /node_modules/
 /build/
 /.idea/
-
 VWAPP\.iml
 
 resources/appli VWFS/\.DS_Store
@@ -19,3 +18,7 @@ resources/appli VWFS/jpg/\.DS_Store
 src/www/config\.js
 
 startup\.iml
+
+*.log
+
+package-lock.json

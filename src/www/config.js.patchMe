@@ -1,0 +1,32 @@
+(function () {
+    var front = ".";
+    var back = ".";
+
+    var apis = {
+
+        master: {
+            hostname: front,
+            api:  front + "/fo",
+        },
+
+        back: {
+            hostname: back,
+            api:  back + "/bo",
+        }
+    }
+
+
+    window.cassioPosConfig = {
+        hostname: apis.master.hostname,
+        apis: apis,
+        masterApi : 'master', //api which manage session and userconfiguration
+        security: true,
+        reCaptchaSiteKey: "xxx",
+        reCaptchaSecretKey: "yyy",
+        //loginLogoImg : 'img/login/somelogo.png', //allow to switch login page logo or replace img/login/logo_login.png
+        //loginBackgroundImg : 'img/login/bg_login.jpg', //allow to switch background image or replace img/login/bg_login.png
+        //loginBackgroundColor : '#a8adb3' // allow to override background by a color
+    };
+
+})();
+// => patch this file with your url and config, then rename it as config.js
