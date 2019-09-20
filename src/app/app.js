@@ -16,7 +16,8 @@ import {
     offlineActions,
     mergeCoreConfiguration,
     addLocaleMessages,
-    EMPTY_OBJECT
+    EMPTY_OBJECT,
+    LocalesProviderContainer,
 } from 'cassiopae-core'
 
 // Extract actions we will use
@@ -26,7 +27,6 @@ import config from './config'
 import './app.less';
 
 import {addLocaleData} from 'react-intl';
-import LocalesProviderContainer from './core/LocalesProviderContainer';
 
 import en from 'react-intl/locale-data/en';
 import fr from 'react-intl/locale-data/fr';
