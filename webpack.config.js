@@ -34,7 +34,6 @@ module.exports = {
             "react",
             "react-autocomplete",
             "react-bootstrap",
-            "react-bootstrap-date-picker",
             "react-datetime",
             "react-dom",
             "react-flip-move",
