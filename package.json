@@ -1,5 +1,5 @@
 {
-  "name": "VWAPP",
+  "name": "accelerator",
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=dev webpack-dev-server --progress --config webpack.config.dev.js",
