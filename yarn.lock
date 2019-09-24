@@ -3790,6 +3790,11 @@ hyphenate-style-name@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
+iban@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/iban/-/iban-0.0.11.tgz#b67e642b6f1d96aa25e280fbc30ecd974c2fa073"
+  integrity sha512-9X0t/S+c6vBdgq3Hrt55HAonXfPmGuO/Vz507lXwQh+F5/0psvZWfh9jD14NvNYAfggk8WrYCWNvLVpCWLWdUQ==
+
 iconv-lite@0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
