@@ -1555,7 +1555,7 @@ caseless@~0.12.0:
 
 "cassiopae-core@ssh://git@innersource.soprasteria.com:cassiopae/pos/core/cassiopae-core.git":
   version "0.0.24"
-  resolved "ssh://git@innersource.soprasteria.com:cassiopae/pos/core/cassiopae-core.git#78c1fad952a449805677af96f9ad20b8fe3adfab"
+  resolved "ssh://git@innersource.soprasteria.com:cassiopae/pos/core/cassiopae-core.git#82654386369e2c2dae5767f8633976a02e43ecf2"
 
 center-align@^0.1.1:
   version "0.1.3"
