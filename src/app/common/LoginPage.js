@@ -11,9 +11,9 @@ import messages from './constants/messages';
 import {
     fillClassNames,
     GlobalMessages,
-    newProgressMonitor,
+    progressActions,
     notify,
-    TextEntry2,
+    TextEntry,
     authenticationActions2,
     PageConfiguration,
 } from 'cassiopae-core';
@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
                         <Row>
                             <Col xs={12} sm={6} md={4} className='login-fields'>
                                 <Field name='username'
-                                       component={TextEntry2}
+                                       component={TextEntry}
                                        disabled={passwordexpired}
                                        placeholder={formatMessage(messages.userEmail)}
                                        autocomplete="username"
@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
                                        value={uticode}/>
 
                                 <Field name='password'
-                                       component={TextEntry2}
+                                       component={TextEntry}
                                        type='password'
                                        autocomplete="current-password"
                                        placeholder={formatMessage(messages.password)}
@@ -158,7 +158,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     login,
-    newProgressMonitor
+    newProgressMonitor: progressActions.newProgressMonitor,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(LoginForm));
