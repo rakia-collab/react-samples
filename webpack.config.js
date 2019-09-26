@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
@@ -12,8 +13,47 @@ const dirApp = path.join(__dirname, 'src/app');
 const dirWWW = path.join(__dirname, 'src/www');
 const dirRes = path.join(__dirname, 'src/resources');
 
+const ksiopPluginsFromEnv = process.env.KSIOP_PLUGINS;
+const plugins = ksiopPluginsFromEnv && ksiopPluginsFromEnv.split(',') || [];
 
 const appHtmlTitle = 'Cassiopae POS';
+
+console.log('  * Product version=%s path=%s', require(path.resolve(__dirname, 'package.json')).version, path.resolve(__dirname));
+plugins.forEach((plugin) => {
+    const p = path.resolve(__dirname, '..', plugin);
+    if (!fs.existsSync(p)) {
+        console.error('  *** ERROR Plugin %s is not found in path %s', plugin, p);
+        process.exit(1);
+    }
+
+    const pjson = path.join(p, 'package.json');
+    console.log('  * Plugin %s  version=%s path=%s', plugin, require(pjson).version, p);
+});
+console.log('  * Build mode=%s', (IS_DEV) ? 'development' : 'production');
+console.log('');
+
+const pluginDirectories = plugins.map((plugin) => {
+    return path.resolve(__dirname, '..', plugin, 'src', 'plugin');
+});
+const pluginEntries = pluginDirectories.map((pluginDirectory) => {
+    return path.resolve(pluginDirectory, 'plugin');
+}).filter((path) => fs.existsSync(path + '.js'));
+
+const pluginBootEntries = pluginDirectories.map((pluginDirectory) => {
+    return path.resolve(pluginDirectory, 'boot');
+}).filter((path) => fs.existsSync(path + '.js'));
+
+const pluginWWWDirectories = plugins.map((plugin) => {
+    return (path.resolve(__dirname, '..', plugin, 'src', 'www'));
+}).filter((from) => fs.existsSync(from));
+
+const pluginSrcDirectories = plugins.map((plugin) => {
+    return (path.resolve(__dirname, '..', plugin, 'src', 'plugin'));
+}).filter((from) => fs.existsSync(from));
+
+const pluginNodeModulesDirectories = plugins.map((plugin) => {
+    return (path.resolve(__dirname, '..', plugin, 'node_modules'));
+}).filter((from) => fs.existsSync(from));
 
 /**
  * Webpack Configuration
@@ -51,21 +91,25 @@ module.exports = {
             "seamless-immutable"
         ],
 
-        'cassiopae-core': [
-            'cassiopae-core'
-        ],
-        main: path.join(dirApp, 'app'),
+        main: [...pluginBootEntries, path.resolve(dirApp, 'app'), ...pluginEntries],
     },
 
 
     resolve: {
+        alias: {
+            'cassiopae-core-module': path.resolve(__dirname, 'node_modules/cassiopae-core/es/index.js'),
+        },
         modules: [
             dirNode,
             dirApp,
             dirWWW,
-            dirRes
+            dirRes,
+            ...pluginWWWDirectories,
+            ...pluginSrcDirectories,
+            ...pluginNodeModulesDirectories,
         ]
     },
+
     node: {
         fs: 'empty'
     },
@@ -87,7 +131,8 @@ module.exports = {
             title: appHtmlTitle
         }),
         new TransferWebpackPlugin([
-            {from: 'www'}
+            {from: 'www'},
+            ...pluginWWWDirectories.map((d) => ({from: d})),
         ], path.resolve(__dirname, "src"))
     ],
     module: {
