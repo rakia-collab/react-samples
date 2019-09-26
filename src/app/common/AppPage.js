@@ -1,5 +1,8 @@
 import React from 'react';
 import Debug from "debug";
+import {injectIntl} from 'react-intl';
+
+import {DEFAULT_NOTIFY_CONFIGURATION, Notifications} from 'cassiopae-core';
 
 import './less/appPage.less';
 
@@ -8,11 +11,11 @@ const debug = Debug("myApplication:common:AppPage");
 class AppPage extends React.Component {
 
     render() {
-        const {main, children} = this.props;
+        const {main, children, intl} = this.props;
 
         return (<div className="app-page">
                 {/*Drawn in all pages, even Login, Logout ...*/}
-                <h1>Sopra/Steria</h1>
+                <Notifications intl={intl} {...DEFAULT_NOTIFY_CONFIGURATION}/>
 
                 {main || children}
             </div>
@@ -20,4 +23,4 @@ class AppPage extends React.Component {
     }
 }
 
-export default AppPage;
+export default injectIntl(AppPage);
