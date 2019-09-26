@@ -147,11 +147,11 @@ LoginForm = reduxForm({
 
 const mapStateToProps = (state) => {
     const {authentication} = state;
-    const {errorMessage, loginLoading, user} = authentication;
+    const {errorMessage, loginIsLoading, user} = authentication;
 
     return {
         errorMessage,
-        loginIsLoading: loginLoading,
+        loginIsLoading,
         uticode: user && user.uticode
     }
 };
