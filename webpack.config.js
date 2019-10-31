@@ -16,7 +16,7 @@ const dirRes = path.join(__dirname, 'src/resources');
 const ksiopPluginsFromEnv = process.env.KSIOP_PLUGINS;
 const plugins = ksiopPluginsFromEnv && ksiopPluginsFromEnv.split(',') || [];
 
-const appHtmlTitle = 'Cassiopae POS';
+const appHtmlTitle = 'Accelerator draft sample';
 
 console.log('  * Product version=%s path=%s', require(path.resolve(__dirname, 'package.json')).version, path.resolve(__dirname));
 plugins.forEach((plugin) => {
@@ -88,17 +88,16 @@ module.exports = {
             "redux-batched-actions",
             "redux-form",
             "reselect",
-            "seamless-immutable"
+            "seamless-immutable",
         ],
 
         main: [...pluginBootEntries, path.resolve(dirApp, 'app'), ...pluginEntries],
     },
-
+    externals: {
+        './cassio-pos-config': 'cassioPosConfig',
+    },
 
     resolve: {
-        alias: {
-            'cassiopae-core-module': path.resolve(__dirname, 'node_modules/cassiopae-core/es/index.js'),
-        },
         modules: [
             dirNode,
             dirApp,
@@ -107,19 +106,16 @@ module.exports = {
             ...pluginWWWDirectories,
             ...pluginSrcDirectories,
             ...pluginNodeModulesDirectories,
-        ]
+        ],
     },
 
     node: {
-        fs: 'empty'
-    },
-    externals: {
-        './config': 'cassioPosConfig',
+        fs: 'empty',
     },
 
     plugins: [
         new webpack.DefinePlugin({
-            IS_DEV: IS_DEV
+            IS_DEV: IS_DEV,
         }),
         new webpack.ProvidePlugin({
             // Needed by bootstrap
@@ -128,12 +124,12 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/www/index.ejs'),
-            title: appHtmlTitle
+            title: appHtmlTitle,
         }),
         new TransferWebpackPlugin([
             {from: 'www'},
             ...pluginWWWDirectories.map((d) => ({from: d})),
-        ], path.resolve(__dirname, "src"))
+        ], path.resolve(__dirname, "src")),
     ],
     module: {
         rules: [
@@ -141,74 +137,87 @@ module.exports = {
             // BABEL
             {
                 test: /\.(js|jsx)$/,  //All .js and .jsx files
-                loader: 'babel-loader',
                 exclude: /(node_modules)/,
                 include: dirApp,
-                options: {
-                    compact: true,
-                    extends: path.join(__dirname, (IS_DEV)?'.babelrc-dev':'.babelrc-build')
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            compact: true,
+                            extends: path.join(__dirname, 'babel.config.js'),
+                        },
+                    },
+                ],
             },
             // LESS
             {
                 test: /\.less$/,
-                loader: 'style-loader!css-loader!less-loader'
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' },
+
+                ],
             },
 
             // STYLES
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    { loader: 'style-loader' },
                     {
                         loader: 'css-loader',
                         options: {
                             sourceMap: IS_DEV
                         }
                     },
-                ]
+                ],
             },
 
             // CSS / SASS
             {
                 test: /\.scss/,
                 use: [
-                    'style-loader',
+                    { loader: 'style-loader' },
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: IS_DEV
-                        }
+                            sourceMap: IS_DEV,
+                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: IS_DEV,
-                            includePaths: []
-                        }
-                    }
-                ]
+                            includePaths: [],
+                        },
+                    },
+
+                ],
             },
 
             // EJS
             {
                 test: /\.ejs$/,
-                loader: 'ejs-loader'
+                use: 'ejs-loader',
             },
 
             // Fonts
             {
                 test: /\.(svg|woff2|woff|ttf|eot|otf)$/,
-                loader: 'file-loader',
-                options: {
-                    name: (file) => {
-                        if (IS_DEV) {
-                            return '[path][name].[ext]'
-                        }
-
-                        return 'assets/[hash].[ext]'
-                    }
-                }
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: (file) => {
+                                if (IS_DEV) {
+                                    return '[path][name].[ext]'
+                                }
+                                return 'assets/[hash].[ext]'
+                            },
+                        },
+                    },
+                ],
             },
 
             // IMAGES
@@ -222,9 +231,9 @@ module.exports = {
                         }
 
                         return 'assets/[hash].[ext]'
-                    }
-                }
-            }
-        ]
-    }
+                    },
+                },
+            },
+        ],
+    },
 };

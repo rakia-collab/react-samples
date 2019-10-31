@@ -1,8 +1,8 @@
 import {defineMessages} from 'react-intl';
 
 const messages = defineMessages({
-    pageTitle: {id: 'home.homePage.title', defaultMessage: 'Welcome !'},
-    user: {id: 'home.homePage.user', defaultMessage: 'User: {uticode}'}
+    boxHeader: {id: 'home.homePage.box.header', defaultMessage: 'This a Box Header'},
+    boxBody: {id: 'home.homePage.box.body', defaultMessage: 'The content of this Box is simple.'},
 });
 
 export default messages;

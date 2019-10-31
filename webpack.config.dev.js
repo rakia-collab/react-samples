@@ -2,9 +2,8 @@ const webpackConfig = require('./webpack.config');
 const webpack = require('webpack');
 
 module.exports = Object.assign(webpackConfig, {
-
-    devtool: 'inline-source-map',//Change this to 'inline-source-map' if you want to debug
-
+    mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         pathinfo: true,
         publicPath: '/',
@@ -20,5 +19,4 @@ module.exports = Object.assign(webpackConfig, {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ])
-
 });

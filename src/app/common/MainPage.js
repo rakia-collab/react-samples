@@ -1,33 +1,40 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {PageConfiguration} from 'cassiopae-core';
+import {Col, Row} from 'cassiopae-core';
+import PropTypes from 'prop-types';
+import {injectIntl} from 'react-intl';
 
-// import SideBar from "./SideBar";
+import MainHeaderBar from './MainHeaderBar';
 
 import './less/mainPage.less';
 
 class MainPage extends React.Component {
 
-    render() {
-        const {main, children, skinClass} = this.props;
+    getChildContext() {
+        const {intl} = this.props;
+        return {intl};
+    }
 
+    render() {
+        const {main, children} = this.props;
         return (
             <div className='main-page'>
-                <PageConfiguration className={skinClass} key="pageConfiguration"/>
-                {/*<SideBar key="sidebar"/> */}
-
-                {main || children}
+                <Row className='main-header'>
+                    <Col xs={12}>
+                        <MainHeaderBar className='main-header'/>
+                    </Col>
+                </Row>
+                <Row className='main-body'>
+                    <Col xs={10}>
+                        {main || children}
+                    </Col>
+                </Row>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    const skinClass = state.authentication.skinClass;
-
-    return {
-        skinClass
-    }
+MainPage.childContextTypes = {
+    intl: PropTypes.object,
 };
 
-export default connect(mapStateToProps)(MainPage);
+export default injectIntl(MainPage);
