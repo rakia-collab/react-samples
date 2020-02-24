@@ -1,0 +1,279 @@
+{
+  "POSBAMB1": {
+    "/fo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8011/FrontV4FOBAMB1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8001/CassiopaeBOBAMB1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSBAMB2": {
+    "/fo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8012/FrontV4FOBAMB2",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8002/CassiopaeBOBAMB2",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSBAMB3": {
+    "/fo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8013/FrontV4FOBAMB3",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassbambapp01.marc.fr.ssg:8003/CassiopaeBOBAMB3",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSDNAF1": {
+    "/fo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8011/FrontV4FODNAF1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8001/CassiopaeBODNAF1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSDNAF2": {
+    "/fo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8012/FrontV4FODNAF2",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8002/CassiopaeBODNAF2",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSDNAF3": {
+    "/fo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8013/FrontV4FODNAF3",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxdnafapp01.marc.fr.ssg:8003/CassiopaeBODNAF3",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSYAMA1": {
+    "/fo": {
+      "target": "http://slnxyamaapp01.marc.fr.ssg:8011/FrontV4FOYAMA1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxyamaapp01.marc.fr.ssg:8001/CassiopaeBOYAMA1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSYAMA2": {
+    "/fo": {
+      "target": "http://slnxyamaapp01.marc.fr.ssg:8012/FrontV4FOYAMA2",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxyamaapp01.marc.fr.ssg:8002/CassiopaeBOYAMA2",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "DIGIT1": {
+    "/fo": {
+      "target": "https://dl.dxp.delivery/FUDIGIT1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "https://dl.dxp.delivery/FUDIGIT1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "DIGIT3": {
+    "/fo": {
+      "target": "https://dl.dxp.delivery/FUDIGIT3",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "https://dl.dxp.delivery/FUDIGIT3",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSSTAB1": {
+    "/fo": {
+      "target": "http://slnxcassstabapp01.marc.fr.ssg:8011/FrontV4FOSTAB1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassstabapp01.marc.fr.ssg:8001/CassiopaeBOSTAB1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSSTAB2": {
+    "/fo": {
+      "target": "http://slnxcassstabapp01.marc.fr.ssg:8012/FrontV4FOSTAB2",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassstabapp01.marc.fr.ssg:8002/CassiopaeBOSTAB2",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "POSMAINT1_SLOOP": {
+    "/fo": {
+      "target": "http://slnxcassaccapp01.marc.fr.ssg:8011/FrontV4FOMAINT1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://localhost:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassaccapp01.marc.fr.ssg:8001/CassiopaeBOMAINT1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://localhost:8001"
+    }
+  },
+  "POSMAINT1": {
+    "/fo": {
+      "target": "http://slnxcassaccapp01.marc.fr.ssg:8011/FrontV4FOMAINT1",
+      "newCookiePath": "/fo",
+      "pathRewrite": {
+        "^/fo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    },
+    "/bo": {
+      "target": "http://slnxcassaccapp01.marc.fr.ssg:8001/CassiopaeBOMAINT1",
+      "newCookiePath": "/bo",
+      "pathRewrite": {
+        "^/bo/": "/RestServices/"
+      },
+      "proxyAgent": "http://192.168.0.141:8001"
+    }
+  },
+  "ARIADNEXT_MOCKUP": {
+    "/fo/ariadnext": {
+      "target": "http://localhost:3001/",
+      "pathRewrite": {
+        "^/fo/ariadnext": ""
+      }
+    }
+  },
+  "DEYDE_MOCKUP": {
+    "/fo/addresses/deyde": {
+      "target": "https://dl.dxp.delivery",
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/fo/addresses/deyde": "/DEYDE/address-normalization"
+      }
+    }
+  },
+  "REFTABLE_MOCKUP": {
+    "/fo/referencetable": {
+      "target": "http://localhost:3001/",
+      "pathRewrite": {
+        "^/fo/referencetable": "/referencetable"
+      }
+    }
+  }
+}

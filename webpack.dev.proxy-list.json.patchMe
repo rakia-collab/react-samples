@@ -1,0 +1,27 @@
+//
+//{
+//    "POS_PROXY_ITEM1": {
+//        "ENTRY_POINT1": {
+//            "target": "http://server01.marc.fr.ssg:8011/POS1",
+//            "newCookiePath": "/fo",
+//            "pathRewrite": {
+//                "^/fo": "/RestServices"
+//            },
+//        },
+//        "/ENTRY_POINT2": {
+//            "target": "http://server01.marc.fr.ssg:8011/POS1",
+//            "newCookiePath": "/bo",
+//            "pathRewrite": {
+//                "^/bo": "/RestServices"
+//            },
+//        }
+//    },
+//    "POS_PROXY_ITEM2": {
+//        "ENTRY_POINT1": {
+//            "target": "http://localhost:3001/",
+//            "pathRewrite": {
+//                "^/fo/ariadnext": ""
+//            }
+//        }
+//    }
+//}

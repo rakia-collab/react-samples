@@ -1,40 +1,45 @@
 import React from 'react';
-import {Col, Row} from 'cassiopae-core';
+import {DebugInfos} from 'cassiopae-core';
 import PropTypes from 'prop-types';
 import {injectIntl} from 'react-intl';
+import {connect} from 'react-redux';
 
 import MainHeaderBar from './MainHeaderBar';
 
-import './less/mainPage.less';
+import './mainPage.less';
 
 class MainPage extends React.Component {
 
+    static childContextTypes = {
+        showAccessKeys: PropTypes.bool,
+        showDebugInfos: PropTypes.bool,
+    };
+
     getChildContext() {
-        const {intl} = this.props;
-        return {intl};
+        const {showAccessKeys, showDebugInfos} = this.props;
+        return {
+            showAccessKeys,
+            showDebugInfos,
+        };
     }
 
     render() {
         const {main, children} = this.props;
         return (
             <div className='main-page'>
-                <Row className='main-header'>
-                    <Col xs={12}>
-                        <MainHeaderBar className='main-header'/>
-                    </Col>
-                </Row>
-                <Row className='main-body'>
-                    <Col xs={10}>
-                        {main || children}
-                    </Col>
-                </Row>
+                <MainHeaderBar className='main-header'/>
+                <div className='main-body'>
+                    <DebugInfos/>
+                    {main || children}
+                </div>
             </div>
         );
     }
 }
 
-MainPage.childContextTypes = {
-    intl: PropTypes.object,
-};
-
-export default injectIntl(MainPage);
+export default connect(
+    (state) => ({
+        showAccessKeys: state.authentication.showFields,
+        showDebugInfos: state.authentication.showDebugInfos,
+    }),
+)(injectIntl(MainPage));

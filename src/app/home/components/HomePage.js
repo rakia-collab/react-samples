@@ -1,12 +1,11 @@
 import React from 'react';
 import Debug from 'debug';
-import {Panel} from 'react-bootstrap';
+import {FormattedMessage} from 'react-intl';
+import {Box, Div} from 'cassiopae-core';
 
-import '../less/HomePage.less';
+import './HomePage.less';
 
 import messages from '../constants/messages';
-import {FormattedMessage} from 'react-intl';
-import {Box} from 'cassiopae-core';
 
 const debug = Debug('myApp:home:HomePage');
 
@@ -15,11 +14,14 @@ class HomePage extends React.Component {
     render() {
 
         return (
-            <div>
-                <Box type='primary' title={<FormattedMessage {...messages.boxHeader}/>}>
+            <Div id='HomePage' parentProps={this.props}>
+                <Box id='HomePage.body'
+                     parentProps={this.props}
+                     type='primary'
+                     title={messages.boxHeader}>
                     <FormattedMessage {...messages.boxBody}/>
                 </Box>
-            </div>
+            </Div>
         );
     }
 }

@@ -3,7 +3,7 @@ import Debug from 'debug';
 import {injectIntl} from 'react-intl';
 import {DEFAULT_NOTIFY_CONFIGURATION, Notifications} from 'cassiopae-core';
 
-import './less/appPage.less';
+import './appPage.less';
 
 const debug = Debug('myApplication:common:AppPage');
 
