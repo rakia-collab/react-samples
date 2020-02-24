@@ -22,3 +22,5 @@ startup\.iml
 *.log
 
 package-lock.json
+
+webpack.dev.proxy-list.json
