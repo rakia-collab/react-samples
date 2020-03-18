@@ -8,7 +8,6 @@ import messages from '../Constantes/messages';
 import {injectIntl} from 'react-intl';
 
 
-const FORM = 'formMake';
 
 class ToolbarMakeModel extends React.Component {
 

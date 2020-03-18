@@ -4,7 +4,7 @@ import messages from '../../Constantes/messages';
 import {change,formValueSelector } from 'redux-form';
 import ModelTable from './ModelTable';
 import { Row, Col, OverlayTrigger, Tooltip} from "react-bootstrap";
-import PopupMakeTrim from"./PopupModelTrim";
+import PopupModelDetails  from './PopupModelDetails';
 import {showPopupModelDetail,fetchModel, initModels} from "../reducers/actions";
 import {connect} from 'react-redux';
 
@@ -24,9 +24,13 @@ import {connect} from 'react-redux';
         this.props.showPopupModelDetail(true);
     };
 
+     openNewModel = () => {
+         this.props.fetchModel(null)
+         this.props.showPopupModelDetail(true);
+     };
     render() {
 
-        const {intl: {formatMessage}, fetchModel,  showPopupModelDetail,modelExp, initModels, listModels, generalModels, isPopupModelDetailLoade,indexModel} = this.props;
+        const {intl: {formatMessage}, fetchModel,  showPopupModelDetail,modelField, initModels, listModels, generalModels, isPopupModelDetailLoade,indexModel,form} = this.props;
         const titleModelInfo=   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             {formatMessage(messages.ModelInfoTitle)} </div> );
@@ -35,15 +39,16 @@ import {connect} from 'react-redux';
             <OverlayTrigger trigger="hover" placement="top"
                             overlay={<Tooltip>{formatMessage(messages.btAddModelTitle)}</Tooltip>}>
 
-                <button type="button" className="btn-primary btn-box-tool"  onClick={this.openModel}>
+                <button type="button" className="btn-primary btn-box-tool"  onClick={this.openNewModel}>
                     <i className="fa fa-plus"></i>
                 </button>
             </OverlayTrigger>
 
         </div>);
-        return (<Box title={titleModelInfo} tools={btTools} >
-                <PopupMakeTrim modelExp={modelExp} isPopupModelDetailLoade={isPopupModelDetailLoade}    onClose={this.closeModel}/>
-                   <ModelTable modelExp={modelExp} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
+
+        return (<Box  tools={btTools} >
+                <PopupModelDetails form={form}   onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  intl={this.props.intl}  />
+                   <ModelTable  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
 
             </Box>
         );
@@ -55,6 +60,7 @@ const mapStateToProps = (state, props) => {
 
     const {form} = props;
     const selector = formValueSelector(form);
+
     const make = selector(state, 'make');
     var listModels = make.listmodels;
     var generalModels=[];
@@ -63,11 +69,14 @@ const mapStateToProps = (state, props) => {
     });
 
     var indexModel = state.model.indexModelSelected
+    const modelField = `make.listmodels[${indexModel}]`;
+
     return {
         generalModels,
         listModels,
         isPopupModelDetailLoade: state.model.isPopupModelDetailLoade,
-        indexModel:indexModel
+        indexModel:indexModel,
+        modelField
 
 
     };

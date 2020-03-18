@@ -46,7 +46,7 @@ const messages = defineMessages({
     btModifierModelTitle: {id: 'config.messages.button.modifierModel.title', defaultMessage: 'Modifier model'},
     modelInspectionTitle: {id: 'config.messages.model.inspection.title', defaultMessage: 'Modèle inspection régulièrel'},
     modelTypeTitle: {id: 'config.messages.model.type.title', defaultMessage: 'Types de machines de construction'},
-    modelSpecialityitle: {id: 'config.messages.model.speciality.title', defaultMessage: 'Machines spéciales de construction'},
+    modelSpecialityTitle: {id: 'config.messages.model.speciality.title', defaultMessage: 'Machines spéciales de construction'},
     modelRefTitle: {id: 'config.messages.model.ref.title', defaultMessage: 'Référence model'},
     make: {id: 'config.messages.field.make', defaultMessage: 'Filtre1'},
     brand: {id: 'config.messages.field.brand', defaultMessage: 'Brand'},
@@ -57,6 +57,14 @@ const messages = defineMessages({
     filtre: {id: 'config.messages.filtre.title', defaultMessage: 'Filtre'},
     dealerSearchTitle: {id: 'config.messages.generalinfo.dealer.title', defaultMessage: 'Dealer Search'},
     submit: {id: 'config.messages.make.submit', defaultMessage: 'Valider'},
+    segmentTitle: {id: 'config.messages.model.segment.title', defaultMessage: 'Segment'},
+
+    assetTypeBssTitle: {id: 'config.messages.model.bss.type.title', defaultMessage: 'BSS asset type'},
+    assetDetailBssTitle: {id: 'config.messages.model.bss.detail.title', defaultMessage: 'BSS asset detail type'},
+    assetRateBssTitle: {id: 'config.messages.model.bss.rate.title', defaultMessage: 'BSS set rate code'},
+
+
+
 });
 
 export default messages;

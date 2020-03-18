@@ -12,12 +12,9 @@ export class IconeTrim extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {value: props.data};
     }
 
-    handleChange(value) {
-        this.setState({value});
-    }
+
 
     render() {
 
@@ -34,7 +31,7 @@ export class IconeTrim extends React.Component {
         )
     }
 }
-var    trim=[];
+
 const columns = ['MMOCODE', 'MMTCODE', 'MMOLIBELLE','ICONEMODEL'];
 class TrimTableLevel extends React.Component {
 
@@ -46,19 +43,14 @@ class TrimTableLevel extends React.Component {
     }
 
     openDetailTrim = (event,value) => {
-        trim=value;
+
         this.props.showTrimDetail(true)
     };
 
     handleCloseDetail = () =>
     {
         this.props.showTrimDetail(false)
-        trim =[{
-            "MMOCODE": "",
-            "MMOLIBELLE": "",
-            "MMODTSTART": "",
-            "ICONEMODEL": ""
-        }]
+
     }
 
 
@@ -100,8 +92,8 @@ class TrimTableLevel extends React.Component {
         let notype = (<p className="center-text"><FormattedMessage id="conf.tab.trim.nodatamessage" defaultMessage="The list is empty"/></p>);
         return (
             <div>
-                {   this.props.isTrimDetailLoade &&
-                <TrimDetail trim={trim} handleCloseDetail={this.handleCloseDetail} />
+                {  this.props.isTrimDetailLoade &&
+                <TrimDetail  handleCloseDetail={this.handleCloseDetail} openDetailTrim={this.openDetailTrim} isPopupModelDetailLoade={this.props.showTrimDetail} />
                 }
             <Griddle
                 tableClassName="table table-hover"
@@ -112,23 +104,13 @@ class TrimTableLevel extends React.Component {
                 initialSort='MMOLIBELLE'
                 initialSortAscending={false}
                 showPager={false}
-                noDataMessage={notype}
-
-            />
+                noDataMessage={notype}       />
                 </div>
       )
 
     }
 }
 
-const mapStateToProps = (state, props) => {
 
-    return {
-        isTrimDetailLoade: state.trim.isTrimDetailLoade,
-    };
-};
 
-const mapDispatchToProps = {
-    showTrimDetail
-};
-export default connect(mapStateToProps, mapDispatchToProps) (injectIntl(TrimTableLevel));
+export default (injectIntl(TrimTableLevel));

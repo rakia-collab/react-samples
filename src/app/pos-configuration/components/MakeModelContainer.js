@@ -16,6 +16,9 @@ import {
     EMPTY_OBJECT,
     Form
 } from 'cassiopae-core';
+import {reduxForm,change, formValueSelector, getFormValues} from 'redux-form';
+
+const FORM ='marqueForm'
 class MakeModelContainer extends React.Component {
 
     constructor(props) {
@@ -89,7 +92,10 @@ class MakeModelContainer extends React.Component {
 }
 
 const accessKeysSelector = newAccessKeysSelector();
+const selector = formValueSelector(FORM);
+const formValues = getFormValues(FORM);
 const mapStateToProps = (state, props) => {
+    const values = formValues(state) || EMPTY_OBJECT;
     const {pathname} = props;
     const {authentication} = state;
 
@@ -97,7 +103,7 @@ const mapStateToProps = (state, props) => {
 
     return {
 
-        form: 'MakesModelsContainer',
+        values,
         isMakeSearchLoade: state.makes.isMakeSearchLoade,
         isMakesRemoveLoade: state.makes.isMakesRemoveLoade,
         makesList: state.makes && state.makes.makes,

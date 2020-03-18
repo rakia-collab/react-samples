@@ -26,11 +26,18 @@ function reducer(state = Immutable(initialState), action) {
             });
         case actions.FETCH_Model_SUCCESS:
             var index=-1;
-            state.models.forEach(model =>
-            {if(model.modelgeneraldata.modelref !== action.result)
-                index=index+1;
+            if(!action.result)
+            {
+                index = state.models.length
+
             }
-        );
+            else{
+                state.models.forEach(model => {
+                    if (model.modelgeneraldata.modelref !== action.result)
+                        index = index + 1;
+                }  );
+            }
+
             return Immutable.merge(state,{
                 indexModelSelected: index
 

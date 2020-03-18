@@ -1,7 +1,7 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form';
 import { Row, Col, button } from "react-bootstrap";
-import {Box, DateEntry, SelectField, TextEntry, withAccessKeysAndCol} from 'cassiopae-core';
+import {Box, DateEntry, TextEntry} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
 import {  injectIntl} from 'react-intl';
 import {connect} from 'react-redux';
@@ -14,16 +14,14 @@ class TrimDetail extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage},trim} = this.props;
+        const {intl: {formatMessage},handleCloseDetail} = this.props;
 
-        const titleTrim =trim.MMOLIBELLE? (<div className="box-tools-filter pull-left">
-            <span className="fa fa-edit"/>
-            {formatMessage(messages.ModifierTrimTitle)} </div>):(<div className="box-tools-filter pull-left">
+        const titleTrim =(<div className="box-tools-filter pull-left">
             <span className="glyphicon glyphicon-plus-sign"/>
             {formatMessage(messages.newTrimTitle)} </div>);
 
         const closeTools=     <div className="box-tools-filter pull-right">
-            <button type="button" className="btn btn-box-tool" onClick={this.props.handleCloseDetail} >
+            <button type="button" className="btn btn-box-tool" onClick={handleCloseDetail} >
                 <i className="fa fa-remove"></i>
             </button>
 
@@ -31,30 +29,18 @@ class TrimDetail extends React.Component {
         return (
             <div>
                 <Box title={titleTrim} tools={closeTools} type='primary'>
-                    <Row>
-                        <Col xs={6}>
-
-                            <TextEntry
-                                value={trim.MMOLIBELLE}
-                                title={formatMessage(messages.modelTitle)}/>
+                    <Row >
+                        <Col  xs={4}>
+                            <Field name="test"
+                                   component={TextEntry}
+                                   title={formatMessage(messages.dtDebutTitle)}/>
                         </Col>
-                        <Col xs={6}>
-                            <TextEntry
-                                value={trim.MMOCODE}
-                                title={formatMessage(messages.makeTitle)}
-
-                            />
+                        <Col  xs={4} >
+                            <Field name="debut"
+                                   component={DateEntry}
+                                   title={messages.dtDebutTitle}/>
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-
-                            <DateEntry
-                                value={trim.MMODTSTART}
-
-                                title={formatMessage(messages.dtDebutTitle)}/>
-                        </Col>
-                        <Col xs={6}>
+                        <Col xs={4}>
                             <Field
                                 name="dateFin"
                                 component={DateEntry}
@@ -69,13 +55,5 @@ class TrimDetail extends React.Component {
         )
     }
 }
-const mapStateToProps = (state, props) => {
 
-    return {
-    };
-};
-
-const mapDispatchToProps = {
-
-};
-export default connect(mapStateToProps, mapDispatchToProps) ( withAccessKeysAndCol(injectIntl(TrimDetail)));
+export default (injectIntl(TrimDetail));

@@ -13,16 +13,11 @@ import  {showTrimDetail} from "../reducers/actions";
 
 class TrimContainer extends React.Component {
 
-    openDetailTrim = () => {
-        const {showTrimDetail} = this.props;
-
-        showTrimDetail(true);
-    };
 
 
     render() {
 
-        const {intl: {formatMessage},showPopupModelDetail} = this.props;
+        const {intl: {formatMessage},isTrimDetailLoade,showTrimDetail} = this.props;
 
 
         const trimTitle=   (<div className="box-tools-filter pull-left">
@@ -41,7 +36,7 @@ class TrimContainer extends React.Component {
 
         return (<Box title={trimTitle} type='primary' tools={btToolsTrim}>
 
-               <TrimTableLevel     />
+               <TrimTableLevel showTrimDetail={showTrimDetail}  isTrimDetailLoade={isTrimDetailLoade}   />
 
 
 
@@ -54,6 +49,7 @@ class TrimContainer extends React.Component {
 const mapStateToProps = (state, props) => {
 
     return {
+        isTrimDetailLoade: state.trim.isTrimDetailLoade
     };
 };
 

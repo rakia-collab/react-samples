@@ -1,14 +1,9 @@
 
 export const SHOW_Model_DETAIL_POPUP = 'MODEL/SHOW_Model_DETAIL_POPUP';
 export const SHOW_Model_DETAIL = 'MODEL/SHOW_Model_DETAIL';
-
-export const INIT_Models = 'MODEL/INIT_Models';
 export const INIT_Models_SUCCESS = 'MODEL/INIT_Models_SUCCESS';
-export const INIT_Models_FAIL = 'MODEL/INIT_Models_FAIL';
-
-export const FETCH_Model = 'MODEL/SHOW_Model';
 export const FETCH_Model_SUCCESS = 'MODEL/FETCH_Model_SUCCESS';
-export const FETCH_Model_FAIL = 'MODEL/FETCH_Model_FAIL';
+export const INIT_Model_SUCCESS = 'MODEL/INIT_Model_SUCCESS';
 
 
 
@@ -40,6 +35,16 @@ export function initModels(data)
     };
 
 }
+
+export function initModel(data)
+{
+    return {
+        type: INIT_Model_SUCCESS,
+        result: data
+    };
+
+}
+
 
 export function fetchModel(data)
 {

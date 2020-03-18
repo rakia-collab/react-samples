@@ -11,7 +11,6 @@ import {
     DateDisplay
 } from 'cassiopae-core';
 
-import PopupMakeTrim from './PopupModelTrim';
 
 
 
@@ -46,8 +45,7 @@ class ModelDisplay extends React.Component {
 
         return (
             <div>
-                <PopupMakeTrim  isPopupModelDetailLoade={isPopupModelDetailLoade}      onClose={this.closeModelDetail}/>
-                <button type='button' className='btn btn-box-tool' onClick={this.openModelDetail}>
+                 <button type='button' className='btn btn-box-tool' onClick={this.openModelDetail}>
                     <i className='fa fa-search-plus'/>
                 </button>
             </div>

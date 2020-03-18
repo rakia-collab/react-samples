@@ -5,15 +5,12 @@ import {connect} from 'react-redux';
 import Debug from 'debug';
 import {
     Div,
-    MultiStep,
-    Form,
-    EMPTY_OBJECT
+    MultiStep
 } from 'cassiopae-core';
-import DetailModel from '../model/components/DetailModel';
+import ModelDetails from '../model/components/ModelDetails';
 import TrimContainer from '../trimLevel/components/TrimContainer';
 import messages from '../Constantes/messages';
-import {reduxForm,change, formValueSelector, getFormValues} from 'redux-form';
-
+import {change,formValueSelector,getFormValues } from 'redux-form';
 
 
 
@@ -58,7 +55,7 @@ class StepContainerModal extends React.Component {
                     id: 'conf.modal.step.etailModel',
                     order: 1,
                     name: messages.detailModelTitle,
-                    component: <DetailModel modelField={modelField} form={FORM} {...this.props} />,
+                    component: <ModelDetails intl={intl} form={FORM} {...this.props} />,
 
                 },
                 {
@@ -66,7 +63,7 @@ class StepContainerModal extends React.Component {
                     id: 'conf.modal.step.trimInfo',
                     order: 2,
                     name: messages.trimTitle,
-                    component: <TrimContainer modelField={modelField} form={FORM}  {...this.props}/>,
+                    component: <TrimContainer intl={intl} form={FORM} {...this.props} />
                 }
             ];
 
@@ -103,15 +100,15 @@ class StepContainerModal extends React.Component {
         const id = 'stepContainer';
         return (
 
-            <div ref="portalquote"    skin={true}  >
-                <Div id={id} className='newModel' parentProps={this.props} parentState={this.state}>
+
+                <Div id={id} className='skin-sopra newDeal' parentProps={this.props} parentState={this.state}>
                     <MultiStep id={id + ':multistepmodel'}
                                steps={steps}
                                stepKey={stepKey}
                                onStepChange={this.handleStepChange}
                                onStepUpdate={this.handleStepUpdate}/>
                 </Div>
-            </div>
+
 
 
         );
@@ -123,17 +120,27 @@ class StepContainerModal extends React.Component {
 
 
 
-function mapStateToProps(state, props) {
+const mapStateToProps = (state, props) => {
+
+    const selector = formValueSelector(FORM);
+    const formValues = getFormValues(FORM);
+    const make = selector(state, 'make');
+    var listModels = make.listmodels;
     var indexModel = state.model.indexModelSelected
-const modelField = `make.listmodels[${indexModel}]`;
+    const modelField = `make.listmodels[${indexModel}]`;
+    const values = formValues(state) || EMPTY_OBJECT;
 
     return {
-        modelField: modelField,
-        form: FORM
-    };
-}
+        values,
+        listModels,
+        isPopupModelDetailLoade: state.model.isPopupModelDetailLoade,
+        indexModel:indexModel,
+        modelField,
+        form:FORM
 
-const mapDispatchToProps = {
-    change,
+
+    };
 };
-export default connect(mapStateToProps, null) (injectIntl(StepContainerModal));
+
+
+export default connect(mapStateToProps, null)  (injectIntl(StepContainerModal));

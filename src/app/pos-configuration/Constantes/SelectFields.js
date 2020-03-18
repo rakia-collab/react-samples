@@ -54,7 +54,7 @@ export const modeltype = [
 
 ];
 
-export const odelspecialite = [
+export const modelspecialite = [
     {value: 'one', label: 'Special construction 1'},
     {value: 'two', label: 'Special construction 2'},
     {value: 'three', label: 'Special construction 3'}
