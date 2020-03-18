@@ -1,0 +1,32 @@
+/*
+ * Skin: White-100-102
+ * -----------
+ */
+
+.skin-white-100_102 {
+
+  @black-color: #000000;
+  @grey-color: #e7e9ea;
+  @red-color: #cc0033;
+  @white-color: #ffffff;
+
+  @dark-blue: #434254;
+
+  @red-1: #860426;
+  @red-2: #b00003;
+  @red-3: #cc0033;
+  @red-4: #dd3237;
+  @red-5: #ee3237;
+
+  .common-skin-style(@white-color, @red-color, @header-font-color: @black-color, @bg-header-hover: @black-color, @use-header-separator: true, @color-header-separator: @black-color, @bg-timeline-li: @black-color, @use-light-version: false, @bg-body: transparent, @bg-progtrckr: @red-color);
+
+  .common-skin-chart-colors(@red-1, @red-2, @red-3, @red-4, @red-5);
+
+  .common-skin-buttons(@primary: @red-2);
+
+  .common-skin-kpi-colors(@red-2, @dark-blue, @red-2, @dark-blue);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  .spinner-color(@black-color);
+}

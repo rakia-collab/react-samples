@@ -1,0 +1,40 @@
+{
+	"Services": [
+		{
+			"ServiceCode": "LLM",
+			"ServiceName": "LongLife maintenance",
+			"Purchased": 1,
+			"Used": 1,
+			"Remaining": 0,
+			"AmountMax": 1500,
+			"Comment": "Some comments goes here"
+		},
+		{
+			"ServiceCode": "WPN",
+			"ServiceName": "Winter pneumatics X4",
+			"Purchased": 1,
+			"Used": 1,
+			"Remaining": 0,
+			"AmountMax": 7500,
+			"Comment": "Bridgestone only"
+		},
+		{
+			"ServiceCode": "SP2",
+			"ServiceName": "Spare pneumatics x2",
+			"Purchased": 1,
+			"Used": 0,
+			"Remaining": 1,
+			"AmountMax": 3500,
+			"Comment": "Bridgestone only"
+		},
+		{
+			"ServiceCode": "WE5",
+			"ServiceName": "Warranty extension 5 year",
+			"Purchased": 1,
+			"Used": 0,
+			"Remaining": 1,
+			"AmountMax": 4250,
+			"Comment": "Another comment here"
+		}
+	]
+}

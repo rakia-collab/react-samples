@@ -1,6 +1,18 @@
-@import 'common/index.less';
+@large-screen-min-size: 1091px;
+@medium-screen-max-size: 1090px;
+@small-screen-max-size: 720px;
+@tiny-screen-max-size: 350px;
 
-html, .body-content, #app-content {
+@import './common/less/index.less';
+@import './pos-configuration/make/less/react-dual-listbox.less';
+@import './pos-configuration/make/less/react-flags-select.less';
+@import './pos-configuration/make/less/panelstyle';
+// @import "./calculator/demo.less";
+
+//@import "./back/auditstockplan/less/index.less";
+
+
+#app-content {
   height: 100%;
   min-height: 100%;
   display: flex;

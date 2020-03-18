@@ -1,0 +1,98 @@
+.menu-slider(@font-color: rgba(255, 255, 255, 0.8); @hover-color: #f6f6f6;) {
+
+  .sidebar {
+    //    padding-left: 16px;
+
+    .treeview-menu {
+      position: relative;
+      padding-left: 10px;
+
+      A {
+        padding-left: 5px !important;
+      }
+
+      LI {
+        animation: sidebar-menu-item 0.3s cubic-bezier(.39, .575, .565, 1);
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        z-index: 5;
+        left: 15px;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background: #5c5c5c;
+      }
+
+      transition: transform .3s cubic-bezier(.39, .575, .565, 1);
+
+      :nth-child(1) {
+        animation-duration: .10s;
+      }
+      :nth-child(2) {
+        animation-duration: .20s;
+      }
+      :nth-child(3) {
+        animation-duration: .30s;
+      }
+      :nth-child(4) {
+        animation-duration: .40s;
+      }
+      :nth-child(5) {
+        animation-duration: .50s;
+      }
+      :nth-child(6) {
+        animation-duration: .60s;
+      }
+
+      @keyframes sidebar-menu-item {
+        0% {
+          margin-left: -15px;
+        }
+        100% {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .sidebar .treeview A {
+    padding-left: 5px;
+    margin-left: 12px;
+    border-left-width: 0;
+
+    &:before {
+
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 1px;
+      top: 50%;
+      left: 0;
+      margin-top: -1px;
+      transition: width .3s cubic-bezier(.39, .575, .565, 1);
+      background-color: @font-color;
+    }
+
+    > :not(.pull-right) {
+      transition: transform .3s cubic-bezier(.39, .575, .565, 1);
+
+      display: inline-block;
+    }
+  }
+
+  .sidebar .treeview A:hover {
+    &:before {
+      width: 20px;
+      background-color: @hover-color;
+    }
+
+    > :not(.pull-right) {
+      transform: translateX(20px);
+    }
+  }
+
+}

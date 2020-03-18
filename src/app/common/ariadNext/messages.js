@@ -1,0 +1,36 @@
+import {defineMessages} from 'react-intl'
+
+const messages = defineMessages({
+    modalTitle: {id: 'pos.ariadNext.modalTitle', defaultMessage: 'Scan customer\'s identity'},
+    readQRCodeWithMobile: {id: 'pos.ariadNext.readQRCode', defaultMessage: 'To simplify the registration of customer information, you can scan the customer\'s identity documents.'},
+    clickHere: {id: 'pos.ariadNext.clickHere', defaultMessage: 'Click here to open the site'},
+    canNotGetURL: {id: 'pos.ariadNext.canNotGetURL', defaultMessage: 'Can not compute URL'},
+    waitForScan: {id: 'pos.ariadNext.waitForScan', defaultMessage: 'Please scan your id card ...'},
+    captureOngoing: {id: 'pos.ariadNext.captureOngoing', defaultMessage: 'Please scan other documents ...'},
+    success: {id: 'pos.ariadNext.success', defaultMessage: 'Success, your card has been uploaded.'},
+    waitForQR: {id: 'pos.ariadNext.waitForQR', defaultMessage: 'Computing URL'},
+    close: {id: 'pos.ariadNext.close', defaultMessage: 'Cancel'},
+    loadingPdf: {id: 'pos.ariadNext.loadingPdf', defaultMessage: 'Loading report'},
+    showPdf: {id: 'pos.ariadNext.showPdf', defaultMessage: 'Open report'},
+    downloadPdf: {id: 'pos.ariadNext.downloadPdf', defaultMessage: 'Save report'},
+    saveOrOpenPdf: {id: 'pos.ariadNext.saveOrOpenPdf', defaultMessage: 'Save or open report'},
+    valid: {id: 'pos.ariadNext.valid', defaultMessage: 'Apply'},
+    key_reportStatus: {id: 'pos.ariadNext.key_reportStatus', defaultMessage: 'Report status'},
+    key_birthDate: {id: 'pos.ariadNext.key_birthDate', defaultMessage: 'Birth date'},
+    key_birthPlace: {id: 'pos.ariadNext.key_birthPlace', defaultMessage: 'Birth place'},
+    key_firstName: {id: 'pos.ariadNext.key_firstName', defaultMessage: 'Firstnames'},
+    key_lastName: {id: 'pos.ariadNext.key_lastName', defaultMessage: 'Lastname'},
+    key_gender: {id: 'pos.ariadNext.key_gender', defaultMessage: 'Gender'},
+    key_nationality: {id: 'pos.ariadNext.key_nationality', defaultMessage: 'Nationality'},
+    key_idNumber: {id: 'pos.ariadNext.key_idNumber', defaultMessage: 'ID number'},
+    key_idType: {id: 'pos.ariadNext.key_idType', defaultMessage: 'ID Card type'},
+    key_idExpiration: {id: 'pos.ariadNext.key_idExpiration', defaultMessage: 'ID expiry date'},
+    key_idIssuance: {id: 'pos.ariadNext.key_idIssuance', defaultMessage: 'ID issue date'},
+    key_addressData: {id: 'pos.ariadNext.key_addressData', defaultMessage: 'ID address'},
+    mobileMessage: {id: 'pos.ariadNext.mobileMessage', defaultMessage: 'Please enter mobile phone to receive a SMS :'},
+    mobileButton:  {id: 'pos.ariadNext.mobileButton', defaultMessage: 'Send SMS'},
+    readQRCodeWithSMS: {id: 'pos.ariadNext.readQRCodeWithSMS', defaultMessage: 'SMS has been sent, if you do not receive it, you can still use this QR code, or click on the URL.'},
+    readQRCodeWithSMS2: {id: 'pos.ariadNext.readQRCodeWithSMS2', defaultMessage: 'SMS has been sent. Waiting for the end of scanning process.'},
+});
+
+export default messages;

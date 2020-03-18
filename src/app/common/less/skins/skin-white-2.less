@@ -1,0 +1,186 @@
+/*
+ * Skin: Skin SoYou
+ * -----------
+ */
+
+.skin-white-2 {
+
+  @black-color: #000000;
+  @grey-color: #e7e9ea;
+  @red-color: #B00003;
+  @white-color: #ffffff;
+  @gray-bgcolor: #F1F1F1;
+
+  @dark-blue: #434254;
+
+  @light-blue: #13ABB9;
+  @dark-green: #00453E;
+
+  @red-1: #D9202C;
+  @red-2: #13ABB9;
+  @red-3: #7bd2d5;
+  @kpi-4: #2e655e;
+  @kpi-5: #094840;
+  @kpi-6: #555;
+
+  @soyou-background: #14B1BA;
+
+  .common-skin-style(@red-2, @soyou-background,
+    @header-font-color: @white-color,
+    @bg-header: @soyou-background,
+    @bg-header-hover: @soyou-background,
+    @use-header-separator: true,
+    @color-header-separator: @soyou-background,
+    @bg-timeline-li: @black-color,
+    @use-light-version: true,
+    @bg-body: @gray-bgcolor,
+    @sidebar-bg: @black-color,
+    @bg-progtrckr: @soyou-background);
+
+  .common-skin-chart-colors(@kpi-4, @red-2, @kpi-6, @red-3, @kpi-5, @red-1);
+
+  .common-skin-buttons(@primary: @red-2);
+
+  .common-skin-kpi-colors(@soyou-background, @red-1, @kpi-4, @red-3, @kpi-4, @kpi-5, @kpi-6);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  .spinner-color(@white-color);
+
+  .menu-slider();
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &:after,
+    &:before {
+      content: initial;
+    }
+
+    .sidebar-toggle {
+      float: none;
+    }
+
+    .logo {
+      float: none;
+      flex-grow: 1;
+
+      .truncate {
+        height: 40px;
+        text-align: center;
+        padding-left: 16px;
+
+        IMG {
+          margin-right: 32px;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .navbar-custom-menu {
+      float: none;
+    }
+  }
+
+  .mainLayout-sidebar {
+    background-color: @white-color !important;
+    box-shadow: 2px 0 5px #ccc;
+
+    .treeview A, .treeview A:hover {
+      background-color: @white-color !important;
+      color: #AAA !important;
+    }
+
+    li > .treeview-menu {
+      background: inherit !important;
+    }
+
+    li.active {
+      background: @soyou-background !important;
+
+      A, A:hover {
+        background-color: transparent !important;
+        color: #EEE !important;
+      }
+    }
+
+    .treeview-menu:before {
+      background: #EEE !important;;
+    }
+  }
+
+  .content-wrapper, .right-side, .fixed-layout .content {
+    height: 100%;
+  }
+
+  .content .fa-circle-o-notch {
+    color: @soyou-background;
+  }
+
+  .has-focus {
+    .integer-entry,
+    .number-entry,
+    .currency-entry {
+      text-align: right;
+    }
+  }
+
+  .integer-entry:focus,
+  .number-entry:focus,
+  .currency-entry:focus {
+    text-align: right;
+  }
+
+  &.content-login {
+    background-image: url('../../../../www/img/backgrounds/SoYou_background.jpg') !important;
+
+    .center-login > IMG {
+      width: 0;
+      height: 0;
+      padding: 114px 93px 0 0;
+      background-image: url('../../../../www/img/login/SoYou-Logo.png') !important;
+    }
+
+    FORM {
+      box-shadow: none;
+      border: solid #B2CCD2 2px;
+      border-radius: 8px;
+
+      .input-text-login::after {
+        background: #64AAAD !important;
+      }
+
+      .input-submit-login::before {
+        background: transparent !important;
+      }
+
+      .input-submit-login {
+        margin-top: 64px;
+      }
+
+      .control-label {
+        color: #286660 !important;
+        font-weight: bold !important;
+      }
+
+      BUTTON {
+        background-color: #14B1BA !important;
+        border-radius: 8px;
+      }
+
+      .align-right {
+        text-align: center !important;
+
+        A {
+          display: block;
+          color: #777;
+          text-decoration: underline;
+          margin: 16px;
+        }
+      }
+    }
+  }
+}

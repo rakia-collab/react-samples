@@ -1,0 +1,63 @@
+.k-list-errors {
+
+  .errors-list {
+    list-style: none;
+    padding-right: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    > LI {
+      margin-bottom: 20px;
+
+      .error-title {
+        &.selectable-row {
+          cursor: pointer;
+          outline: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid;
+        margin-bottom: 5px;
+
+        > LABEL {
+          flex-grow: 1;
+          cursor: inherit;
+          margin-bottom: 0;
+        }
+
+        > SPAN {
+          background-color: #dc3545;
+        }
+      }
+
+      .error-sublist {
+        list-style-type: disc;
+        padding-left: 10px;
+
+        > LI {
+          display: flex;
+          flex-direction: row;
+          font-size: 85%;
+          align-items: center;
+
+          > LABEL {
+            flex-grow: 1;
+            cursor: inherit;
+            margin-bottom: 0;
+          }
+
+          > SPAN {
+            background-color: #dc3545;
+          }
+        }
+      }
+    }
+  }
+}

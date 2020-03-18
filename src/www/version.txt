@@ -1,4 +1,0 @@
-DEV_HASH
-yyyy_mm_dd_hh_MM_ss
-branch: x
-App name: MYAPPLICATION

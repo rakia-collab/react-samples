@@ -1,0 +1,47 @@
+/*
+ * Skin: red-black
+ * -----------
+ */
+
+.skin-red-black {
+
+  @black-color: #000000;
+  @grey-color: #e7e9ea;
+  @red-color: #B00027;
+  @white-color: #ffffff;
+
+  @dark-blue: #434254;
+
+  @red-1: #B00027;
+  @red-2: #B00027;
+  @red-3: #B00027;
+  @red-4: #B00027;
+  @red-5: #B00027;
+
+  .common-skin-style(@black-color, @red-color, @header-font-color: @white-color, @bg-header-hover: @black-color, @use-header-separator: true, @color-header-separator: @black-color, @bg-timeline-li: @black-color, @use-light-version: false, @bg-body: transparent, @bg-progtrckr: @red-color);
+
+  .common-skin-chart-colors(@red-1, @red-2, @red-3, @red-4, @red-5);
+
+  .common-skin-buttons(@primary: @red-2);
+
+  .common-skin-kpi-colors(@red-2, @dark-blue, @red-2, @dark-blue);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  .spinner-color(@black-color);
+
+  .navbar {
+    .nav > li > a {
+      color: @white-color!important;
+    }
+  }
+  .sidebar-toggle {
+    color: @white-color!important;
+  }
+
+  .dashboard {
+    h3 {
+      color: #B00027!important;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.resize-image-modal {
+  .resize-image {
+  }
+
+  .modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &:after, &:before {
+      content: none;
+    }
+
+    H4 {
+      order: 1;
+    }
+
+    BUTTON {
+      order: 2;
+    }
+  }
+
+  .image-resizer-canvas {
+    position: relative;
+
+    .image-aspect-ratio {
+      width: 100%;
+      position: relative;
+      padding-top: 100%;
+
+      CANVAS {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .resize-buttons {
+    text-align: right;
+  }
+
+  .modal-body {
+    LABEL {
+      font-weight: normal;
+    }
+  }
+}

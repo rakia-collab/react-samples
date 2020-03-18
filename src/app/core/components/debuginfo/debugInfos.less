@@ -1,0 +1,206 @@
+.debug-infos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4000;
+  background-color: rgba(100%, 100%, 100%, 60%);
+  pointer-events: none;
+  overflow: hidden;
+
+  .debug-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    z-index: 1050;
+  }
+
+  &.debug-has-over .debug-overlay {
+    display: block;
+    background-color: rgba(100%, 100%, 100%, 60%);
+  }
+
+  .debug-info-key {
+    position: absolute;
+    background-color: rgba(73%, 100%, 73%, 13%);
+    pointer-events: none;
+
+    z-index: 1020;
+
+    LABEL {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 0 4px;
+      border: none;
+      color: white;
+      opacity: 0.7;
+
+      white-space: nowrap;
+
+      background-color: white;
+      pointer-events: auto;
+
+      max-width: initial;
+
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px;
+    }
+
+    &.debug-over {
+      outline: 2px dotted rgba(0, 0, 0, 50%);
+
+      z-index: 1100;
+
+      LABEL {
+        opacity: 1;
+      }
+    }
+
+    &.debug-row {
+      background-color: rgba(73%, 73%, 100%, 13%);
+
+      LABEL {
+        background-color: #33B;
+      }
+
+      &.debug-over {
+        background-color: rgba(73%, 73%, 100%, 40%);
+      }
+    }
+
+    &.debug-box {
+      background-color: rgba(73%, 100%, 73%, 13%);
+
+      LABEL {
+        background-color: #3B3;
+      }
+
+      &.debug-over {
+        background-color: rgba(73%, 100%, 73%, 40%);
+      }
+    }
+
+    &.debug-name {
+      background-color: rgba(100%, 73%, 100%, 13%);
+
+      LABEL {
+        background-color: #939;
+      }
+
+      &.debug-over {
+        background-color: rgba(100%, 73%, 100%, 40%);
+      }
+    }
+
+    &.debug-cid {
+      background-color: #BBFFFF22;
+
+      LABEL {
+        background-color: #399;
+      }
+
+      &.debug-over {
+        background-color: #BBFFFF66;
+      }
+    }
+
+    &.debug-cch {
+      LABEL {
+        background-color: #993;
+      }
+    }
+
+    &.debug-hidden {
+      LABEL {
+        background-color: #C44;
+      }
+    }
+  }
+
+  .debug-filters {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1600;
+
+    LABEL {
+      pointer-events: all;
+      margin: 0 10px;
+      padding: 0 10px;
+      color: white;
+
+      INPUT {
+        margin-right: 5px;
+      }
+    }
+
+    BUTTON {
+      margin-right: 5px;
+      pointer-events: all;
+    }
+
+    .debug-button-box {
+      background-color: #8C8;
+    }
+
+    .debug-button-row {
+      background-color: #88C;
+    }
+
+    .debug-button-name {
+      background-color: #C8C;
+    }
+
+    .debug-button-cid {
+      background-color: #8CC;
+    }
+
+    .debug-button-cch {
+      background-color: #CC8;
+    }
+
+    .debug-button-hidden {
+      background-color: #C33;
+    }
+  }
+
+  &.debug-disabled {
+    background-color: transparent;
+  }
+
+}
+
+.debug-infos-props {
+  display: none;
+}
+
+.debug-info-key.debug-cch {
+  background-color: #CC84;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, #9934 10px, #9934 20px);
+}
+
+.debug-info-key.debug-over {
+  background-color: #BBBBFF66;
+}
+
+.debug-info-key.debug-cch.debug-over {
+  background-color: #FFA4;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, #BB54 10px, #BB54 20px);
+}
+
+.debug-info-key.debug-hidden {
+  background-color: #FF444422;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(100%, 26%, 26%, 13%) 10px, rgba(100%, 26%, 26%, 13%) 20px);
+}
+
+.debug-info-key.debug-hidden.debug-over {
+  background-color: #FF444444;
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(100%, 26%, 26%, 26%) 10px, rgba(100%, 26%, 26%, 26%) 20px);
+}
+

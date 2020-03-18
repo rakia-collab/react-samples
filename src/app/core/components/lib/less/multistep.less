@@ -1,0 +1,120 @@
+@bullet-size: 15px;
+@progress-height: 3px;
+
+.steps {
+  // List of steps
+  &-list {
+    width: 100%;
+    padding: 0 1em;
+
+    // Step item
+    &-item {
+      flex: 1;
+      margin: 0;
+      display: flex;
+      position: relative;
+      padding: 0 !important;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      border-bottom-width: 3px !important;
+      border-bottom-color: transparent !important;
+
+      &:last-of-type &-btn::after {
+        background-color: transparent;
+      }
+
+      @iterations: 6;
+
+      .mixin-loop (@i) when (@i > 0) {
+        &:nth-child(@{i})::before {
+          @timing: @i * 0.3;
+          animation: ~"stepsAppear 0.8s @{timing}s ease-in-out forwards";
+        }
+        .mixin-loop(@i - 1);
+      }
+
+      .mixin-loop(@iterations);
+
+      // Bullet
+      &::before {
+        z-index: 2;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        pointer-events: none; // Click is passing through since there is a zIndex complexity
+        bottom: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        transition: all 200ms;
+        right: auto !important;
+        justify-content: center;
+        font-size: 1em !important;
+        position: absolute !important;
+        border-radius: 50% !important;
+        width: @bullet-size !important;
+        height: @bullet-size !important;
+        line-height: @bullet-size !important;
+        border-color: transparent !important;
+      }
+
+      // Progress
+      &-btn::after,
+      &::after {
+        left: 0;
+        width: 0;
+        content: '';
+        line-height: 0;
+        position: absolute;
+        pointer-events: none; // Click is passing through since there is a zIndex complexity
+        height: @progress-height;
+        transition: all .4s ease-in-out;
+        bottom: (@bullet-size / 2 - @progress-height / 2); // Centering the progress onto the bullet
+      }
+
+      &::after {
+        z-index: 1;
+      }
+
+      // Status
+      &.done {
+        &::after {
+          width: 100%;
+        }
+      }
+
+      // Button
+      &-btn {
+        padding: 0 0 6px (@bullet-size + 4px);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        appearance: none;
+        text-align: left;
+        background: none;
+        font-size: 15px;
+        outline: none;
+        border: none;
+        width: 100%;
+
+        &::before {
+          left: 0;
+          bottom: 0;
+          z-index: 1;
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+          width: @bullet-size;
+          height: @bullet-size;
+          border: 1px solid transparent;
+          animation: infiniteCircle 1s 0.8s ease-in-out infinite;
+        }
+
+        &::after {
+          width: 100%;
+          background-color: silver;
+        }
+      }
+    }
+  }
+}

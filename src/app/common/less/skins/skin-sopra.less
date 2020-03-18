@@ -1,0 +1,55 @@
+/*
+ * Skin: Sopra
+ * -----------
+ */
+
+.skin-sopra {
+
+  @black-color: #000000;
+  @grey-color: #e7e9ea;
+  @red-color: #B00003;
+  @white-color: #ffffff;
+  @gray-bgcolor: #F1F1F1;
+
+  @dark-blue: #434254;
+
+  @red-1: #F9A533;
+  @red-2: #D9202C;
+  @red-3: #DD5624;
+  @kpi-4: #F5700C;
+  @kpi-5: #B91C27;
+  @kpi-6: #800000;
+
+  .common-skin-style(@red-2, @red-1,
+    @header-font-color: @white-color,
+    @bg-header: @black-color,
+    @bg-header-hover: @black-color,
+    @use-header-separator: true,
+    @color-header-separator: @red-1,
+    @bg-timeline-li: @black-color,
+    @use-light-version: false,
+    @bg-body: @gray-bgcolor,
+    @sidebar-bg: @black-color,
+    @bg-progtrckr: @red-color);
+
+  .common-skin-chart-colors(@red-1, @red-2, @red-3, @kpi-4, @kpi-5, @kpi-6);
+
+  .common-skin-buttons(@primary: @red-2);
+
+  .common-skin-kpi-colors(@red-2, @red-1, @red-2, @red-3, @kpi-4, @kpi-5, @kpi-6);
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  .spinner-color(@red-1);
+
+  .menu-slider();
+
+  .navbar {
+    .logo {
+      .truncate {
+        height: 34px;
+        padding-left: 16px;
+      }
+    }
+  }
+}

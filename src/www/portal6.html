@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<style>
+    html {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/52/McClean_Building%2C_Royal_Observatory%2C_Cape_of_Good_Hope.jpg");
+        background-size: cover;
+        background-color: transparent !important;
+    }
+
+    iframe {
+        border: none;
+    }
+
+    html, body, #iframe-content {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #iframe-container {
+        padding: 5px;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+    }
+
+    #dashboard-selector{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+<script type="application/javascript">
+    var skin = "skin-white-100_102";
+
+    function changeIframe(dashboardId) {
+        var container = document.getElementById("iframe-container");
+        container.firstChild && container.removeChild(container.firstChild);
+        var ifrm = document.createElement("iframe");
+        ifrm.id = "iframe-content";
+        ifrm.setAttribute("src", "./#/portal/dashboard/"+dashboardId+"/"+skin);
+        container.appendChild(ifrm);
+    }
+</script>
+<div id="dashboard-selector">
+    <select onchange="changeIframe(this.value)">
+        <option value="1">Landing page</option>
+        <option value="MAIN">Dealer's information</option>
+        <option value="BLANK">Blank</option>
+    </select>
+</div>
+<div id="iframe-container"></div>
+
+<script type="application/javascript">
+    changeIframe("1");
+</script>
+</body>
+</html>
