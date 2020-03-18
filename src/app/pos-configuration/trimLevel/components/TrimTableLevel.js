@@ -4,10 +4,11 @@ import Button from'react-bootstrap';
 import {models} from './../../Constantes/models'
 import Griddle from 'griddle-react';
 import TrimDetail from "./TrimDetail";
-import  { showTrimDetail} from "../reducers/actions";
-import {connect} from 'react-redux';
 
-export class IconeTrim extends React.Component {
+const columns = ['MMOCODE', 'MMTCODE', 'MMOLIBELLE','ICONEMODEL'];
+
+
+class IconeTrim extends React.Component {
 
 
     constructor(props) {
@@ -32,7 +33,7 @@ export class IconeTrim extends React.Component {
     }
 }
 
-const columns = ['MMOCODE', 'MMTCODE', 'MMOLIBELLE','ICONEMODEL'];
+
 class TrimTableLevel extends React.Component {
 
     constructor(props) {
@@ -75,15 +76,6 @@ class TrimTableLevel extends React.Component {
                 columnName: 'MMOLIBELLE',
                 displayName: <FormattedMessage id="conf.tab.trim.mmolibelle.column"
                                                defaultMessage="Nom model"/>
-            },
-            {
-                columnName: 'ICONEMODEL',
-                displayName: '',
-                customComponent:  IconeTrim,
-                customComponentMetadata: {
-                    onClick: this.openDetailTrim
-                }
-
             }
 
 

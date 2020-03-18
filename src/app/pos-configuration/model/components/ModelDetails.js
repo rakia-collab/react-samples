@@ -10,10 +10,13 @@ class ModelDetails extends React.Component {
     render() {
 
         const {intl: {formatMessage}, modelField,form } = this.props;
-
+        const titlePopup =   (<div className="box-tools-filter pull-left">
+            <span  className="fa fa-tasks"/>
+            { formatMessage(messages.detailModelTitle)}
+        </div>)
         return (
 
-                <Box  type='primary'>
+                <Box title={titlePopup} type='primary'>
                     <Row >
                         <Col xs={4}>
 

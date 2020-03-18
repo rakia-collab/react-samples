@@ -27,7 +27,6 @@ class TrimDetail extends React.Component {
 
         </div>
         return (
-            <div>
                 <Box title={titleTrim} tools={closeTools} type='primary'>
                     <Row >
                         <Col  xs={4}>
@@ -51,7 +50,6 @@ class TrimDetail extends React.Component {
                     </Row>
                 </Box>
 
-                </div>
         )
     }
 }

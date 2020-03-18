@@ -1,7 +1,7 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form';
-import {Row, Col, OverlayTrigger, Tooltip, button } from "react-bootstrap";
-import {Box, DateEntry, SelectField, TextEntry} from 'cassiopae-core';
+import {Row, Col, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
+import {Box} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
 import TrimTableLevel from "./TrimTableLevel";
 import {connect} from 'react-redux';
@@ -14,7 +14,10 @@ import  {showTrimDetail} from "../reducers/actions";
 class TrimContainer extends React.Component {
 
 
+    openDetailTrim = (event,value) => {
 
+        this.props.showTrimDetail(true)
+    };
     render() {
 
         const {intl: {formatMessage},isTrimDetailLoade,showTrimDetail} = this.props;
@@ -28,17 +31,15 @@ class TrimContainer extends React.Component {
             <OverlayTrigger trigger="hover" placement="top"
                             overlay={<Tooltip>{formatMessage(messages.btAddTrimTitle)}</Tooltip>}>
 
-                <button type="button" className="btn-primary btn-box-tool"    onClick={this.openDetailTrim}  >
+                <Button  className="btn-primary btn-box-tool"    onClick={this.openDetailTrim}  >
                     <i className="fa fa-plus"></i>
-                </button>
+                </Button>
             </OverlayTrigger>
         </div>);
 
         return (<Box title={trimTitle} type='primary' tools={btToolsTrim}>
 
                <TrimTableLevel showTrimDetail={showTrimDetail}  isTrimDetailLoade={isTrimDetailLoade}   />
-
-
 
 
             </Box>
