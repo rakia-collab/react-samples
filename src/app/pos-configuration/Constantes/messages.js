@@ -58,11 +58,11 @@ const messages = defineMessages({
     dealerSearchTitle: {id: 'config.messages.generalinfo.dealer.title', defaultMessage: 'Dealer Search'},
     submit: {id: 'config.messages.make.submit', defaultMessage: 'Valider'},
     segmentTitle: {id: 'config.messages.model.segment.title', defaultMessage: 'Segment'},
-
     assetTypeBssTitle: {id: 'config.messages.model.bss.type.title', defaultMessage: 'BSS asset type'},
     assetDetailBssTitle: {id: 'config.messages.model.bss.detail.title', defaultMessage: 'BSS asset detail type'},
     assetRateBssTitle: {id: 'config.messages.model.bss.rate.title', defaultMessage: 'BSS set rate code'},
-
+    saleTitle: {id: 'config.messages.search.salesTitle', defaultMessage: 'Sale network'},
+    assetCategoryTitle: {id: 'config.messages.search.assetCategoryTitle', defaultMessage: 'Asset Category'},
 
 
 });

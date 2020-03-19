@@ -12,6 +12,9 @@ export const INIT_MAKE_MODEL_FAIL = 'MAKE/INIT_MAKE_MODEL_FAIL';
 export const SELECT_CATEGORIE = 'config/make/SELECT_CATEGORIE';
 export const REMOVE_CATEGORIE = 'config/make/REMOVE_CATEGORIE';
 
+
+
+
 export function fetchMake(makecode) {
     return {
         type: FETCH_MAKE_MODEL_SUCCESS,

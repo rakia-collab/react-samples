@@ -65,3 +65,22 @@ export const acttypeList =[
     {value:"pm", label:"PM"},
     {value:"part", label:"PART"}
     ];
+
+export const assetCategoryList =[
+    {value:"CAR", label:"Voitures"},
+    {value:"MACHEQUIP10", label:"MACHINES ET EQUIPEMENTS D'AMORTISSEMENT Environ 10%"},
+    {value:"OFFICEQPMT", label:"EQUIPEMENT DE BUREAU (Photocopieurs)"},
+    {value:"NEW", label:"Neuf"},
+    {value:"DEMO", label:"Démo"},
+    {value:"USED", label:"Occasion"},
+    {value:"MATERIAL", label:"Matériel"},
+    {value:"REALESTATE", label:"Immobilier"},
+    {value:"INTANGIBLE", label:"Finance"}
+];
+
+export const saleNetworkList =[
+    {value:"FS", label:"Finances boutique"},
+    {value:"REGC", label:"Réseau Centre"},
+    {value:"WEB", label:"Web"},
+    {value:"OTHER", label:"OTHER"}
+];

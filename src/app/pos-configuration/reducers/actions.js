@@ -2,21 +2,26 @@ import {data} from '../Constantes/MakesModels'
 
 
 export const SHOW_MAKE_BOX_SEARCH = 'MAKE/SHOW_MAKE_BOX_SEARCH';
-
 export const SHOW_MAKE_REMOVE = 'MAKE/SHOW_MAKE_REMOVE';
-
-
-
 
 export const FETCH_MAKES_MODELS = 'MAKES/FETCH_MAKES_MODELS';
 export const FETCH_MAKES_MODELS_SUCCESS = 'MAKES/FETCH_MAKES_MODELS_SUCCESS';
 export const FETCH_MAKES_MODELS_FAIL = 'MAKES/FETCH_MAKES_MODELS_FAIL';
 
+export const FETCH_MAKES_MODELS_FILTER = 'MAKES/FETCH_MAKES_MODELS_FILTER';
+export const FETCH_MAKES_MODELS_FILTER_SUCCESS = 'MAKES/FETCH_MAKES_MODELS_FILTER_SUCCESS';
+export const FETCH_MAKES_MODELS_FILTER_FAIL = 'MAKES/FETCH_MAKES_MODELS_FILTER_FAIL';
 
 
 
 
+export function fetchFilterMakes(parameters) {
 
+    return {
+        types: [FETCH_MAKES_MODELS_FILTER, FETCH_MAKES_MODELS_FILTER_SUCCESS, FETCH_MAKES_MODELS_FILTER_FAIL],
+        promise: (client) => client.get('/makes/filter', {params: parameters}),
+    };
+}
 
 
 
@@ -38,8 +43,6 @@ export function showMakeRemove(show){
         modeload: show
     };
 }
-
-
 
 
 export function fetchMakesModels(){

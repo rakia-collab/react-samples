@@ -15,21 +15,22 @@ function reducer(state = Immutable(initialState), action) {
 
 
         case actions.SHOW_MAKE_BOX_SEARCH:
-            return state.merge({
+            return Immutable.merge(state,{
                 isMakeSearchLoade: action.modeload !== undefined ? action.modeload : !state.isMakeSearchLoade
             });
         case actions.SHOW_MAKE_REMOVE:
-            return state.merge({
+            return Immutable.merge(state,{
                 isMakesRemoveLoade: action.modeload !== undefined ? action.modeload : !state.isMakesRemoveLoade
             });
         case actions.FETCH_MAKES_MODELS_SUCCESS:
-          return state.merge({
+          return Immutable.merge(state,{
                   makes:action.result
-          }
+          });
+        case actions.FETCH_MAKES_MODELS_FILTER_SUCCESS:
+            return Immutable.merge(state,{
+                    makes:action.result
+                }
             );
-
-
-
 
         default:
             return state;

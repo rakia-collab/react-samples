@@ -37,7 +37,7 @@ class PopupModelDetail extends React.Component {
             key: "tabTrim",
             title: "Trim level",
             body:  <TrimContainer form={form} intl={intl}  />,
-            active: this.state.activeTabKey ==="tabTrim",
+            active: this.state.activeTabKey =="tabTrim",
         });
 
         return (

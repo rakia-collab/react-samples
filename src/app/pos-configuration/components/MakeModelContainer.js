@@ -54,7 +54,7 @@ class MakeModelContainer extends React.Component {
     }
 
     handleClose= () =>
-    {
+    {    this.props.fetchMakesModels();
         this.props.showSearchMAkeBox(false);
     }
 

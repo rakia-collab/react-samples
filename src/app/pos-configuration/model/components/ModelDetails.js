@@ -14,6 +14,10 @@ class ModelDetails extends React.Component {
             <span  className="fa fa-tasks"/>
             { formatMessage(messages.detailModelTitle)}
         </div>)
+
+
+        const tabs = [];
+        let assetToolBox = [];
         return (
 
                 <Box title={titlePopup} type='primary'>
