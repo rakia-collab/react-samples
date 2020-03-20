@@ -14,10 +14,11 @@ class MakesContainer extends React.Component {
 
 
     handleSelectMake = (event) => {
-        let {make,showRemove} = this.props;
+        let {make,showRemove, fetchFullMake} = this.props;
         if(!showRemove) {
-            if ( make.makegeneraldata.brandref &&  make.makegeneraldata&&  make.makegeneraldata.brandref) {
-                hashHistory.push(MAKE + '/' +  make.makegeneraldata.brandref);
+            if ( make.makeGeneralData.brandRef &&  make.makeGeneralData&&  make.makeGeneralData.brandRef) {
+
+                hashHistory.push(MAKE + '/' +  make.makeGeneralData.brandRef);
             }
         }
     }
@@ -29,7 +30,7 @@ class MakesContainer extends React.Component {
         return (
 
 
-            <Col xs={10} sm={4} md={3} lg={2} key={'make' + make.makegeneraldata.brandref}   >
+            <Col xs={10} sm={4} md={3} lg={2} key={'make' + make.makeGeneralData.brandRef}   >
                 <a onClick={this.handleSelectMake} >
                     <div className='thumbnail'>
                         <header className='mainLayout-header'>
@@ -41,7 +42,7 @@ class MakesContainer extends React.Component {
 
                             </Col>
                             <Col xs={5} className='text-gray text-bold' >
-                             {make.makegeneraldata.brandref }
+                             {make.makeGeneralData.brandRef }
 
                            </Col>
 
@@ -57,19 +58,19 @@ class MakesContainer extends React.Component {
                                     }
                                     <Col>
                                         <label>Make: </label>
-                                    {make.makegeneraldata.brandref }
+                                    {make.makeGeneralData.brandRef }
                                     </Col>
                                 </Row>
                                 <Row >
                                     <Col>
                                         <label>Country: </label>
-                                    {make.makegeneraldata.countrycode }
+                                    {make.makeGeneralData.countryCode }
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
                                         <label>Code: </label>
-                                    {make.makegeneraldata.currencycode }
+                                    {make.makeGeneralData.currencyCode }
                                     </Col>
                                 </Row>
 

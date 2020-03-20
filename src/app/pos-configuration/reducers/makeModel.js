@@ -24,7 +24,7 @@ function reducer(state = Immutable(initialState), action) {
             });
         case actions.FETCH_MAKES_MODELS_SUCCESS:
           return Immutable.merge(state,{
-                  makes:action.result
+                  makes:action.result.data
           });
         case actions.FETCH_MAKES_MODELS_FILTER_SUCCESS:
             return Immutable.merge(state,{

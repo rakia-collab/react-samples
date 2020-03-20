@@ -38,6 +38,10 @@ const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":
         this.props.showPopupModelDetail(true);
     };
 
+    changeEndDate = () =>{
+        const{change,form,modelField}= this.props
+        change(form,`${modelField}.modelGeneralData.modelref`,new Date());
+    }
 
     render() {
 
@@ -59,7 +63,7 @@ const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":
 
         return (<Box  tools={btTools} >
                 <PopupModelDetails openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
-                   <ModelTable  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
+                   <ModelTable changeEndDate={this.changeEndDate}  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
 
             </Box>
         );
@@ -76,11 +80,11 @@ const mapStateToProps = (state, props) => {
     var generalModels =[];
    if( make.models.length ===1) {
        listModels = make.models[0];
-       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "icone":null});
+       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
    }
    else
    {  make.models &&  make.models.map((Model) => {
-       Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "icone":null});
+       Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
    });
    }
 

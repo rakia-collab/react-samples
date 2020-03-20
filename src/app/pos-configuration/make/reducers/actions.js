@@ -25,16 +25,10 @@ export const REMOVE_CATEGORIE = 'config/make/REMOVE_CATEGORIE';
 export function fetchFullMakeByCode(makecode) {
     return {
         types: [FETCH_FULL_MAKE, FETCH_FULL_MAKE_SUCCESS, FETCH_FULL_MAKE_FAIL],
-        promise: (client) => client.get('/make'+makecode),
+        promise: (client) => client.get('/assetconfig/make/'+makecode),
     };
 }
 
-export function fetchFullMake(makecode) {
-    return {
-        type: FETCH_FULL_MAKE_SUCCESS,
-        result: fullMake
-    };
-}
 
 
 export function initMakeModel(){

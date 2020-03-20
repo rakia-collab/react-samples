@@ -15,6 +15,29 @@ import {
 
 
 
+class ModelDelete extends React.Component {
+
+
+    constructor(props) {
+        super(props);
+
+    }
+
+
+
+
+    render() {
+        const { metadata: {customComponentMetadata: {changeEndDate}}} = this.props;
+
+        return (
+            <div>
+                <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
+                    <i className='fa fa-remove'/>
+                </button>
+            </div>
+        );
+    }
+}
 
 
 class ModelDisplay extends React.Component {
@@ -52,7 +75,7 @@ class ModelDisplay extends React.Component {
         );
     }
 }
-const columns = ['modelRef', 'vehicleType', 'startDate','endDate', 'icone'];
+const columns = ['modelRef', 'startDate','endDate', 'iconeDetail', 'iconeDelete'];
 
 class ModelTable extends React.Component {
 
@@ -68,17 +91,12 @@ class ModelTable extends React.Component {
 
     }
     render() {
-        const {fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade,indexModel} = this.props;
+        const {changeEndDate, fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade,indexModel} = this.props;
         var columnMetadata = [
             {
                 columnName: 'modelRef',
                 displayName: <FormattedMessage id="conf.tab.model.mmocode.column"
                                                defaultMessage="Référence model"/>
-            },
-            {
-                columnName: 'vehicleType',
-                displayName: <FormattedMessage id="conf.tab.model.vehicletype.column"
-                                               defaultMessage="Type de vehicule"/>
             },
             {
                 columnName: 'startDate',
@@ -97,7 +115,7 @@ class ModelTable extends React.Component {
             }
             ,
             {
-                columnName: 'icone',
+                columnName: 'iconeDetail',
                 displayName: '',
                 customComponent: ModelDisplay,
                 customComponentMetadata: {
@@ -105,7 +123,16 @@ class ModelTable extends React.Component {
                     showPopupModelDetail: showPopupModelDetail,
                     isPopupModelDetailLoade: isPopupModelDetailLoade
                 }
+            },
+            {
+                columnName: 'iconeDelete',
+                displayName: '',
+                customComponent: ModelDelete,
+                customComponentMetadata: {
+                    fetchModel: changeEndDate,
+                }
             }
+
 
 
         ];
@@ -123,6 +150,7 @@ class ModelTable extends React.Component {
                 columnMetadata={columnMetadata}
                 initialSortAscending={false}
                 resultsPerPage={10}
+                showFilter={true}
                 noDataMessage={notypemodel}
 
 

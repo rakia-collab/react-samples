@@ -18,7 +18,7 @@ function reducer(state = Immutable(initialState), action) {
 
             return Immutable.merge(state,
                 { formValues: Immutable.set(state.formValues, 'make', action.result),
-                make: action.result}
+                make: action.result.data}
                 );
 
 
@@ -26,7 +26,7 @@ function reducer(state = Immutable(initialState), action) {
             return Immutable.merge(state,{ make: action.result});
 
         case actions.SAVE_MAKE_MODEL_SUCCESS:
-            return Immutable.merge(state,{ make: action.result});
+            return Immutable.merge(state,{ make: action.result.data});
 
         default:
             return state;

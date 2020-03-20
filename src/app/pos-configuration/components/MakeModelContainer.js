@@ -28,7 +28,7 @@ class MakeModelContainer extends React.Component {
 
     componentWillMount() {
         const {fetchMakes} = this.props;
-        fetchMakes;
+        fetchMakes();
     }
 
     handleShowSearch = (event) =>
