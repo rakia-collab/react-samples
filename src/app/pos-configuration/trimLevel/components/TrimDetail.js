@@ -14,11 +14,9 @@ class TrimDetail extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage},handleCloseDetail} = this.props;
+        const {intl: {formatMessage},handleCloseDetail,expTrim} = this.props;
 
-        const titleTrim =(<div className="box-tools-filter pull-left">
-            <span className="glyphicon glyphicon-plus-sign"/>
-            {formatMessage(messages.newTrimTitle)} </div>);
+
 
         const closeTools=     <div className="box-tools-filter pull-right">
             <button type="button" className="btn btn-box-tool" onClick={handleCloseDetail} >
@@ -27,31 +25,24 @@ class TrimDetail extends React.Component {
 
         </div>
         return (
-                <Box title={titleTrim} tools={closeTools} type='primary'>
+
                     <Row >
                         <Col  xs={4}>
-                            <Field name="test"
+                            <Field name={`${expTrim}.code`}
                                    component={TextEntry}
-                                   title={formatMessage(messages.dtDebutTitle)}/>
+                                   title={formatMessage(messages.trimCodeTitle)}/>
                         </Col>
                         <Col  xs={4} >
-                            <Field name="debut"
-                                   component={DateEntry}
-                                   title={messages.dtDebutTitle}/>
+                            <Field name={`${expTrim}.levelDesignations`}
+                                   component={TextEntry}
+                                   title={messages.trimFinitionTitle}/>
                         </Col>
-                        <Col xs={4}>
-                            <Field
-                                name="dateFin"
-                                component={DateEntry}
-                                title={formatMessage(messages.dtFinTitle)}
 
-                            />
-                        </Col>
                     </Row>
-                </Box>
+
 
         )
     }
 }
 
-export default (injectIntl(TrimDetail));
+export default (TrimDetail);

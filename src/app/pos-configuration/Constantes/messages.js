@@ -15,7 +15,7 @@ const messages = defineMessages({
     makeTitle: {id: 'config.messages.field.makeTitle', defaultMessage: 'Make'},
     recherche: {id: 'config.messages.box.filtre.title', defaultMessage: 'Recherche'},
     generalInformation: {id: 'pos.config.step.generalinfo', defaultMessage: 'General Information'},
-    makeDetail: {id: 'pos.config.step.makeDetail', defaultMessage: 'Make detail'},
+    makeDetail: {id: 'pos.config.step.makeDetail', defaultMessage: 'Make details'},
     Filtrage: {id: 'pos.config.step.filtrage', defaultMessage: 'Filtrage Information'},
     ModelInfoTitle: {id: 'pos.config.step.ModelInfo', defaultMessage: 'Modal Information'},
     makecode: {id: 'pos.config.step.generalinfo.modelTitle.code', defaultMessage: 'Model code'},
@@ -26,7 +26,7 @@ const messages = defineMessages({
     sales: {id: 'pos.config.step.filtrage.sales', defaultMessage: ' Sales networks'},
     defaultCateg: {id: 'pos.config.step.filtrage.defaultCateg', defaultMessage: 'Default Value'},
     trimTitle: {id: 'pos.config.step.trim', defaultMessage: 'Trims'},
-    detailTrimTitle: {id: 'pos.config.step.trim.detailTrim', defaultMessage: 'Detail Trim'},
+    detailTrimTitle: {id: 'pos.config.step.trim.detailTrim', defaultMessage: 'Trim details'},
     ModifierTrimTitle: {id: 'pos.config.step.trim.ModifierTrim', defaultMessage: 'Modifier Trim'},
     newTrimTitle: {id: 'pos.config.step.trim.newTrim', defaultMessage: 'New trim'},
     detailModelTitle: {id: 'pos.config.step.detailModel', defaultMessage: 'Detail model'},
@@ -63,6 +63,9 @@ const messages = defineMessages({
     assetRateBssTitle: {id: 'config.messages.model.bss.rate.title', defaultMessage: 'BSS set rate code'},
     saleTitle: {id: 'config.messages.search.salesTitle', defaultMessage: 'Sale network'},
     assetCategoryTitle: {id: 'config.messages.search.assetCategoryTitle', defaultMessage: 'Asset Category'},
+    trimCodeTitle: {id: 'config.messages.search.trimCodeTitle', defaultMessage: 'Trim code '},
+    trimFinitionTitle: {id: 'config.messages.search.trimFinitionTitle', defaultMessage: 'Finition'}
+
 
 
 });
