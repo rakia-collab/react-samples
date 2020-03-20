@@ -19,11 +19,11 @@ class ModelDetailsContainer extends React.Component {
     }
 
     render() {
-        const { intl,form } = this.props;
+        const { intl, form, openNewModel } = this.props;
 
 
         const btAddModel=(<div className="box-tools-filter pull-right">
-            <button type="button" className="btn-primary btn-box-tool"  onClick={this.handledAddNewModel}>
+            <button type="button" className="btn-primary btn-box-tool"  onClick={openNewModel}>
                 <i className="fa fa-plus"></i>
             </button>
         </div>)

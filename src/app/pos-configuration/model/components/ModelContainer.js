@@ -20,7 +20,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
     closeModel = () => {
         const { form, make, arrayRemove,nbrNavTab,changeNbrNavtabAddedOfModel} = this.props;
         if(nbrNavTab>0) {
-            let index =  make.models.length +1 ;
+            let index =  make.models.length -1 ;
             let total=nbrNavTab;
             make.models.map((Model) => {
                 if( total > 0 ) {
@@ -66,7 +66,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
         </div>);
 
         return (<Box  tools={btTools} >
-                <PopupModelDetails  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
+                <PopupModelDetails openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
                    <ModelTable  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
 
             </Box>
