@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import countries from '../Constantes/countries';
+import {countries} from '../Constantes/SelectFields';
 
 class ReactFlagsSelect extends Component {
     constructor(props){
         super(props);
 
-        const defaultCountry = countries[this.props.defaultCountry] && this.props.defaultCountry;
+        const defaultCountry = countries.find(item => item.code === this.props.defaultCountry) && this.props.defaultCountry;
 
         this.state = {
             openOptions: false,
@@ -66,7 +66,7 @@ class ReactFlagsSelect extends Component {
     }
 
     updateSelected(countryCode) {
-        let isValid = countries[countryCode];
+        let isValid = countries.find(item => item.code === countryCode) ;
 
         isValid && this.setState({
             selected: countryCode
@@ -75,8 +75,8 @@ class ReactFlagsSelect extends Component {
 
     filterSearch(evt) {
         let filterValue = evt.target.value;
-        let filteredCountries = filterValue && this.state.countries.filter(key => {
-            let label = this.props.customLabels[key] || countries[key];
+        let filteredCountries = filterValue && this.state.countries.filter(item => {
+            let label = this.props.customLabels[item.code] ||  countries.find(item => item.code === key) ;
             return  label && label.match(new RegExp(filterValue, 'i'))
         }) ;
 
@@ -87,14 +87,14 @@ class ReactFlagsSelect extends Component {
         const fullCountries = Object.keys(countries);
 
         let selectCountries = this.props.countries && this.props.countries.filter( country => {
-            return countries[country] ;
+            return countries.filter(item => (item.code === country.code))
         });
 
         //Filter BlackList
         if (this.props.blackList && selectCountries) {
-            selectCountries = fullCountries.filter(countryKey =>{
+            selectCountries = fullCountries.filter(item =>{
                 return selectCountries.filter(country =>{
-                    return countryKey === country;
+                    return item.code === country.code;
                 }).length === 0
             });
         }
@@ -104,7 +104,7 @@ class ReactFlagsSelect extends Component {
         }, ()=> {
             const { selected } = this.state;
 
-            if (selected && !this.state.countries.includes(selected)) {
+            if (selected && !this.state.countries.find(country => country.code === selected )) {
                 this.setState({ selected: null });
             }
         });
@@ -133,7 +133,7 @@ class ReactFlagsSelect extends Component {
         let selectedSize = this.props.selectedSize;
         let optionsSize = this.props.optionsSize;
         let alignClass = this.props.alignOptions.toLowerCase() === 'left' ? 'to--left' : '';
-
+        let selectedLabel = countries.find(item => item.code === isSelected).label || this.props.customLabels[isSelected];
         return (
             <div className={`flag-select ${this.props.className ? this.props.className :  ""}`}>
                 <button
@@ -151,7 +151,7 @@ class ReactFlagsSelect extends Component {
                     <span className="flag-select__option flag-select__option--placeholder">
 							<img className="flag-select__option__icon" src={`src/www/img/flags/${isSelected.toLowerCase()}.svg`} alt={isSelected}/>
                         {this.props.showSelectedLabel &&
-                        <span className="flag-select__option__label">{ this.props.customLabels[isSelected] || countries[isSelected] }</span>
+                        <span className="flag-select__option__label">{selectedLabel }</span>
                         }
 						</span>
                     }
@@ -164,27 +164,31 @@ class ReactFlagsSelect extends Component {
                 <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`}} className={`flag-select__options ${alignClass}`}>
                     {this.props.searchable && (
                         <div className="filterBox">
-                            <input type="text" placeholder={this.props.searchPlaceholder} ref="filterText"  onChange={this.filterSearch}/>
+                            <input type="text"
+                                   name={this.props.name}
+                                   placeholder={this.props.searchPlaceholder}
+                                   ref="filterText"
+                                   onChange={this.filterSearch}/>
                         </div>
                     )}
 
-                    {(this.state.filter ? this.state.filteredCountries : this.state.countries).map(countryCode =>
+                    {countries.map(country =>
                         (<li
-                            key={countryCode}
+                            key={country.code}
                             role="option"
                             tabIndex="0"
-                            id={`select_flag_${countryCode}`}
+                            id={`select_flag_${country.code}`}
                             className={`flag-select__option ${this.props.showOptionLabel ? 'has-label' : ''}`}
-                            onClick={() => this.onSelect(countryCode)}
-                            onKeyUp={evt => this.onSelectWithKeyboard(evt, countryCode)}>
+                            onClick={() => this.onSelect(country.code)}
+                            onKeyUp={evt => this.onSelectWithKeyboard(evt, country.code)}>
 								<span style={{width: `${optionsSize}px`, height: `${optionsSize}px`}}>
 									<img
                                         className="flag-select__option__icon"
-                                        alt={`flag for ${countries[countryCode]}`}
-                                        src={`src/www/img/flags/${countryCode.toLowerCase()}.svg`}/>
+                                        alt={`flag for ${country.label}`}
+                                        src={`src/www/img/flags/${country.code.toLowerCase()}.svg`}/>
                                     {this.props.showOptionLabel && (
                                         <span className="flag-select__option__label">
-										{  countries[countryCode] }
+										{  country.label }
 									</span>
                                     )}
 								</span>
@@ -209,6 +213,7 @@ ReactFlagsSelect.defaultProps = {
     blackList: false,
     searchable: false,
     searchPlaceholder: 'Search',
+    name:'',
 };
 
 ReactFlagsSelect.propTypes = {
@@ -227,6 +232,7 @@ ReactFlagsSelect.propTypes = {
     disabled: PropTypes.bool,
     searchable: PropTypes.bool,
     searchPlaceholder: PropTypes.string,
+    name: PropTypes.string,
 };
 
 export default ReactFlagsSelect;

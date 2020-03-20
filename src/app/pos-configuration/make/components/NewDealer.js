@@ -5,7 +5,7 @@ import { Row, Col, Button} from "react-bootstrap";
 import { Box,  TextEntry, SelectField} from 'cassiopae-core';
 import {connect} from 'react-redux';
 import {injectIntl} from 'react-intl';
-import { country ,acttypeList} from '../../Constantes/SelectFields';
+import { acttypeList} from '../../Constantes/SelectFields';
 import ReactFlagsSelect from '../../components/ReactFlagsSelect';
 class NewDealer extends React.Component {
 

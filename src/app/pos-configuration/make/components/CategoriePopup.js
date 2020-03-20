@@ -17,7 +17,6 @@ import {
 } from 'cassiopae-core';
 import {Field, Form, reduxForm} from "redux-form";
 import messages from '../../Constantes/messages';
-import { country } from '../../Constantes/SelectFields';
 class CategoriePopup extends React.Component {
   render() {
         let {onClose, showModal} = this.props;

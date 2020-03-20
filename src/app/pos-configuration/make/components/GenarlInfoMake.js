@@ -7,9 +7,9 @@ import DealerField from './DealerField'
 import LabelTraductionPopup from '../../components/LabelTraductionPopup'
 import ReactFlagsSelect from '../../components/ReactFlagsSelect';
 const options = [
-    {value: 'one', label: 'EUR'},
-    {value: 'two', label: 'USD'},
-    {value: 'three', label: 'TND'},
+    {code: 'EUR', label: 'Euro'},
+    {code: 'USD', label: 'US Dollar'},
+    {code: 'TWD', label: 'Taiwan New Dollar'},
     ];
 
 
@@ -32,7 +32,14 @@ export default class GenarlInfoMake extends React.Component {
         let {form,  makegeneraldataExp, change} = this.props;
         const label = event.target.item.label;
         if (label) {
-            change(form, `${makegeneraldataExp}.currencycode`, label);
+            change(form, `${makegeneraldataExp}.currencyCode`, label);
+        }
+    };
+    onSelectFlag = (countryCode) => {
+
+        let {form,  makegeneraldataExp, change} = this.props;
+        if (countryCode) {
+            change(form, `${makegeneraldataExp}.countryCode`, countryCode);
         }
     };
     render() {
@@ -47,44 +54,52 @@ export default class GenarlInfoMake extends React.Component {
             <div>
             <Box title={title} type='primary'>
                 <Col xs={6}>
+                    <Col className='reactflag'>
+                        <div className='text-left'>
+                            <label>{formatMessage(messages.country)}</label>
+                        </div>
+                        <ReactFlagsSelect name={`${makegeneraldataExp}.countryCode`}
+                                          onSelect={this.onSelectFlag}
+                                          defaultCountry="FR"/>
+
+                    </Col>
                     <Col >
-
-                    <Row>
-                        <Col xs={11}>
-
                         <Field name={`${makeDesignationByLanguageExp}.designation`}
                                component={TextEntry}
                                readOnly={readOnly}
-                               title={formatMessage(messages.designation)}>
-
-                        </Field>
-                        </Col>
-                        <Col xs={1}>
-
-                            <button type="button" className="btn-primary btn-language" onClick={this.handleShowModal}>
-                                <i className="fa fa-language"></i>
-                            </button>
-                        </Col>
-                    </Row>
-                    </Col>
-                    <Col className='reactflag'>
-                       <div className='text-left'>
-                            <label>{formatMessage(messages.country)}</label>
-                        </div>
-                        <ReactFlagsSelect defaultCountry="FR"/>
-
+                               title="Mak code"/>
                     </Col>
 
                     <Col >
 
+                        <Row>
+                            <Col xs={11}>
 
-                        <SelectField  name={`${makegeneraldataExp}.currencycode`}
+                                <Field name={`${makeDesignationByLanguageExp}.designation`}
+                                       component={TextEntry}
+                                       readOnly={readOnly}
+                                       title={formatMessage(messages.designation)}>
+
+                                </Field>
+                            </Col>
+                            <Col xs={1}>
+
+                                <button type="button" className="btn-primary btn-language" onClick={this.handleShowModal}>
+                                    <i className="fa fa-language"></i>
+                                </button>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col >
+
+
+                        <SelectField  name={`${makegeneraldataExp}.currencyCode`}
                                       options={options}
-                                      onChange={this.handleCurencyChange}
                                       title={formatMessage(messages.currency)}/>
                     </Col>
                 </Col>
             <Col xs={6}>
+
                 <Row>
 
                     <DealerField
@@ -95,13 +110,13 @@ export default class GenarlInfoMake extends React.Component {
                         title={messages.dealer}/>
                 </Row>
                 <Col >
-                    <Field name={`${makeotherdataExp}.variantclassification`}
+                    <Field name={`${makeotherdataExp}.variantClassification`}
                            component={TextEntry}
                            readOnly={readOnly}
                            title={formatMessage(messages.codeVariant)}/>
                 </Col>
                 <Col  key='oem'  >
-                    <Field name={`${makeotherdataExp}.oemclassification`}
+                    <Field name={`${makeotherdataExp}.oemClassification`}
                            readOnly={readOnly}
                            component={TextEntry}
                            title={messages.oem}/>

@@ -39,28 +39,28 @@ export function initMakeModel(){
 }
 
 
-export function saveMakeModel(formData, onSuccess, onError) {
+export function saveMakeModel(formData) {
     return {
         types: [SAVE_MAKE_MODEL,  SAVE_MAKE_MODEL_SUCCESS, SAVE_MAKE_MODEL_FAIL],
         promise: (client) => client.post('/make/insert', formData),
         afterSuccess: (dispatch, getState, result) => {
-            onSuccess(result.data);
+
         },
         afterError: (dispatch, getState, error) => {
-            onError(error);
+
         }
     };
 }
 
-export function updateMakeModel(formData, onSuccess, onError) {
+export function updateMakeModel(formData) {
     return {
         types: [UPDATE_MAKE_MODEL,  UPDATE_MAKE_MODEL_SUCCESS, UPDATE_MAKE_MODEL_FAIL],
         promise: (client) => client.patch('/make/update', formData),
         afterSuccess: (dispatch, getState, result) => {
-            onSuccess(result.data);
+
         },
         afterError: (dispatch, getState, error) => {
-            onError(error);
+
         }
     };
 }
