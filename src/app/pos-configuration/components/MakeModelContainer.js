@@ -8,7 +8,7 @@ import ToolbarMakeModel from "./ToolbarMakeModel";
 import SearchMakeModelContainer from "./SearchMakeModelContainer";
 import { NEWMAKEMODEL} from '../index'
 import {hashHistory} from "react-router";
-import  {showSearchMAkeBox, showMakeRemove, fetchMakesModels} from "../reducers/actions";
+import  {showSearchMAkeBox, showMakeRemove, fetchMakes} from "../reducers/actions";
 import {connect} from 'react-redux';
 import {
     newAccessKeysSelector,
@@ -27,22 +27,24 @@ class MakeModelContainer extends React.Component {
     }
 
     componentWillMount() {
-        this.props.fetchMakesModels();
+        const {fetchMakes} = this.props;
+        fetchMakes;
     }
 
     handleShowSearch = (event) =>
     {
-        this.props.showSearchMAkeBox(true);
-        this.props.showMakeRemove(false);
+        const {showMakeRemove, showSearchMAkeBox} = this.props;
+        showSearchMAkeBox(true);
+        showMakeRemove(false);
 
     }
 
 
     handleShowRemove = (event) =>
     {
-
-        this.props.showSearchMAkeBox(false);
-        this.props.showMakeRemove(true);
+        const {showMakeRemove, showSearchMAkeBox} = this.props;
+        showSearchMAkeBox(false);
+        showMakeRemove(true);
 
     }
 
@@ -54,8 +56,10 @@ class MakeModelContainer extends React.Component {
     }
 
     handleClose= () =>
-    {    this.props.fetchMakesModels();
-        this.props.showSearchMAkeBox(false);
+    {
+        const {fetchMakes, showSearchMAkeBox} = this.props;
+        fetchMakes();
+        showSearchMAkeBox(false);
     }
 
 
@@ -114,6 +118,6 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
     showSearchMAkeBox,
     showMakeRemove,
-    fetchMakesModels
+    fetchMakes
 };
 export default connect(mapStateToProps, mapDispatchToProps)  (injectIntl(MakeModelContainer));

@@ -23,16 +23,14 @@ export function fetchFilterMakes(parameters) {
     };
 }
 
+
 export function fetchMakes() {
 
     return {
         types: [FETCH_MAKES_MODELS, FETCH_MAKES_MODELS_SUCCESS, FETCH_MAKES_MODELS_FAIL],
-        promise: (client) => client.get('/makeACKERMANN'),
+        promise: (client) => client.get('/make'),
     };
 }
-
-
-
 
 export function showSearchMAkeBox(show){
     return {
