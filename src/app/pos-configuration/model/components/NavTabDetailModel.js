@@ -9,45 +9,50 @@ class NavTabDetailModel extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {activeTabKey: "tabDetail"}
+        this.state = {activeTabKey: "tabDetail", expModel:"make.models[0]"}
     }
-    handleTabChange = (key) => {
+    handleTabModelChange = (key) => {
         this.setState({
             activeTabKey: key,
+            expModel: key
         });
+        this.props.changePathFileddOfModel(key)
     };
+
     render() {
-        const { intl,form  } = this.props;
+        const { intl,form, nbrNavTab  } = this.props;
+        const newModels    =[];
 
 
-        const tab1    =[];
+     for(let i=0;i<=nbrNavTab;i++) {
+            if (i === 0) {
+                newModels.push({
+                    id: "model.tab",
+                    key: "make.models["+i+"]",
+                    title: "Model détail",
+                    body: <ModelDetails  expModel={this.state.expModel} {...this.props} test={"tabDetail"} form={form} intl={intl}/>,
+                    active: this.state.activeTabKey === "make.models["+i+"]" || this.state.activeTabKey == "tabTrim",
+                });
+            } else {
+                newModels.push({
+                    id: "model.tab" + i,
+                    key: "make.models["+i+"]",
+                    title: "Model détail " + i,
+                    body: <ModelDetails  expModel={this.state.expModel}  {...this.props} test={"tabDetail " + i} form={form} intl={intl}/>,
+                    active: this.state.activeTabKey === "make.models["+i+"]" || this.state.activeTabKey == "tabTrim",
+                });
+            }
+        }
 
-        tab1.push({
-            id:"model.tab",
-            key: "tabDetail",
-            title: "Model détail",
-            body:  <ModelDetails form={form} intl={intl}  />,
-            active: this.state.activeTabKey ==="tabDetail" || this.state.activeTabKey =="tabTrim",
-        });
-        tab1.push({
-            id:"model.tab2",
-            key: "tabDetail2",
-            title: "Model détail 2",
-            body:  <ModelDetails form={form} intl={intl}  />,
-            active: this.state.activeTabKey ==="tabDetail2" || this.state.activeTabKey =="tabTrim2",
-        });
 
-        tab1.push({
-            id:"model.tab3",
-            key: "tabDetail3",
-            title: "Model détail 3",
-            body:  <ModelDetails form={form} intl={intl}  />,
-            active: this.state.activeTabKey ==="tabDetail3" || this.state.activeTabKey =="tabTrim3",
-        });
+
+
+
+
 
 
         return ( <NavTabs className='options'
-                         handleTabChange={this.handleTabChange}  tabs={tab1}/>);
+                         handleTabChange={this.handleTabModelChange}  tabs={newModels}/>);
     }
 }
 

@@ -5,7 +5,7 @@ import {change, arrayPush, arrayRemove,formValueSelector} from 'redux-form';
 import ModelTable from './ModelTable';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
-import {showPopupModelDetail, fetchModel, initModels, selectedModel, changeNbrNavtabAddedOfModel } from "../reducers/actions";
+import {showPopupModelDetail, fetchModel, initModels, selectedModel, changeNbrNavtabAddedOfModel, changePathFileddOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
 
 const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
@@ -18,7 +18,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
     }
 
     closeModel = () => {
-        const { form, make, arrayRemove,nbrNavTab,changeNbrNavtabAddedOfModel} = this.props;
+        const { form, make, arrayRemove, nbrNavTab, changeNbrNavtabAddedOfModel} = this.props;
         if(nbrNavTab>0) {
             let index =  make.models.length -1 ;
             let total=nbrNavTab;
@@ -39,14 +39,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
         this.props.showPopupModelDetail(true);
     };
 
-     openNewModel = () => {
-         const { form, arrayPush, showPopupModelDetail, selectedModel, make, changeNbrNavtabAddedOfModel} = this.props;
-         let index= make.models.length;
-         arrayPush(form,'make.models',modelIni);
-         selectedModel(index);
-         changeNbrNavtabAddedOfModel(index);
-         showPopupModelDetail(true);
-     };
+
     render() {
 
         const {intl: {formatMessage}, fetchModel,  showPopupModelDetail,modelField, initModels, listModels, generalModels, isPopupModelDetailLoade,indexModel,form} = this.props;
@@ -58,7 +51,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
             <OverlayTrigger trigger="hover" placement="top"
                             overlay={<Tooltip>{formatMessage(messages.btAddModelTitle)}</Tooltip>}>
 
-                <button type="button" className="btn-primary btn-box-tool"  onClick={this.openNewModel}>
+                <button type="button" className="btn-primary btn-box-tool"  onClick={this.openModel}>
                     <i className="fa fa-plus"></i>
                 </button>
             </OverlayTrigger>
@@ -66,7 +59,7 @@ const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":
         </div>);
 
         return (<Box  tools={btTools} >
-                <PopupModelDetails openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
+                <PopupModelDetails modelField={modelField} openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
                    <ModelTable  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
 
             </Box>
@@ -96,7 +89,7 @@ const mapStateToProps = (state, props) => {
 
     var indexModel = state.model.indexModelSelected
     var nbrNavTab=state.model.nbrModelNavTab
-    const modelField = `make.models[${indexModel}]`;
+    const modelField = state.model.modelField;
 
     return {
         make,
@@ -117,6 +110,7 @@ const mapDispatchToProps = {
     initModels,
     selectedModel,
     changeNbrNavtabAddedOfModel,
+    changePathFileddOfModel,
     change,
     arrayPush,
     arrayRemove

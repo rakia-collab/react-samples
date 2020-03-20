@@ -13,17 +13,28 @@ class ModelDetailsContainer extends React.Component {
 
     handledAddNewModel = () =>
     {
-        const { listModels, form, change, arrayPush } = this.props;
-        let index= listModels.length;
-        arrayPush(form,'make.models',modelIni);
+        const { form, arrayPush, showPopupModelDetail, selectedModel, make, changeNbrNavtabAddedOfModel} = this.props;
+
+        let index= make.models.length;
+            arrayPush(form, 'make.models', modelIni);
+            selectedModel(index);
+            changeNbrNavtabAddedOfModel(index);
+        showPopupModelDetail(true);
+    }
+
+    handledValidate =()=>
+    {
+        const {showPopupModelDetail, changeNbrNavtabAddedOfModel} = this.props;
+        changeNbrNavtabAddedOfModel(0)
+        this.props.showPopupModelDetail(false);
     }
 
     render() {
-        const { intl, form, openNewModel } = this.props;
+        const { intl, form } = this.props;
 
 
         const btAddModel=(<div className="box-tools-filter pull-right">
-            <button type="button" className="btn-primary btn-box-tool"  onClick={openNewModel}>
+            <button type="button" className="btn-primary btn-box-tool"  onClick={this.handledAddNewModel}>
                 <i className="fa fa-plus"></i>
             </button>
         </div>)
@@ -34,7 +45,7 @@ class ModelDetailsContainer extends React.Component {
                <NavTabDetailModel {...this.props} form={form} intl={intl}   />
 
                     <center>
-                        <Button className="btn-danger " >  {this.props.intl.formatMessage(messages.btValidateTitle)}</Button>
+                        <Button className="btn-danger " onClick={this.handledValidate} >  {this.props.intl.formatMessage(messages.btValidateTitle)}</Button>
                     </center>
 
                 </div>

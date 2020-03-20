@@ -7,7 +7,7 @@ export const FETCH_Model = 'MODEL/FETCH_Model';
 export const FETCH_Model_FAIL= 'MODEL/FETCH_Model_FAIL';
 export const CHANGE_INDEX_MODEL_SELECTED= 'MODEL/CHANGE_INDEX_MODEL_SELECTED';
 export const CHANGE_NEWMODEL_NAVTAB_ADDED= 'MODEL/CHANGE_NEWMODEL_NAVTAB_ADDED';
-
+export const CHANGE_FILEDMODEL_PATH= 'MODEL/CHANGE_FILEDMODEL_PATH';
 
 
 
@@ -69,6 +69,15 @@ export function changeNbrNavtabAddedOfModel(nombre)
     return {
         type:CHANGE_NEWMODEL_NAVTAB_ADDED,
         result:nombre
+    };
+
+}
+
+export function changePathFileddOfModel(path)
+{
+    return {
+        type:CHANGE_FILEDMODEL_PATH,
+        result:path
     };
 
 }

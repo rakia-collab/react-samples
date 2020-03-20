@@ -9,44 +9,48 @@ class ModelDetails extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage}, modelField,form } = this.props;
+        const {intl: {formatMessage}, expModel,form ,test,nbrNavTab} = this.props;
         const titlePopup =   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             { formatMessage(messages.detailModelTitle)}
         </div>)
 
-        const   bttools  =(<div>
-            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
-            1
-        </button>
-            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
-                2
-            </button>
-            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
-               3
-            </button>
-        </div>);
+        let nbrnewModels=[];
+        if(nbrNavTab>0) {
+            for (let i = 1; i <= (nbrNavTab+1); i++) {
+                nbrnewModels.push(
+                    <button type="button" className="btn-primary btn-danger btn-box-tool">
+                        {i}
+                    </button>
+                )
 
-        const tabs = [];
-        let assetToolBox = [];
+            }
+        }
+        const   bttools  =(<div>
+                            {nbrnewModels}
+                        </div>);
+
+
+
         return (
 
                 <Box title={titlePopup} type='primary' tools={bttools} >
+                  {test}
                     <Row >
                         <Col xs={4}>
 
-                            <Field name={`${modelField}.modelGeneralData.modelRef`}
+                            <Field name={`${expModel}.modelGeneralData.modelRef`}
                                    component={TextEntry}
                                    title={formatMessage(messages.modelRefTitle)}/>
                         </Col>
                         <Col   xs={4}>
-                            <SelectField  name={`${modelField}.modelGeneralData.vehicleType`}
+                            <SelectField  name={`${expModel}.modelGeneralData.vehicleType`}
                                          options={typeVehicule}
                                          title={messages.typeVehicule}/>
                         </Col>
 
                         <Col xs={4}>
-                            <SelectField name={`${modelField}.modelOtherData.vehiclecategory`}
+                            <SelectField name={`${expModel}.modelOtherData.vehiclecategory`}
 
                                          options={categoryVehicule}
                                          title={messages.categoryVehicule}/>
@@ -56,32 +60,32 @@ class ModelDetails extends React.Component {
                     </Row>
                     <Row >
                         <Col  xs={4}>
-                            <Field name={`${modelField}.modelGeneralData.startDate`}
+                            <Field name={`${expModel}.modelGeneralData.startDate`}
                                    component={DateEntry}
                                    title={formatMessage(messages.dtDebutTitle)}/>
                         </Col>
                         <Col  xs={4} >
-                            <Field name={`${modelField}.modelGeneralData.endDate`}
+                            <Field name={`${expModel}.modelGeneralData.endDate`}
                                    component={DateEntry}
                                    title={messages.dtFinTitle}/>
                         </Col>
 
 
                         <Col xs={4}>
-                            <SelectField name={`${modelField}.modelOtherData.regularinspectionmodel`}
+                            <SelectField name={`${expModel}.modelOtherData.regularinspectionmodel`}
                                          options={modelinspection}
                                          title={messages.modelInspectionTitle}/>
                         </Col>
                     </Row>
                     <Row>
                         <Col  xs={4} >
-                            <SelectField name={`${modelField}.modelOtherData.kindsconstructionmachinery`}
+                            <SelectField name={`${expModel}.modelOtherData.kindsconstructionmachinery`}
                                          options={modeltype}
                                          title={messages.modelTypeTitle}/>
                         </Col>
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelOtherData.specialconstructionmachinery`}
+                            <SelectField name={`${expModel}.modelOtherData.specialconstructionmachinery`}
                                          options={modelspecialite}
 
                                          title={messages.modelSpecialityTitle}/>
@@ -89,7 +93,7 @@ class ModelDetails extends React.Component {
 
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelOtherData.segment`}
+                            <SelectField name={`${expModel}.modelOtherData.segment`}
                                          options={modelspecialite}
                                          title={messages.segmentTitle}/>
                         </Col>
@@ -97,13 +101,13 @@ class ModelDetails extends React.Component {
 
                     <Row>
                         <Col  xs={4} >
-                            <SelectField name={`${modelField}.modelOtherData.bssassettype`}
+                            <SelectField name={`${expModel}.modelOtherData.bssassettype`}
                                          options={modeltype}
                                          title={messages.assetTypeBssTitle}/>
                         </Col>
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelOtherData.bssassetdetailtype`}
+                            <SelectField name={`${expModel}.modelOtherData.bssassetdetailtype`}
                                          options={modelspecialite}
 
                                          title={messages.assetDetailBssTitle}/>
@@ -111,7 +115,7 @@ class ModelDetails extends React.Component {
 
                         <Col xs={4}>
 
-                            <SelectField name={`${modelField}.modelOtherData.bssrate`}
+                            <SelectField name={`${expModel}.modelOtherData.bssrate`}
                                          options={modelspecialite}
                                          title={messages.assetRateBssTitle}/>
                         </Col>
