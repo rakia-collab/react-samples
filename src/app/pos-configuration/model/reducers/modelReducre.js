@@ -1,11 +1,13 @@
 import Immutable from 'seamless-immutable';
 import * as actions from './actions';
+import {CHANGE_INDEX_MODEL_SELECTED} from "./actions";
 
 let initialState = {
     isPopupModelDetailLoade: false,
     detailModelDisabled:false,
     isModelDetailLoade: false,
     indexModelSelected:0,
+    nbrModelNavTab:0,
 
 
 };
@@ -17,7 +19,7 @@ function reducer(state = Immutable(initialState), action) {
                 isPopupModelDetailLoade: action.modeload !== undefined ? action.modeload : !state.isPopupModelDetailLoade
             });
         case actions.SHOW_Model_DETAIL:
-            returnImmutable.merge(state,{
+            return Immutable.merge(state,{
                 isModelDetailLoade: action.modeload !== undefined ? action.modeload : !state.isModelDetailLoade
             });
         case actions.INIT_Models_SUCCESS:
@@ -42,6 +44,17 @@ function reducer(state = Immutable(initialState), action) {
                 indexModelSelected: index
 
             });
+        case actions.CHANGE_INDEX_MODEL_SELECTED:
+            return  Immutable.merge(state,{
+                indexModelSelected: action.result
+
+            });
+        case actions.CHANGE_NEWMODEL_NAVTAB_ADDED:
+            return   Immutable.merge(state,{
+                nbrModelNavTab: action.result
+
+            });
+
 
         default:
             return state;
