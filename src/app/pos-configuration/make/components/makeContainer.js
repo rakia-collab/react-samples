@@ -2,7 +2,7 @@ import React from 'react';
 import StepContainer from '../../components/StepContainer';
 import {connect} from 'react-redux';
 import {injectIntl} from 'react-intl';
-import {fetchFullMake, initMakeModel} from '../reducers/actions';
+import {fetchFullMake, initMakeModel, saveMakeModel, updateMakeModel} from '../reducers/actions';
 import messages from '../../Constantes/messages';
 
 
@@ -31,24 +31,25 @@ class makeContainer extends React.Component {
     render() {
 
         const {
-           intl: {formatMessage},
+            saveMakeModel, updateMakeModel
         } = this.props;
-
         return (
-            <div>
-            <StepContainer id='pos.make' stepModal={false}/>
-                <button type="button" className="btn-danger pull-right"  >
 
-                    {formatMessage(messages.submit)}
+            <StepContainer id='pos.make'
+                           stepModal={false}
+                           saveMakeModel={saveMakeModel}
+                           updateMakeModel={updateMakeModel}
+            />
 
-                </button>
-            </div>
 
         );
     }
 
 }
 const mapDispatchToProps = {
-    fetchMake: fetchFullMake,initMakeModel
+    fetchMake: fetchFullMake,
+    initMakeModel,
+    saveMakeModel,
+    updateMakeModel
 };
 export default connect(null, mapDispatchToProps)(injectIntl(makeContainer));

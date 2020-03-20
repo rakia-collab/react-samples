@@ -1,10 +1,12 @@
 import React from 'react';
-import GenarlInfoMake from '../make/components/GenarlInfoMake';
-import Filtrage from '../make/components/Filtrage';
 import {injectIntl} from 'react-intl';
 import {createSelector} from 'reselect';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
+import {Button} from 'react-bootstrap';
+import {reduxForm,change, formValueSelector, getFormValues} from 'redux-form';
+import GenarlInfoMake from '../make/components/GenarlInfoMake';
+import Filtrage from '../make/components/Filtrage';
 import Debug from 'debug';
 import {
     Div,
@@ -13,9 +15,8 @@ import {
     EMPTY_OBJECT
 } from 'cassiopae-core';
 import Immutable from 'seamless-immutable';
-import {reduxForm,change, formValueSelector, getFormValues} from 'redux-form';
 
-
+import {NEWMAKEMODEL} from '../index';
 export const ID = 'newDealMultiStepForm';
 import ModelContainer from '../model/components/ModelContainer';
 
@@ -32,13 +33,22 @@ const FORM ='marqueForm'
      }
 
      handleStepChange = (stepIndex, stepKey) => {
-         this.setState({stepKey});
+
+         this.setState({
+             stepKey: stepKey
+         });
      };
 
-     handleStepUpdate = (stepIndex, stepKey) => {
+     handleOnSubmit = (data) => {
+         const {saveMakeModel, updateMakeModel, location} = this.props;
 
+         if (location.pathname === NEWMAKEMODEL) {
+             saveMakeModel(data.make);
+         }
+         else
+             updateMakeModel(data.make);
      };
-     static displayName = 'pos.StepContainer';
+
     stepsSelector = createSelector(
         (props) => props.step,
         (props) => props.key,
@@ -78,30 +88,16 @@ const FORM ='marqueForm'
             ];
 
      }
-    handleStepChange = (stepIndex, stepKey) => {
 
-        this.setState({
-            stepKey: stepKey
-        });
-    };
-     handleStepUpdate = (stepIndex, stepKey) => {
-         debug('onStepUpdate', 'stepIndex=', stepIndex, 'stepKey=', stepKey, 'errors=', 'rrr');
-
-     };
-    handleOnSave = () => {
-        debug('componentDidMount', 'props=', this.props);
-        const {setCurrentEvent, onSave} = this.props;
-
-        // We release the current event when saving deal
-        setCurrentEvent(null);
-        onSave(null);
-    };
 
     render() {
 
         const {
             stepKey,
         } = this.state;
+        const {
+            intl: {formatMessage},reset, handleSubmit
+        } = this.props;
 
         let steps = this.stepsSelector(this.props);
         const labels = Immutable([{code: 'jalcode', label: 'Make Model Configuration'},]);
@@ -111,13 +107,19 @@ const FORM ='marqueForm'
         const id = 'stepContainer';
         return (
 
-                <Form ref="portalquote"    skin={true} name={FORM}>
+                <Form ref="portalquote"    skin={true} name={FORM} onSubmit={handleSubmit(this.handleOnSubmit)}>
                     <Div id={id} className='newDeal' parentProps={this.props} parentState={this.state}>
                 <MultiStep id={id + ':multistep'}
                            steps={steps}
                            stepKey={stepKey}
-                           onStepChange={this.handleStepChange}
-                           onStepUpdate={this.handleStepUpdate}/>
+                           onStepChange={this.handleStepChange}/>
+
+                        <Button type="submit" bsStyle="success" className="pull-right">
+
+                            {formatMessage(messages.submit)}
+
+                        </Button>
+
                     </Div>
                 </Form>
 
@@ -147,6 +149,7 @@ function mapStateToProps(state, props) {
         modelExp:'make.listmodels',
         makegeneraldataExp:'make.makegeneraldata',
         makeotherdataExp:'make.makeotherdata',
+        makeDesignationByLanguageExp:'make.makeDesignationByLanguage[0]',
         submitFailedId: values.submitFailedId,
        initialValues: {make:state.make.make,},
         form: FORM

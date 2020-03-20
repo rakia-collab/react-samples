@@ -1,6 +1,7 @@
 import React from 'react'
 import {Modal, Button} from 'react-bootstrap';
 import {injectIntl} from 'react-intl';
+import ReactFlagsSelect from '../../components/ReactFlagsSelect';
 
 import {
     Col,
@@ -30,21 +31,21 @@ class CategoriePopup extends React.Component {
                   <Box type='primary'  title={titleCategorieInfo} >
               <Row xs={12}>
                      <Col xs={6}>
+                         <Col className='reactflag'>
+                             <div className='text-left'>
+                                 <label>country</label>
+                             </div>
+                             <ReactFlagsSelect defaultCountry="FR"/>
 
-                         <SelectField name='actnom'
-                                      title='Country'
-                                      options={country}
-                         />
+                         </Col>
+
                          <Field name='acacode'
                                 title='Acacode'
                                 component={TextEntry} />
 
                      </Col>
                       <Col xs={6}>
-                          <Field name='lancode'
-                                 title='Lancode'
-                                 component={TextEntry}
-                          />
+
 
                           <Field name='acadescription'
                                  title='Acadescription'

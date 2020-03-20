@@ -1,4 +1,4 @@
-export var dataInit={"makegeneraldata":{"brandref":null,"countrycode":null,"currencycode":null},
+export const dataInit={"makegeneraldata":{"brandref":null,"countrycode":null,"currencycode":null},
     "makeotherdata":{"dealer":null,"variantclassification":null,"oemclassification":null},
     "listmodels":[{
         "modelgeneraldata":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},

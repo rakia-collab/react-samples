@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
 import * as actions from './actions';
+import {SAVE_MAKE_MODEL_SUCCESS} from './actions';
 
 let initialState = {
     selectedList:[{id:'2',status:'blocking', firstName:'Asset 2'}],
@@ -22,9 +23,10 @@ function reducer(state = Immutable(initialState), action) {
 
 
         case actions.INIT_MAKE_MODEL_SUCCESS:
-            return Immutable.merge( state,{
-                formValues: Immutable.set(state.formValues, 'make', action.result)
-        });
+            return Immutable.merge(state,{ make: action.result});
+
+        case actions.SAVE_MAKE_MODEL_SUCCESS:
+            return Immutable.merge(state,{ make: action.result});
 
         default:
             return state;
