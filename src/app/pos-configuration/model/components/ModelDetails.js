@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Col,Row, TextEntry, DateEntry, SelectField,Button} from 'cassiopae-core';
+import {Box, Col,Row, TextEntry, DateEntryField, SelectField,Button} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
 import {change, Field, formValueSelector,getFormValues} from 'redux-form';
 import {typeVehicule,categoryVehicule, modelinspection, modeltype, modelspecialite} from '../../Constantes/SelectFields';
@@ -7,9 +7,17 @@ import {connect} from 'react-redux'
 
 class ModelDetails extends React.Component {
 
+
+    handleEndDateChange = (event, endDate) => {
+        debug('handleEndDateChange', 'endDate=', endDate);
+        const {form, expModel, change} = this.props;
+
+        change(form, `${expModel}.modelGeneralData.modelRef`, endDate);
+    };
+
     render() {
 
-        const {intl: {formatMessage}, expModel,form ,test,nbrNavTab} = this.props;
+        const {intl: {formatMessage}, expModel, nbrNavTab} = this.props;
         const titlePopup =   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             { formatMessage(messages.detailModelTitle)}
@@ -35,7 +43,6 @@ class ModelDetails extends React.Component {
         return (
 
                 <Box title={titlePopup} type='primary' tools={bttools} >
-                  {test}
                     <Row >
                         <Col xs={4}>
 
@@ -60,13 +67,11 @@ class ModelDetails extends React.Component {
                     </Row>
                     <Row >
                         <Col  xs={4}>
-                            <Field name={`${expModel}.modelGeneralData.startDate`}
-                                   component={DateEntry}
+                            <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
                                    title={formatMessage(messages.dtDebutTitle)}/>
                         </Col>
                         <Col  xs={4} >
-                            <Field name={`${expModel}.modelGeneralData.endDate`}
-                                   component={DateEntry}
+                            <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
                                    title={messages.dtFinTitle}/>
                         </Col>
 
