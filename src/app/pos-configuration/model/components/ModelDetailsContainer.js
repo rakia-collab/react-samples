@@ -18,7 +18,7 @@ class ModelDetailsContainer extends React.Component {
         let index= make.models.length;
             arrayPush(form, 'make.models', modelIni);
             selectedModel(index);
-            changeNbrNavtabAddedOfModel(index);
+        changeNbrNavtabAddedOfModel(index);
         showPopupModelDetail(true);
     }
 

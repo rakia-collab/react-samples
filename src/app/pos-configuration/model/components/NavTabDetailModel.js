@@ -1,15 +1,12 @@
 import React from 'react';
-import messages from '../../Constantes/messages';
 import ModelDetails from'./ModelDetails'
-import {Button, Div, Modal, NavTabs, Row} from 'cassiopae-core';
-import TrimContainer from '../../trimLevel/components/TrimContainer';
-import {button} from "react-bootstrap";
+import {NavTabs} from 'cassiopae-core';
 
 class NavTabDetailModel extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {activeTabKey: "tabDetail", expModel:"make.models[0]"}
+        this.state = {activeTabKey: "tabDetail", expModel:"make.models["+this.props.make.models.length+"]", indexFirstNewModel:this.props.make.models.length}
     }
     handleTabModelChange = (key) => {
         this.setState({
@@ -20,12 +17,11 @@ class NavTabDetailModel extends React.Component {
     };
 
     render() {
-        const { intl,form, nbrNavTab  } = this.props;
+        const { intl,form, nbrNavTab } = this.props;
         const newModels    =[];
-
-
-     for(let i=0;i<=nbrNavTab;i++) {
-            if (i === 0) {
+         let nbrNewModel=1;
+     for(let i= this.state.indexFirstNewModel;i<= (this.state.indexFirstNewModel+nbrNavTab);i++) {
+            if (i === this.state.indexFirstNewModel) {
                 newModels.push({
                     id: "model.tab",
                     key: "make.models["+i+"]",
@@ -37,10 +33,11 @@ class NavTabDetailModel extends React.Component {
                 newModels.push({
                     id: "model.tab" + i,
                     key: "make.models["+i+"]",
-                    title: "Model détail " + i,
+                    title: "Model détail " + nbrNewModel,
                     body: <ModelDetails  expModel={this.state.expModel}  {...this.props} test={"tabDetail " + i} form={form} intl={intl}/>,
                     active: this.state.activeTabKey === "make.models["+i+"]" || this.state.activeTabKey == "tabTrim",
                 });
+                nbrNewModel=nbrNewModel+1;
             }
         }
 
