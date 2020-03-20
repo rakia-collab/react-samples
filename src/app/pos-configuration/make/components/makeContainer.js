@@ -2,7 +2,7 @@ import React from 'react';
 import StepContainer from '../../components/StepContainer';
 import {connect} from 'react-redux';
 import {injectIntl} from 'react-intl';
-import {fetchMake, initMakeModel} from '../reducers/actions';
+import {fetchFullMake, initMakeModel} from '../reducers/actions';
 import messages from '../../Constantes/messages';
 
 
@@ -23,7 +23,7 @@ class makeContainer extends React.Component {
         if (makecode) {
             fetchMake(makecode);
         }else {
-            initMakeModel();
+            initMakeModel;
         }
     }
 
@@ -49,6 +49,6 @@ class makeContainer extends React.Component {
 
 }
 const mapDispatchToProps = {
-    fetchMake,initMakeModel
+    fetchMake: fetchFullMake,initMakeModel
 };
 export default connect(null, mapDispatchToProps)(injectIntl(makeContainer));

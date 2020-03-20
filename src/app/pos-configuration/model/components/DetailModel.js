@@ -35,13 +35,13 @@ class DetailModel extends React.Component {
                 <Row>
                     <Col  >
                         <Field
-                            name={`${modelField}.modelgeneraldata.modelref`}
+                            name={`${modelField}.modelGeneralData.modelref`}
                             component={TextEntry}
                             title={messages.modelRefTitle}/>
                     </Col>
                     <Col  >
                         <Field
-                            name={`${modelField}.modelgeneraldata.vehicletype`}
+                            name={`${modelField}.modelGeneralData.vehicletype`}
                             component={TextEntry}
                             title={messages.typeVehicule}
 
@@ -61,7 +61,7 @@ const FORM ='marqueForm';
 const mapStateToProps = (state, props) => {
 
     var indexModel = state.model.indexModelSelected
-    const modelField = `make.listmodels[${indexModel}]`;
+    const modelField = `make.models[${indexModel}]`;
     const selector = formValueSelector(FORM);
     return {
         modelField

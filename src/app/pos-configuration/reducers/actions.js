@@ -19,12 +19,17 @@ export function fetchFilterMakes(parameters) {
 
     return {
         types: [FETCH_MAKES_MODELS_FILTER, FETCH_MAKES_MODELS_FILTER_SUCCESS, FETCH_MAKES_MODELS_FILTER_FAIL],
-        promise: (client) => client.get('/makes/filter', {params: parameters}),
+        promise: (client) => client.get('/make', {params: parameters}),
     };
 }
 
+export function fetchMakes() {
 
-
+    return {
+        types: [FETCH_MAKES_MODELS, FETCH_MAKES_MODELS_SUCCESS, FETCH_MAKES_MODELS_FAIL],
+        promise: (client) => client.get('/makeACKERMANN'),
+    };
+}
 
 
 

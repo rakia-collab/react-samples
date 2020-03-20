@@ -35,18 +35,18 @@ class ModelDetails extends React.Component {
                     <Row >
                         <Col xs={4}>
 
-                            <Field name={`${modelField}.modelgeneraldata.modelref`}
+                            <Field name={`${modelField}.modelGeneralData.modelRef`}
                                    component={TextEntry}
                                    title={formatMessage(messages.modelRefTitle)}/>
                         </Col>
                         <Col   xs={4}>
-                            <SelectField  name={`${modelField}.modelgeneraldata.vehicletype`}
+                            <SelectField  name={`${modelField}.modelGeneralData.vehicleType`}
                                          options={typeVehicule}
                                          title={messages.typeVehicule}/>
                         </Col>
 
                         <Col xs={4}>
-                            <SelectField name={`${modelField}.modelotherdata.vehiclecategory`}
+                            <SelectField name={`${modelField}.modelOtherData.vehiclecategory`}
 
                                          options={categoryVehicule}
                                          title={messages.categoryVehicule}/>
@@ -56,32 +56,32 @@ class ModelDetails extends React.Component {
                     </Row>
                     <Row >
                         <Col  xs={4}>
-                            <Field name={`${modelField}.modelgeneraldata.startdate`}
+                            <Field name={`${modelField}.modelGeneralData.startDate`}
                                    component={DateEntry}
                                    title={formatMessage(messages.dtDebutTitle)}/>
                         </Col>
                         <Col  xs={4} >
-                            <Field name={`${modelField}.modelgeneraldata.enddate`}
+                            <Field name={`${modelField}.modelGeneralData.endDate`}
                                    component={DateEntry}
                                    title={messages.dtFinTitle}/>
                         </Col>
 
 
                         <Col xs={4}>
-                            <SelectField name={`${modelField}.modelotherdata.regularinspectionmodel`}
+                            <SelectField name={`${modelField}.modelOtherData.regularinspectionmodel`}
                                          options={modelinspection}
                                          title={messages.modelInspectionTitle}/>
                         </Col>
                     </Row>
                     <Row>
                         <Col  xs={4} >
-                            <SelectField name={`${modelField}.modelotherdata.kindsconstructionmachinery`}
+                            <SelectField name={`${modelField}.modelOtherData.kindsconstructionmachinery`}
                                          options={modeltype}
                                          title={messages.modelTypeTitle}/>
                         </Col>
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelotherdata.specialconstructionmachinery`}
+                            <SelectField name={`${modelField}.modelOtherData.specialconstructionmachinery`}
                                          options={modelspecialite}
 
                                          title={messages.modelSpecialityTitle}/>
@@ -89,7 +89,7 @@ class ModelDetails extends React.Component {
 
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelotherdata.segment`}
+                            <SelectField name={`${modelField}.modelOtherData.segment`}
                                          options={modelspecialite}
                                          title={messages.segmentTitle}/>
                         </Col>
@@ -97,13 +97,13 @@ class ModelDetails extends React.Component {
 
                     <Row>
                         <Col  xs={4} >
-                            <SelectField name={`${modelField}.modelotherdata.bssassettype`}
+                            <SelectField name={`${modelField}.modelOtherData.bssassettype`}
                                          options={modeltype}
                                          title={messages.assetTypeBssTitle}/>
                         </Col>
                         <Col xs={4} >
 
-                            <SelectField name={`${modelField}.modelotherdata.bssassetdetailtype`}
+                            <SelectField name={`${modelField}.modelOtherData.bssassetdetailtype`}
                                          options={modelspecialite}
 
                                          title={messages.assetDetailBssTitle}/>
@@ -111,18 +111,12 @@ class ModelDetails extends React.Component {
 
                         <Col xs={4}>
 
-                            <SelectField name={`${modelField}.modelotherdata.bssrate`}
+                            <SelectField name={`${modelField}.modelOtherData.bssrate`}
                                          options={modelspecialite}
                                          title={messages.assetRateBssTitle}/>
                         </Col>
                     </Row>
-                    <Row >
 
-                      <center>
-
-                     <Button className="btn-danger " >  {formatMessage(messages.btValidateTitle)}</Button>
-                      </center>
-                    </Row>
                 </Box>
         );
     }
@@ -134,9 +128,9 @@ const mapStateToProps = (state, props) => {
     const selector = formValueSelector(form);
     const formValues = getFormValues(form);
     const make = selector(state, 'make');
-    var listModels = make.listmodels;
+    var listModels = make.models;
     var indexModel = state.model.indexModelSelected
-    const modelField = `make.listmodels[${indexModel}]`;
+    const modelField = `make.models[${indexModel}]`;
     const values = formValues(state) || EMPTY_OBJECT;
 
     return {

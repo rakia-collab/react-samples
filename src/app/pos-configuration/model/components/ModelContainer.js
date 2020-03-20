@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box,TextEntry} from 'cassiopae-core';
+import {Box} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
 import {change, arrayPush, arrayRemove,formValueSelector} from 'redux-form';
 import ModelTable from './ModelTable';
@@ -61,16 +61,24 @@ const mapStateToProps = (state, props) => {
 
     const {form} = props;
     const selector = formValueSelector(form);
-
     const make = selector(state, 'make');
-    var listModels = make.listmodels;
-    var generalModels=[];
-    listModels &&  listModels.map((Model) => {
-        generalModels.push(Model.modelgeneraldata)
-    });
+    var listModels = [];
+    var generalModels =[];
+   if( make.models.length ===1) {
+       listModels = make.models[0];
+       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "icone":null});
+   }
+   else
+   {  make.models &&  make.models.map((Model) => {
+       Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "icone":null});
+   });
+   }
+
+
 
     var indexModel = state.model.indexModelSelected
-    const modelField = `make.listmodels[${indexModel}]`;
+    var nbrNavTab=state.model.nbrModelNavTab
+    const modelField = `make.models[${indexModel}]`;
 
     return {
         generalModels,

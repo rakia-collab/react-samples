@@ -13,7 +13,7 @@ let initialState = {
 function reducer(state = Immutable(initialState), action) {
     switch (action.type) {
 
-        case actions.FETCH_MAKE_MODEL_SUCCESS:
+        case actions.FETCH_FULL_MAKE_SUCCESS:
 
             return Immutable.merge(state,
                 { formValues: Immutable.set(state.formValues, 'make', action.result),

@@ -52,7 +52,7 @@ class ModelDisplay extends React.Component {
         );
     }
 }
-const columns = ['modelref', 'vehicletype', 'startdate','enddate','icone'];
+const columns = ['modelRef', 'vehicleType', 'startDate','endDate', 'icone'];
 
 class ModelTable extends React.Component {
 
@@ -71,24 +71,24 @@ class ModelTable extends React.Component {
         const {fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade,indexModel} = this.props;
         var columnMetadata = [
             {
-                columnName: 'modelref',
+                columnName: 'modelRef',
                 displayName: <FormattedMessage id="conf.tab.model.mmocode.column"
                                                defaultMessage="Référence model"/>
             },
             {
-                columnName: 'vehicletype',
+                columnName: 'vehicleType',
                 displayName: <FormattedMessage id="conf.tab.model.vehicletype.column"
                                                defaultMessage="Type de vehicule"/>
             },
             {
-                columnName: 'startdate',
+                columnName: 'startDate',
                 displayName: <FormattedMessage id="conf.tab.model.startdate.column"
                                                defaultMessage="Date de debut"/>,
                 customComponent: DateDisplay
 
             },
             {
-                columnName: 'enddate',
+                columnName: 'endDate',
                 displayName: <FormattedMessage id="conf.tab.model.enddate.column"
                                                defaultMessage="Date de fin"/>,
                 customComponent: DateDisplay
@@ -105,9 +105,8 @@ class ModelTable extends React.Component {
                     showPopupModelDetail: showPopupModelDetail,
                     isPopupModelDetailLoade: isPopupModelDetailLoade
                 }
-
-
             }
+
 
         ];
 

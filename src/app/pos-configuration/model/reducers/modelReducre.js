@@ -33,7 +33,7 @@ function reducer(state = Immutable(initialState), action) {
             }
             else{
                 state.models.forEach(model => {
-                    if (model.modelgeneraldata.modelref !== action.result)
+                    if (model.modelGeneralData.modelref !== action.result)
                         index = index + 1;
                 }  );
             }

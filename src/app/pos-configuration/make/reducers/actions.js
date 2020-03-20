@@ -1,9 +1,9 @@
 import {dataInit} from '../../Constantes/IniMakeModel'
-import {data} from '../../Constantes/MakesModels'
+import {fullMake} from '../../Constantes/Make'
 
-export const FETCH_MAKE_MODEL = 'MAKE/FETCH_MAKE_MODEL';
-export const FETCH_MAKE_MODEL_SUCCESS = 'MAKE/FETCH_MAKE_MODEL_SUCCESS';
-export const FETCH_MAKE_MODEL_FAIL = 'MAKE/FETCH_MAKE_MODEL_FAIL';
+export const FETCH_FULL_MAKE= 'MAKE/FETCH_FULL_MAKE_MODEL';
+export const FETCH_FULL_MAKE_SUCCESS = 'MAKE/FETCH_FULL_MAKE_SUCCESS';
+export const FETCH_FULL_MAKE_FAIL = 'MAKE/FETCH_FULL_MAKE_FAIL';
 
 export const INIT_MAKE_MODEL = 'MAKE/INIT_MAKE_MODEL';
 export const INIT_MAKE_MODEL_SUCCESS = 'MAKE/INIT_MAKE_MODEL_SUCCESS';
@@ -14,11 +14,17 @@ export const REMOVE_CATEGORIE = 'config/make/REMOVE_CATEGORIE';
 
 
 
-
-export function fetchMake(makecode) {
+export function fetchFullMakeByCode(makecode) {
     return {
-        type: FETCH_MAKE_MODEL_SUCCESS,
-        result: data.find(make => make.makegeneraldata.brandref == makecode)
+        types: [FETCH_FULL_MAKE, FETCH_FULL_MAKE_SUCCESS, FETCH_FULL_MAKE_FAIL],
+        promise: (client) => client.get('/make'+makecode),
+    };
+}
+
+export function fetchFullMake(makecode) {
+    return {
+        type: FETCH_FULL_MAKE_SUCCESS,
+        result: fullMake
     };
 }
 
