@@ -12,7 +12,6 @@ class DetailModel extends React.Component {
 
 
     render() {
-
         const {intl: {formatMessage},modelField} = this.props;
 
         const titleModelDetail=   (<div className="box-tools-filter pull-left">

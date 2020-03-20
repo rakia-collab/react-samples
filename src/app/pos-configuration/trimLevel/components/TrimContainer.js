@@ -26,17 +26,17 @@ class TrimContainer extends React.Component {
         const trimTitle=   (<div className="box-tools-filter pull-left">
             <span  className="glyphicon glyphicon-th" />
             {formatMessage(messages.trimTitle)} </div> );
-        const btToolsTrim=   (       <div className="box-tools-filter pull-right">
-
-            <OverlayTrigger trigger="hover" placement="top"
-                            overlay={<Tooltip>{formatMessage(messages.btAddTrimTitle)}</Tooltip>}>
-
-                <Button  className="btn-primary btn-box-tool"    onClick={this.openDetailTrim}  >
-                    <i className="fa fa-plus"></i>
-                </Button>
-            </OverlayTrigger>
+        const btToolsTrim=  (<div>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+                1
+            </button>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+                2
+            </button>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+                3
+            </button>
         </div>);
-
         return (<Box title={trimTitle} type='primary' tools={btToolsTrim}>
 
                <TrimTableLevel showTrimDetail={showTrimDetail}  isTrimDetailLoade={isTrimDetailLoade}   />

@@ -1,13 +1,14 @@
 import React from 'react';
 import {Box,TextEntry} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
-import {change,formValueSelector } from 'redux-form';
+import {change, arrayPush, arrayRemove,formValueSelector} from 'redux-form';
 import ModelTable from './ModelTable';
 import { Row, Col, OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
 import {showPopupModelDetail,fetchModel, initModels} from "../reducers/actions";
 import {connect} from 'react-redux';
 
+const modelIni ={"modelgeneralgata":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
  class ModelContainer extends React.Component {
 
 
@@ -47,7 +48,7 @@ import {connect} from 'react-redux';
         </div>);
 
         return (<Box  tools={btTools} >
-                <PopupModelDetails form={form}   onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  intl={this.props.intl}  />
+                <PopupModelDetails  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
                    <ModelTable  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchModel}  generalModels={generalModels} />
 
             </Box>
@@ -85,6 +86,11 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
     showPopupModelDetail,
     fetchModel,
-    initModels
+    initModels,
+    selectedModel,
+    changeNbrNavtabAddedOfModel,
+    change,
+    arrayPush,
+    arrayRemove
 };
 export default connect(mapStateToProps, mapDispatchToProps) (ModelContainer);

@@ -15,12 +15,23 @@ class ModelDetails extends React.Component {
             { formatMessage(messages.detailModelTitle)}
         </div>)
 
+        const   bttools  =(<div>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+            1
+        </button>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+                2
+            </button>
+            <button type="button" className="btn-primary btn-danger btn-box-tool"  >
+               3
+            </button>
+        </div>);
 
         const tabs = [];
         let assetToolBox = [];
         return (
 
-                <Box title={titlePopup} type='primary'>
+                <Box title={titlePopup} type='primary' tools={bttools} >
                     <Row >
                         <Col xs={4}>
 
