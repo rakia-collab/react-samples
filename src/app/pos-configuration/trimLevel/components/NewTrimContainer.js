@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {Row, Col, OverlayTrigger, Tooltip} from "react-bootstrap";
 import {Box, DateEntry, SelectField, TextEntry} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
-import TrimTableLevel from "./TrimTableLevel";
+import TrimDetail from "./TrimDetail";
 
 
 
@@ -42,7 +42,7 @@ class NewTrimContainer extends React.Component {
 
         return (<Box title={trimTitle} type='primary' tools={btTools}>
 
-                <TrimTableLevel  />
+                <TrimDetail  />
 
 
             </Box>

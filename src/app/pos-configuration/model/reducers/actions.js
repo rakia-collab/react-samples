@@ -35,14 +35,7 @@ export function initModels(data)
 
 }
 
-export function initModel(data)
-{
-    return {
-        type: INIT_Model_SUCCESS,
-        result: data
-    };
 
-}
 
 export function fetchFullModel(param)
 {
@@ -58,6 +51,24 @@ export function fetchModel(param)
     return {
         type: FETCH_Model_SUCCESS,
         result: fullModel,
+    };
+
+}
+
+export function selectedModel(index)
+{
+    return {
+        type:CHANGE_INDEX_MODEL_SELECTED,
+        result:index
+    };
+
+}
+
+export function changeNbrNavtabAddedOfModel(nombre)
+{
+    return {
+        type:CHANGE_NEWMODEL_NAVTAB_ADDED,
+        result:nombre
     };
 
 }
