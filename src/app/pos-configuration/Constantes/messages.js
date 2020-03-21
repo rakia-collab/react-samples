@@ -25,7 +25,7 @@ const messages = defineMessages({
     oem: {id: 'pos.config.step.generalinfo.oem', defaultMessage: 'OEM Classification'},
     sales: {id: 'pos.config.step.filtrage.sales', defaultMessage: ' Sales networks'},
     defaultCateg: {id: 'pos.config.step.filtrage.defaultCateg', defaultMessage: 'Default Value'},
-    trimTitle: {id: 'pos.config.step.trim', defaultMessage: 'Trims'},
+    trimTitle: {id: 'pos.config.step.trim', defaultMessage: 'Trims levels informations'},
     detailTrimTitle: {id: 'pos.config.step.trim.detailTrim', defaultMessage: 'Trim details'},
     ModifierTrimTitle: {id: 'pos.config.step.trim.ModifierTrim', defaultMessage: 'Modifier Trim'},
     newTrimTitle: {id: 'pos.config.step.trim.newTrim', defaultMessage: 'New trim'},
@@ -66,7 +66,9 @@ const messages = defineMessages({
     saleTitle: {id: 'config.messages.search.salesTitle', defaultMessage: 'Sale network'},
     assetCategoryTitle: {id: 'config.messages.search.assetCategoryTitle', defaultMessage: 'Asset Category'},
     trimCodeTitle: {id: 'config.messages.search.trimCodeTitle', defaultMessage: 'Trim code '},
-    trimFinitionTitle: {id: 'config.messages.search.trimFinitionTitle', defaultMessage: 'Finition'}
+    trimFinitionTitle: {id: 'config.messages.search.trimFinitionTitle', defaultMessage: 'Finition'},
+    generalInfoModelTitle: {id: 'pos.config.modeldetails.generalInfo', defaultMessage: 'Model general informations'},
+    otherInfoModelTitle: {id: 'pos.config.modeldetails.otherInfo', defaultMessage: 'Model other informations'},
 
 
 

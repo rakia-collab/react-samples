@@ -17,11 +17,8 @@ class ModelDetails extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage}, expModel, nbrNavTab} = this.props;
-        const titlePopup =   (<div className="box-tools-filter pull-left">
-            <span  className="fa fa-tasks"/>
-            { formatMessage(messages.detailModelTitle)}
-        </div>)
+        const {intl: {formatMessage}, navTabTrims, expModel, nbrNavTab,idBoxGen="config.box.model.generalDetail",idBoxOther="config.box.model.otherDetail"} = this.props;
+
 
         let nbrnewModels=[];
         if(nbrNavTab>0) {
@@ -42,89 +39,90 @@ class ModelDetails extends React.Component {
 
         return (
 
-                <Box title={titlePopup} type='primary' tools={bttools} >
+                <Box type='primary' tools={bttools} >
+                    <Box collapsible={false} title={formatMessage(messages.generalInfoModelTitle)}  id={idBoxGen} >
                     <Row >
-                        <Col xs={4}>
+                        <Col xs={6}>
 
                             <Field name={`${expModel}.modelGeneralData.modelRef`}
                                    component={TextEntry}
                                    title={formatMessage(messages.modelRefTitle)}/>
                         </Col>
-                        <Col   xs={4}>
+                        <Col   xs={6}>
                             <SelectField  name={`${expModel}.modelGeneralData.vehicleType`}
                                          options={typeVehicule}
                                          title={messages.typeVehicule}/>
                         </Col>
+                    </Row>
+                        <Row >
 
-                        <Col xs={4}>
+                       <Col  xs={6}>
+                       <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
+                                                title={formatMessage(messages.dtDebutTitle)}/>
+                       </Col>
+                       <Col  xs={6} >
+                       <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
+                                                title={messages.dtFinTitle}/>
+                       </Col>
+
+                    </Row>
+                    </Box>
+                    <Box title={formatMessage(messages.otherInfoModelTitle)} collapsible={true}  id={idBoxOther} >
+                    <Row >
+
+                        <Col xs={6}>
                             <SelectField name={`${expModel}.modelOtherData.vehiclecategory`}
 
                                          options={categoryVehicule}
                                          title={messages.categoryVehicule}/>
                         </Col>
 
-
-                    </Row>
-                    <Row >
-                        <Col  xs={4}>
-                            <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
-                                   title={formatMessage(messages.dtDebutTitle)}/>
-                        </Col>
-                        <Col  xs={4} >
-                            <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
-                                   title={messages.dtFinTitle}/>
-                        </Col>
-
-
-                        <Col xs={4}>
-                            <SelectField name={`${expModel}.modelOtherData.regularinspectionmodel`}
-                                         options={modelinspection}
-                                         title={messages.modelInspectionTitle}/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col  xs={4} >
+                        <Col  xs={6} >
                             <SelectField name={`${expModel}.modelOtherData.kindsconstructionmachinery`}
                                          options={modeltype}
                                          title={messages.modelTypeTitle}/>
                         </Col>
-                        <Col xs={4} >
+
+                    </Row>
+                    <Row>
+
+                    <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.specialconstructionmachinery`}
                                          options={modelspecialite}
 
                                          title={messages.modelSpecialityTitle}/>
-                        </Col>
-
-                        <Col xs={4} >
+                    </Col>
+                    <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.segment`}
                                          options={modelspecialite}
                                          title={messages.segmentTitle}/>
                         </Col>
                 </Row>
-
-                    <Row>
-                        <Col  xs={4} >
+                <Row>
+                 <Col  xs={6} >
                             <SelectField name={`${expModel}.modelOtherData.bssassettype`}
                                          options={modeltype}
                                          title={messages.assetTypeBssTitle}/>
-                        </Col>
-                        <Col xs={4} >
+                 </Col>
+                 <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.bssassetdetailtype`}
                                          options={modelspecialite}
 
                                          title={messages.assetDetailBssTitle}/>
-                        </Col>
-
+                 </Col>
+                </Row>
+                 <Row>
                         <Col xs={4}>
 
                             <SelectField name={`${expModel}.modelOtherData.bssrate`}
                                          options={modelspecialite}
                                          title={messages.assetRateBssTitle}/>
                         </Col>
-                    </Row>
+                </Row>
+                    </Box>
 
                 </Box>
         );

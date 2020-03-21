@@ -101,7 +101,11 @@ class NavTabDetailModel extends React.Component {
             <div>
             <NavTabs className='options'
                          handleTabChange={this.handleTabModelChange}  tabs={newModels}/>
-            <NavTabTrimLevel handleTabTrimChange={this.handleTabTrimChange }  trims={trims} form={form} intl={intl}     />
+                {nbrNavTab > 0?
+                    <NavTabTrimLevel handleTabTrimChange={this.handleTabTrimChange}  trims={trims} form={form} intl={intl}     />
+                    :
+                    < TrimLevelContainer expTrim={"make.models["+indexModel+"].modelLevels[0]"} form={form} intl={intl} {...this.props} />
+                }
             </div>);
     }
 }
