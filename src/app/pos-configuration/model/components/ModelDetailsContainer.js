@@ -32,11 +32,11 @@ class ModelDetailsContainer extends React.Component {
         const { intl, form, nbrNavTab } = this.props;
 
 
-        const btAddModel=(<div className="box-tools-filter pull-right">
+        const btAddModel=nbrNavTab?(<div className="box-tools-filter pull-right">
             <button type="button" className="btn-primary btn-box-tool"  onClick={this.handledAddNewModel}>
                 <i className="fa fa-plus"></i>
             </button>
-        </div>);
+        </div>):[];
         return (
             <div className='thumbnail'>
                     {btAddModel}

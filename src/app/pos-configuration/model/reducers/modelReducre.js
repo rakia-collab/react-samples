@@ -29,8 +29,6 @@ function reducer(state = Immutable(initialState), action) {
             });
         case actions.FETCH_Model_SUCCESS:
             return Immutable.merge(state,{
-                indexModelSelected: 1,
-                modelField: "make.models[1]",
                 fullModel: action.result.data
 
             });

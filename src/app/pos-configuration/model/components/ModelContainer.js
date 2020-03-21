@@ -98,8 +98,8 @@ const mapStateToProps = (state, props) => {
 
 
 
-    var indexModel = state.model.indexModelSelected
-    var nbrNavTab=state.model.nbrModelNavTab
+    const indexModel = state.model.indexModelSelected
+    const nbrNavTab=state.model.nbrModelNavTab
     const modelField = state.model.modelField;
 
     return {
