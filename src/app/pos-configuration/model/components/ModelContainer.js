@@ -17,7 +17,7 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
     }
 
     closeModel = () => {
-        const { form, make, arrayRemove, nbrNavTab, changeNbrNavtabAddedOfModel, showPopupModelDetail} = this.props;
+        const { form, make, arrayRemove, nbrNavTab, changeNbrNavTabAddedOfModel, showPopupModelDetail} = this.props;
 
         if(nbrNavTab>0) {
             let indexOFLastModel =  make.models.length -1 ;
@@ -31,7 +31,7 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
 
             });
             let nombreTabAdded=0;
-            changeNbrNavtabAddedOfModel(nombreTabAdded);
+            changeNbrNavTabAddedOfModel(nombreTabAdded);
         }
         showPopupModelDetail(false);
     };

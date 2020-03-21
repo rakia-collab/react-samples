@@ -11,13 +11,13 @@ class ModelDetailsContainer extends React.Component {
 
     handledAddNewModel = () =>
     {
-        const { form, arrayPush, showPopupModelDetail, selectedModel, make, changeNbrNavtabAddedOfModel, nbrNavTab} = this.props;
+        const { form, arrayPush, showPopupModelDetail, selectedModel, make, changeNbrNavTabAddedOfModel, nbrNavTab} = this.props;
 
         let index= make.models.length;
         let nomberTabAdded=nbrNavTab+1
             arrayPush(form, 'make.models', modelIni);
             selectedModel(index);
-        changeNbrNavtabAddedOfModel(nomberTabAdded);
+        changeNbrNavTabAddedOfModel(nomberTabAdded);
         showPopupModelDetail(true);
     }
 

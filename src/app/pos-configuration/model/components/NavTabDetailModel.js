@@ -31,28 +31,46 @@ class NavTabDetailModel extends React.Component {
          let nbrNewModel=1;
          //************Part of mange Model with his Trim Level /*****************
         if(nbrNavTab >0) {
-            for (let i = indexFirstNewModel; i < (indexFirstNewModel + nbrNavTab); i++) {
-                if (newModels.length <= 0 && i === indexFirstNewModel) {
+            for(let i= indexFirstNewModel;i< (indexFirstNewModel+nbrNavTab);i++) {
+                if (newModels.length <=0 && i=== indexFirstNewModel) {
                     newModels.push({
                         id: "model.tab",
-                        key: "make.models[" + i + "]",
+                        key: "make.models["+i+"]",
                         title: "Model détail",
-                        body: <ModelDetails expModel={expModel} {...this.props} test={"tabDetail"} form={form} intl={intl}/>,
-                        active: activeTabKey === "make.models[" + i + "]" || activeTabKey === "make.models[" + i + "].modelLevels[0]",
+                        body: <ModelDetails  expModel={expModel} {...this.props} test={"tabDetail"} form={form} intl={intl}/>,
+                        active: activeTabKey === "make.models["+i+"]" || activeTabKey === "make.models["+i+"].modelLevels[0]",
                     });
 
 
                     trims.push({
-                        id: "trim.tab",
-                        key: "make.models[" + i + "].modelLevels[0]",
+                        id:"trim.tab",
+                        key: "make.models["+i+"].modelLevels[0]",
                         title: "Trim level",
-                        body: <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
-                        active: activeTabKey === "make.models[" + i + "].modelLevels[0]"|| activeTabKey === "make.models[" + i + "]",
+                        body:  <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
+                        active: activeTabKey === "make.models["+i+"].modelLevels[0]"|| activeTabKey === "make.models["+i+"]" ,
                     });
 
-                    nbrNewModel = nbrNewModel + 1;
-                }}
+                } else {
+                    newModels.push({
+                        id: "model.tab" + i,
+                        key: "make.models["+i+"]",
+                        title: "Model détail " + nbrNewModel,
+                        body: <ModelDetails  expModel={this.state.expModel}  {...this.props} test={"tabDetail " + i} form={form} intl={intl}/>,
+                        active: activeTabKey === "make.models["+i+"].modelLevels[0]" || activeTabKey === "make.models["+i+"]",
+                    });
+
+
+                    trims.push({
+                        id:"trim.tab" + i,
+                        key: "make.models["+i+"].modelLevels[0]",
+                        title: "Trim level " + nbrNewModel,
+                        body:  <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
+                        active:activeTabKey === "make.models["+i+"].modelLevels[0]" || activeTabKey === "make.models["+i+"]" ,
+                    });
+                    nbrNewModel=nbrNewModel+1;
                 }
+            }
+        }
         else {
            let expModel="make.models["+indexModel+"]";
            let expTrim="make.models["+indexModel+"].modelLevels[0]";
@@ -64,14 +82,14 @@ class NavTabDetailModel extends React.Component {
                 active: activeTabKey === "make.models["+indexModel+"]" || activeTabKey === "make.models["+indexModel+"].modelLevels[0]",
             });
 
-
-            trims.push({
-                id: "trim.tab",
-                key: "make.models[" + indexModel + "].modelLevels[0]",
-                title: "Trim level",
-                body: <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
-                active: activeTabKey === "make.models["+indexModel+"].modelLevels[0]" || activeTabKey === "make.models["+indexModel+"]",
+            newModels.push({
+                id: "model.tab",
+                key: "make.models["+indexModel+"]",
+                title: "Model détail",
+                body: <ModelDetails expModel={expModel} {...this.props} test={"tabDetail"} form={form} intl={intl}/>,
+                active: activeTabKey === "make.models["+indexModel+"]" || activeTabKey === "make.models["+indexModel+"].modelLevels[0]",
             });
+
 
         }
 
