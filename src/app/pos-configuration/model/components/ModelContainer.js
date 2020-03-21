@@ -50,7 +50,7 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
 
     render() {
 
-        const {intl: {formatMessage}, fetchFullModel, showPopupModelDetail, modelField,  listModels, generalModels, isPopupModelDetailLoade ,indexModel, make} = this.props;
+        const {intl: {formatMessage}, fetchFullModel, showPopupModelDetail, modelField,  listModels, generalModels, isPopupModelDetailLoade , indexModel, make} = this.props;
         const titleModelInfo=   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             {formatMessage(messages.ModelInfoTitle)} </div> );

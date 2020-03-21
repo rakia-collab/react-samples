@@ -11,7 +11,7 @@ class PopupModelDetail extends React.Component {
 
 
     render() {
-        const { isPopupModelDetailLoade, onClose,intl,form  } = this.props;
+        const { isPopupModelDetailLoade, onClose, intl, form  } = this.props;
         const titlePopup =   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             { intl.formatMessage(messages.detailModelTitle)}

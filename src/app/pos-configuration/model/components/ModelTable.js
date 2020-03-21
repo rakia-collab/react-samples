@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage, injectIntl} from 'react-intl';
-import {selectModelIndex} from '../Utilis/ModelUtils'
 import Griddle from 'griddle-react';
 import {
     GlobalMessages,
@@ -33,7 +32,7 @@ class ModelDelete extends React.Component {
             i=i+1;
         }  );
         let modelField = "make.models["+indexModel+"]"
-        change(form,`${modelField}.modelGeneralData.endDate`,new Date());
+        change(form,`${modelField}.modelGeneralData.endDate`,new Date().getTime());
     }
 
 

@@ -1,5 +1,5 @@
 import {change} from 'redux-form';
-import {selectModelIndex} from '../Utilis/ModelUtils'
+
 export const SHOW_Model_DETAIL_POPUP = 'MODEL/SHOW_Model_DETAIL_POPUP';
 export const SHOW_Model_DETAIL = 'MODEL/SHOW_Model_DETAIL';
 export const FETCH_Model_SUCCESS = 'MODEL/FETCH_Model_SUCCESS';
@@ -29,7 +29,16 @@ export function fetchFullModel(param,form)
 
     return (dispatch, getState) => {
         const make = getState().form[form].values.make;
-        var indexModelSelected= selectModelIndex(make.models, param.brandRef);
+        var modelSelected=[]
+        var indexModelSelected=-1;
+        var i=0;
+        make && make.models.map((Model) => {
+            if(Model.modelGeneralData.modelRef===param.modelRef)
+            { modelSelected=Model;
+              indexModelSelected=i;
+            }
+            i=i+1;
+            }  );
         dispatch(selectedModel(indexModelSelected));
        return dispatch({
         types: [FETCH_Model, FETCH_Model_SUCCESS, FETCH_Model_FAIL],
