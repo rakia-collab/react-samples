@@ -1,9 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {FormattedDate, FormattedMessage, injectIntl} from 'react-intl';
-import {compose} from 'redux';
-import {reduxForm} from 'redux-form';
-import {Button} from 'react-bootstrap';
+import { FormattedMessage, injectIntl} from 'react-intl';
+import {selectModelIndex} from '../Utilis/ModelUtils'
 import Griddle from 'griddle-react';
 import {
     GlobalMessages,
@@ -23,11 +20,24 @@ class ModelDelete extends React.Component {
 
     }
 
-
+    changeEndDate = () =>{
+        const { rowData,metadata: {customComponentMetadata: {change, form, listModels}}} = this.props;
+        var indexModel = -1
+        var i=0;
+        rowData.endDate= new Date();
+        listModels.map((Model) => {
+            if(Model.modelGeneralData.modelRef === rowData.modelRef)
+            {
+                indexModel= i;
+            }
+            i=i+1;
+        }  );
+        let modelField = "make.models["+indexModel+"]"
+        change(form,`${modelField}.modelGeneralData.endDate`,new Date());
+    }
 
 
     render() {
-        const { metadata: {customComponentMetadata: {changeEndDate}}} = this.props;
 
         return (
             <div>
@@ -80,9 +90,7 @@ const columns = ['modelRef', 'startDate','endDate', 'iconeDetail', 'iconeDelete'
 class ModelTable extends React.Component {
 
 
-    componentWillMount() {
-       this.props.initModels(this.props.models)
-    }
+
 
     handleSelectModel = (args) => {
         if (this.props.metadata.customComponentMetadata.onClick) {
@@ -91,7 +99,9 @@ class ModelTable extends React.Component {
 
     }
     render() {
-        const {changeEndDate,brandRef, fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade, form} = this.props;
+        const {listModels, fetchModel, change, generalModels, isPopupModelDetailLoade, brandRef, form} = this.props;
+
+
         var columnMetadata = [
             {
                 columnName: 'modelRef',
@@ -130,7 +140,9 @@ class ModelTable extends React.Component {
                 displayName: '',
                 customComponent: ModelDelete,
                 customComponentMetadata: {
-                    fetchModel: changeEndDate,
+                    form: form,
+                    listModels: listModels,
+                    change: change
                 }
             }
 

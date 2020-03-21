@@ -1,8 +1,7 @@
 import {change} from 'redux-form';
-
+import {selectModelIndex} from '../Utilis/ModelUtils'
 export const SHOW_Model_DETAIL_POPUP = 'MODEL/SHOW_Model_DETAIL_POPUP';
 export const SHOW_Model_DETAIL = 'MODEL/SHOW_Model_DETAIL';
-export const INIT_Models_SUCCESS = 'MODEL/INIT_Models_SUCCESS';
 export const FETCH_Model_SUCCESS = 'MODEL/FETCH_Model_SUCCESS';
 export const FETCH_Model = 'MODEL/FETCH_Model';
 export const FETCH_Model_FAIL= 'MODEL/FETCH_Model_FAIL';
@@ -25,34 +24,12 @@ export function showModelDetail(show){
         modeload: show
     };
 }
-
-
-export function initModels(data)
-{
-    return {
-        type: INIT_Models_SUCCESS,
-        result: data,
-    };
-
-}
-
-
-
 export function fetchFullModel(param,form)
 {
 
     return (dispatch, getState) => {
         const make = getState().form[form].values.make;
-        var modelSelected=[]
-        var indexModelSelected=-1;
-        var i=0;
-        make && make.models.map((Model) => {
-            if(Model.modelGeneralData.modelRef===param.modelRef)
-            { modelSelected=Model;
-              indexModelSelected=i;
-            }
-            i=i+1;
-            }  );
+        var indexModelSelected= selectModelIndex(make.models, param.brandRef);
         dispatch(selectedModel(indexModelSelected));
        return dispatch({
         types: [FETCH_Model, FETCH_Model_SUCCESS, FETCH_Model_FAIL],
@@ -75,7 +52,7 @@ export function selectedModel(index)
 
 }
 
-export function changeNbrNavtabAddedOfModel(nombre)
+export function changeNbrNavTabAddedOfModel(nombre)
 {
     return {
         type:CHANGE_NEWMODEL_NAVTAB_ADDED,
@@ -84,7 +61,7 @@ export function changeNbrNavtabAddedOfModel(nombre)
 
 }
 
-export function changePathFileddOfModel(path)
+export function changePathFiledOfModel(path)
 {
     return {
         type:CHANGE_FILEDMODEL_PATH,

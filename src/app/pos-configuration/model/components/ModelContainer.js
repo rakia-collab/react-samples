@@ -5,7 +5,7 @@ import {change, arrayPush, arrayRemove,formValueSelector} from 'redux-form';
 import ModelTable from './ModelTable';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
-import {showPopupModelDetail, fetchFullModel, initModels, selectedModel, changeNbrNavtabAddedOfModel, changePathFileddOfModel } from "../reducers/actions";
+import {showPopupModelDetail, fetchFullModel, selectedModel, changeNbrNavTabAddedOfModel, changePathFiledOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
 const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelOtherData":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
  class ModelContainer extends React.Component {
@@ -37,23 +37,20 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
     };
 
     openModel = () => {
-        const {arrayPush, changeNbrNavtabAddedOfModel, showPopupModelDetail, selectedModel, make, form} = this.props;
+        const {arrayPush, changeNbrNavTabAddedOfModel, showPopupModelDetail, selectedModel, make, form} = this.props;
 
         let index= make.models.length;
         arrayPush(form, 'make.models', modelIni);
         selectedModel(index);
-        changeNbrNavtabAddedOfModel(1);
+        changeNbrNavTabAddedOfModel(1);
         showPopupModelDetail(true);
     };
 
-    changeEndDate = () =>{
-        const{change,form,modelField}= this.props
-        change(form,`${modelField}.modelGeneralData.modelref`,new Date());
-    }
+
 
     render() {
 
-        const {intl: {formatMessage}, fetchFullModel, showPopupModelDetail, modelField, initModels, listModels, generalModels, isPopupModelDetailLoade ,indexModel, make} = this.props;
+        const {intl: {formatMessage}, fetchFullModel, showPopupModelDetail, modelField,  listModels, generalModels, isPopupModelDetailLoade ,indexModel, make} = this.props;
         const titleModelInfo=   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             {formatMessage(messages.ModelInfoTitle)} </div> );
@@ -71,7 +68,7 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
 
         return (<Box  tools={btTools} >
                 <PopupModelDetails openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
-                   <ModelTable  {...this.props} brandRef={make.makeGeneralData.brandRef} changeEndDate={this.changeEndDate}  modelExp={modelField} indexModel={indexModel} isPopupModelDetailLoade={isPopupModelDetailLoade} initModels={initModels} models={listModels}  showPopupModelDetail={ showPopupModelDetail}  fetchModel={fetchFullModel}  generalModels={generalModels} />
+                   <ModelTable  listModels={listModels} {...this.props} brandRef={make.makeGeneralData.brandRef}    fetchModel={fetchFullModel}  generalModels={generalModels} />
 
             </Box>
         );
@@ -87,13 +84,14 @@ const mapStateToProps = (state, props) => {
     var listModels = [];
     var generalModels =[];
    if( make.models.length ===1) {
-       listModels = make.models[0];
        listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
+       listModels= make.models[0]
    }
    else
    {  make.models &&  make.models.map((Model) => {
        Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
    });
+       listModels= make.models
    }
 
 
@@ -118,10 +116,9 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = {
     showPopupModelDetail,
     fetchFullModel,
-    initModels,
     selectedModel,
-    changeNbrNavtabAddedOfModel,
-    changePathFileddOfModel,
+    changeNbrNavTabAddedOfModel,
+    changePathFiledOfModel,
     change,
     arrayPush,
     arrayRemove

@@ -14,17 +14,17 @@ class ModelDetailsContainer extends React.Component {
         const { form, arrayPush, showPopupModelDetail, selectedModel, make, changeNbrNavtabAddedOfModel, nbrNavTab} = this.props;
 
         let index= make.models.length;
-        let nombreTabAdded=nbrNavTab+1
+        let nomberTabAdded=nbrNavTab+1
             arrayPush(form, 'make.models', modelIni);
             selectedModel(index);
-        changeNbrNavtabAddedOfModel(nombreTabAdded);
+        changeNbrNavtabAddedOfModel(nomberTabAdded);
         showPopupModelDetail(true);
     }
 
     handledValidate =()=>
     {
-        const {showPopupModelDetail, changeNbrNavtabAddedOfModel} = this.props;
-        changeNbrNavtabAddedOfModel(0)
+        const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
+        changeNbrNavTabAddedOfModel(0)
         showPopupModelDetail(false);
     }
 

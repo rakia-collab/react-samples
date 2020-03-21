@@ -23,10 +23,6 @@ function reducer(state = Immutable(initialState), action) {
             return Immutable.merge(state,{
                 isModelDetailLoade: action.modeload !== undefined ? action.modeload : !state.isModelDetailLoade
             });
-        case actions.INIT_Models_SUCCESS:
-            return Immutable.merge(state,{
-                models: action.result
-            });
         case actions.FETCH_Model_SUCCESS:
             return Immutable.merge(state,{
                 fullModel: action.result.data
