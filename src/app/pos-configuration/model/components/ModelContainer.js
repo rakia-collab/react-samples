@@ -7,7 +7,7 @@ import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
 import {showPopupModelDetail, fetchModel, initModels, selectedModel, changeNbrNavtabAddedOfModel, changePathFileddOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
-const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
+const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelOtherData":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
  class ModelContainer extends React.Component {
 
 
@@ -18,24 +18,32 @@ const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":
 
     closeModel = () => {
         const { form, make, arrayRemove, nbrNavTab, changeNbrNavtabAddedOfModel, showPopupModelDetail} = this.props;
+
         if(nbrNavTab>0) {
-            let index =  make.models.length -1 ;
-            let total=nbrNavTab;
+            let indexOFLastModel =  make.models.length -1 ;
+            let totalOfNavTabAdded=nbrNavTab;
             make.models.map((Model) => {
-                if( total > 0 ) {
-                    arrayRemove(form, 'make.models', index);
-                    index = index - 1;
-                    total = total - 1;
+                if( totalOfNavTabAdded > 0 ) {
+                    arrayRemove(form, 'make.models', indexOFLastModel);
+                    indexOFLastModel = indexOFLastModel - 1;
+                    totalOfNavTabAdded = totalOfNavTabAdded - 1;
                 }
 
             });
-            changeNbrNavtabAddedOfModel(0);
+            let nombreTabAdded=0;
+            changeNbrNavtabAddedOfModel(nombreTabAdded);
         }
         showPopupModelDetail(false);
     };
 
     openModel = () => {
-        this.props.showPopupModelDetail(true);
+        const {arrayPush, changeNbrNavtabAddedOfModel, showPopupModelDetail, selectedModel, make, form} = this.props;
+
+        let index= make.models.length;
+        arrayPush(form, 'make.models', modelIni);
+        selectedModel(index);
+        changeNbrNavtabAddedOfModel(1);
+        showPopupModelDetail(true);
     };
 
     changeEndDate = () =>{

@@ -8,7 +8,7 @@ class NavTabDetailModel extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {activeTabKey: "tabDetail" , expTrim:"make.models["+this.props.make.models.length+"].modelLevels[0]", expModel:"make.models["+this.props.make.models.length+"]", indexFirstNewModel:this.props.make.models.length}
+        this.state = {activeTabKey: "tabDetail" , expTrim:"make.models["+(this.props.make.models.length-1)+"].modelLevels[0]", expModel:"make.models["+(this.props.make.models.length-1)+"]", indexFirstNewModel:(this.props.make.models.length-1)}
     }
     handleTabModelChange = (key) => {
         this.setState({
@@ -30,8 +30,8 @@ class NavTabDetailModel extends React.Component {
         const trims    =[];
          let nbrNewModel=1;
          //************Part of mange Model with his Trim Level /*****************
-     for(let i= indexFirstNewModel;i<= (indexFirstNewModel+nbrNavTab);i++) {
-            if (i === indexFirstNewModel) {
+     for(let i= indexFirstNewModel;i< (indexFirstNewModel+nbrNavTab);i++) {
+            if (newModels.length <=0 && i=== indexFirstNewModel) {
                 newModels.push({
                     id: "model.tab",
                     key: "make.models["+i+"]",
@@ -43,7 +43,7 @@ class NavTabDetailModel extends React.Component {
 
                 trims.push({
                     id:"trim.tab",
-                    key: "make.models["+i+"].modelLevels",
+                    key: "make.models["+i+"].modelLevels[0]",
                     title: "Trim level",
                     body:  <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
                     active: activeTabKey === "make.models["+i+"].modelLevels"|| activeTabKey === "make.models["+i+"]" ,
@@ -61,7 +61,7 @@ class NavTabDetailModel extends React.Component {
 
                 trims.push({
                     id:"trim.tab" + i,
-                    key: "make.models["+i+"].modelLevels",
+                    key: "make.models["+i+"].modelLevels[0]",
                     title: "Trim level " + nbrNewModel,
                     body:  <TrimLevelContainer expTrim={expTrim} form={form} intl={intl} {...this.props} />,
                     active:activeTabKey === "make.models["+i+"].modelLevels" || activeTabKey === "make.models["+i+"]" ,

@@ -33,7 +33,7 @@ class TrimLevelContainer extends React.Component {
 
         let nbrnewTrims=[];
         if(nbrNavTab>0) {
-            for (let i = 1; i <= (nbrNavTab+1); i++) {
+            for (let i = 1; i <= nbrNavTab; i++) {
                 nbrnewTrims.push(
                     <button type="button" className="btn-primary btn-danger btn-box-tool">
                         {i}

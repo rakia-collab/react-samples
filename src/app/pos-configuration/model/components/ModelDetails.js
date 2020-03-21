@@ -25,7 +25,7 @@ class ModelDetails extends React.Component {
 
         let nbrnewModels=[];
         if(nbrNavTab>0) {
-            for (let i = 1; i <= (nbrNavTab+1); i++) {
+            for (let i = 1; i <= nbrNavTab; i++) {
                 nbrnewModels.push(
                     <button type="button" className="btn-primary btn-danger btn-box-tool">
                         {i}
