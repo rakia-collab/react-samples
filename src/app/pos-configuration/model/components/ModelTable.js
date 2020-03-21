@@ -49,9 +49,9 @@ class ModelDisplay extends React.Component {
     }
 
     openModelDetail = () => {
-        const { rowData,metadata: {customComponentMetadata: { fetchModel, showPopupModelDetail}}} = this.props;
-        fetchModel(rowData.modelref);
-        showPopupModelDetail(true);
+        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form}}} = this.props;
+        let params={brandRef:brandRef,modelRef:rowData.modelRef}
+        fetchModel(params, form);
 
     };
 
@@ -91,7 +91,7 @@ class ModelTable extends React.Component {
 
     }
     render() {
-        const {changeEndDate, fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade,indexModel} = this.props;
+        const {changeEndDate,brandRef, fetchModel,  showPopupModelDetail, generalModels, isPopupModelDetailLoade, form} = this.props;
         var columnMetadata = [
             {
                 columnName: 'modelRef',
@@ -120,8 +120,9 @@ class ModelTable extends React.Component {
                 customComponent: ModelDisplay,
                 customComponentMetadata: {
                     fetchModel: fetchModel,
-                    showPopupModelDetail: showPopupModelDetail,
-                    isPopupModelDetailLoade: isPopupModelDetailLoade
+                    isPopupModelDetailLoade: isPopupModelDetailLoade,
+                    brandRef:brandRef,
+                    form: form
                 }
             },
             {

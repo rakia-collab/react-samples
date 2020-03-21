@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
 import * as actions from './actions';
+import {FETCH_Model_SUCCESS} from "./actions";
 
 let initialState = {
     isPopupModelDetailLoade: false,
@@ -27,22 +28,10 @@ function reducer(state = Immutable(initialState), action) {
                 models: action.result
             });
         case actions.FETCH_Model_SUCCESS:
-            var index=-1;
-            if(!action.result)
-            {
-                index = state.models.length
-
-            }
-            else{
-                state.models.forEach(model => {
-                    if (model.modelGeneralData.modelref !== action.result)
-                        index = index + 1;
-                }  );
-            }
-
             return Immutable.merge(state,{
-                indexModelSelected: index,
-                modelField: "make.models["+index+"]"
+                indexModelSelected: 1,
+                modelField: "make.models[1]",
+                fullModel: action.result.data
 
             });
         case actions.CHANGE_INDEX_MODEL_SELECTED:

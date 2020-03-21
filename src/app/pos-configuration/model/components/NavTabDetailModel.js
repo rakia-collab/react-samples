@@ -30,6 +30,7 @@ class NavTabDetailModel extends React.Component {
         const trims    =[];
          let nbrNewModel=1;
          //************Part of mange Model with his Trim Level /*****************
+
      for(let i= indexFirstNewModel;i< (indexFirstNewModel+nbrNavTab);i++) {
             if (newModels.length <=0 && i=== indexFirstNewModel) {
                 newModels.push({

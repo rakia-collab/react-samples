@@ -1,4 +1,5 @@
-import {fullModel} from '../../Constantes/Model'
+import {change} from 'redux-form';
+
 export const SHOW_Model_DETAIL_POPUP = 'MODEL/SHOW_Model_DETAIL_POPUP';
 export const SHOW_Model_DETAIL = 'MODEL/SHOW_Model_DETAIL';
 export const INIT_Models_SUCCESS = 'MODEL/INIT_Models_SUCCESS';
@@ -37,23 +38,33 @@ export function initModels(data)
 
 
 
-export function fetchFullModel(param)
+export function fetchFullModel(param,form)
 {
-    return {
+
+    return (dispatch, getState) => {
+        const make = getState().form[form].values.make;
+        var modelSelected=[]
+        var indexModelSelected=-1;
+        var i=0;
+        make && make.models.map((Model) => {
+            if(Model.modelGeneralData.modelRef===param.modelRef)
+            { modelSelected=Model;
+              indexModelSelected=i;
+            }
+            i=i+1;
+            }  );
+        dispatch(selectedModel(indexModelSelected));
+       return dispatch({
         types: [FETCH_Model, FETCH_Model_SUCCESS, FETCH_Model_FAIL],
-        promise: (client) => client.get('/model',param),
-    };
-
+        promise: (client) => client.get('/assetconfig/make/model',{params: {brandRef: param.brandRef,modelRef:param.modelRef}}),
+        afterSuccess: (dispatch, getState, result) => {
+            dispatch(change(form, "make.models["+indexModelSelected+"]",result.data));
+            dispatch(showPopupModelDetail(true));
+        },
+    })
+    }
 }
 
-export function fetchModel(param)
-{
-    return {
-        type: FETCH_Model_SUCCESS,
-        result: fullModel,
-    };
-
-}
 
 export function selectedModel(index)
 {
