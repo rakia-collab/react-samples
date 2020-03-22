@@ -110,11 +110,7 @@ export class CategorieContainer extends Component {
                                          options={options}
                                          title={messages.sales}/>
                         </div>
-                        <div className="col-md-6">
-                            <SelectField name='country'
-                                         options={selectedList}
-                                         title={messages.defaultCateg}/>
-                        </div>
+
                     </Row>
                 <Row>
                     <div className="col-md-6">

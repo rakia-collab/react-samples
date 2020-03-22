@@ -7,7 +7,28 @@ import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
 import {showPopupModelDetail, fetchFullModel, selectedModel, changeNbrNavTabAddedOfModel, changePathFiledOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
-const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelOtherData":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
+import setIn from 'redux-form/lib/structure/plain/setIn';
+const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
+export const validateModel = (values, props, errors) => {
+
+    let {models} = values.make;
+    (models || []).forEach((item, index) => {
+        let {modelGeneralData} = item;
+
+        if (!modelGeneralData) {
+
+            errors = setIn( errors,`make.models[${index}].modelGeneralData.modelRef`,GlobalMessages.fieldRequire);
+
+        } else if (!modelGeneralData.modelRef) {
+
+            errors = setIn( errors,`make.models[${index}].modelGeneralData.modelRef`,GlobalMessages.fieldRequire);
+
+        }
+
+    });
+    return errors;
+};
+
  class ModelContainer extends React.Component {
 
 

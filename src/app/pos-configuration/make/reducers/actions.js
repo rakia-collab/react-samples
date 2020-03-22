@@ -42,7 +42,7 @@ export function initMakeModel(){
 export function saveMakeModel(formData) {
     return {
         types: [SAVE_MAKE_MODEL,  SAVE_MAKE_MODEL_SUCCESS, SAVE_MAKE_MODEL_FAIL],
-        promise: (client) => client.post('/make/insert', formData),
+        promise: (client) => client.post('/assetconfig/make', formData),
         afterSuccess: (dispatch, getState, result) => {
 
         },
@@ -55,7 +55,7 @@ export function saveMakeModel(formData) {
 export function updateMakeModel(formData) {
     return {
         types: [UPDATE_MAKE_MODEL,  UPDATE_MAKE_MODEL_SUCCESS, UPDATE_MAKE_MODEL_FAIL],
-        promise: (client) => client.patch('/make/update', formData),
+        promise: (client) => client.patch('/assetconfig/make', formData),
         afterSuccess: (dispatch, getState, result) => {
 
         },

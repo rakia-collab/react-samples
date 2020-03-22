@@ -23,7 +23,7 @@ class makeContainer extends React.Component {
         if (makecode) {
             fetchFullMakeByCode(makecode);
         }else {
-            initMakeModel;
+            initMakeModel();
         }
     }
 
