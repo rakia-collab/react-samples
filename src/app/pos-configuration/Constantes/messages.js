@@ -68,7 +68,9 @@ const messages = defineMessages({
     trimCodeTitle: {id: 'config.messages.search.trimCodeTitle', defaultMessage: 'Trim code '},
     trimFinitionTitle: {id: 'config.messages.search.trimFinitionTitle', defaultMessage: 'Finition'},
     generalInfoModelTitle: {id: 'pos.config.modeldetails.generalInfo', defaultMessage: 'General data'},
-    otherInfoModelTitle: {id: 'pos.config.modeldetails.otherInfo', defaultMessage: 'Advanced data'}
+    otherInfoModelTitle: {id: 'pos.config.modeldetails.otherInfo', defaultMessage: 'Advanced data'},
+    notifyFail: {id: 'config.messages.notifyFail', defaultMessage: 'Error'},
+    notifySuccess: {id: 'config.messages.notifySuccess', defaultMessage: 'Success'},
 
 
 });
