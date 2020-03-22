@@ -45,7 +45,7 @@ class ModelDelete extends React.Component {
         var button=(  <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
             <i className='fa fa-remove'/>
         </button>)
-        if(rowData && rowData.endDate !== null)
+        if(rowData && rowData.endDate !== undefined && rowData.endDate !== null)
         {
             button=  ( <div>
                 <i className='fa fa-trash'/>
