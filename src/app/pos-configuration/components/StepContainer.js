@@ -3,25 +3,25 @@ import {injectIntl} from 'react-intl';
 import {createSelector} from 'reselect';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
-import {Button} from 'react-bootstrap';
-import {reduxForm,change, formValueSelector, getFormValues} from 'redux-form';
-import GenarlInfoMake from '../make/components/GenarlInfoMake';
+import {toastr} from 'react-redux-toastr';
+import Immutable from 'seamless-immutable';
+import {reduxForm,change, formValueSelector, getFormValues, getFormSyncErrors, stopSubmit} from 'redux-form';
+import GenarlInfoMake, {validateGeneralinfo} from '../make/components/GenarlInfoMake';
+import ModelContainer , {validateModel} from '../model/components/ModelContainer';
 import Filtrage from '../make/components/Filtrage';
-import Debug from 'debug';
 import {
     Div,
     MultiStep,
     Form,
-    EMPTY_OBJECT
+    EMPTY_OBJECT,
+    ValidationScope,
+    focusFirstError,
+    createErrorSelector,
+    notify, GlobalMessages
 } from 'cassiopae-core';
-import Immutable from 'seamless-immutable';
-
 import {NEWMAKEMODEL} from '../index';
-export const ID = 'newDealMultiStepForm';
-import ModelContainer from '../model/components/ModelContainer';
-
 import messages from '../Constantes/messages';
-const debug = Debug('pos.config.step²:StepContainer');
+import * as c from '../Constantes/const';
 const FORM ='marqueForm'
  class StepContainer extends React.Component {
 
@@ -40,13 +40,40 @@ const FORM ='marqueForm'
      };
 
      handleOnSubmit = (data) => {
-         const {saveMakeModel, updateMakeModel, location} = this.props;
-
+         let {saveMakeModel, updateMakeModel, location, change, form, dispatch, makeFormValues, touch, errors} = this.props;
+         errors = validate(makeFormValues, this.props);
+         if (Object.keys(errors).length) {
+             touch(errors);
+             return;
+         }
          if (location.pathname === NEWMAKEMODEL) {
-             saveMakeModel(data.make);
+
+             saveMakeModel(data.make).then(() => {
+                 notify.show(messages.notifySuccess, notify.SUCCESS);
+                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
+
+             }).catch(error => {
+                 const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
+                 notify.show(errMsg, notify.WARNING);
+                 notify.show("Model reference is already exists", notify.ERROR);
+                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
+
+             });
+
+
          }
          else
-             updateMakeModel(data.make);
+             updateMakeModel(data.make).then(() => {
+                 notify.show(messages.notifySuccess, notify.SUCCESS);
+
+             }).catch(error => {
+                 const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
+                 notify.show("Make should be has at least a model", notify.WARNING);
+                 notify.show("Model reference is already exists", notify.ERROR);
+                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
+
+             });
+
      };
 
     stepsSelector = createSelector(
@@ -109,16 +136,20 @@ const FORM ='marqueForm'
 
                 <Form ref="portalquote"    skin={true} name={FORM} onSubmit={handleSubmit(this.handleOnSubmit)}>
                     <Div id={id} className='newDeal' parentProps={this.props} parentState={this.state}>
-                <MultiStep id={id + ':multistep'}
+
+                        <MultiStep id={id + ':multistep'}
                            steps={steps}
                            stepKey={stepKey}
                            onStepChange={this.handleStepChange}/>
 
-                        <Button type="submit" bsStyle="success" className="pull-right">
+                        <button type="submit" className="btn-primary btn-box-tool  pull-right" >
 
-                            {formatMessage(messages.submit)}
 
-                        </Button>
+                                {formatMessage(messages.submit)}
+                        </button>
+
+
+
 
                     </Div>
                 </Form>
@@ -130,9 +161,20 @@ const FORM ='marqueForm'
 
 
 }
+let submitFailedId = 1;
+
+const validate = (values, props) => {
+
+    let errors = {};
+    errors = validateGeneralinfo(values, props, errors);
+   // errors = validateModel(values, props, errors);
+    return errors;
+};
+
 StepContainer = reduxForm({
     form: FORM,
-    enableReinitialize: true
+    enableReinitialize: true,
+    validate,
 
 })(StepContainer);
 
@@ -152,7 +194,10 @@ function mapStateToProps(state, props) {
         makeDesignationByLanguageExp:'make.makeDesignationByLanguage[0]',
         submitFailedId: values.submitFailedId,
        initialValues: {make:state.make.make,},
-        form: FORM
+        form: FORM,
+        errors: getFormSyncErrors(FORM)(state) || EMPTY_OBJECT,
+        currentFields: state.form[FORM] ? state.form[FORM].registeredFields : [],
+        makeFormValues: values
     };
 }
 
