@@ -111,4 +111,5 @@ export const logos = [
     {code: 'KOMATSU', path: 'src/www/img/make/KOMATSU.png'},
     {code: 'LEXUS', path: 'src/www/img/make/Lexus.png'},
     {code: 'MERCEDES', path: 'src/www/img/make/MERCEDES.png'},
+    {code: 'PEUGEOT', path: 'src/www/img/make/PEUGEOT.png'},
 ];

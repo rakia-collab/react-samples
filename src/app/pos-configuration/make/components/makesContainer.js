@@ -82,13 +82,13 @@ class MakesContainer extends React.Component {
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/concession.png"} />
                                Concession:
-                                {make.makeGeneralData.currencyCode }
+                                {make.makeGeneralData.dealer }
                             </Col>
                         </Row>
 
                     </div>
                     <div className='border text-black text-bold'>
-                        <img src={"src/www/img/make/modules.png"} /> 12 Models attached
+                        <img src={"src/www/img/make/modules.png"} />   {make.makeGeneralData.modelsCount } Models attached
                     </div>
 
                 </a>

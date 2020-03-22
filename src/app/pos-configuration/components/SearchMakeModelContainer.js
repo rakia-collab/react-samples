@@ -91,7 +91,7 @@ class SearchMakeModelContainer extends React.Component {
                     <Row>
                         <Col md={6} >
                                 <div className='text-left'>
-                                    <label>{formatMessage(messages.country)}</label>
+                                    <label>{formatMessage(messages.countryTitle)}</label>
                                 </div>
                                 <ReactFlagsSelect name={`countryCode`}
                                                   onSelect={this.onSelectFlag}

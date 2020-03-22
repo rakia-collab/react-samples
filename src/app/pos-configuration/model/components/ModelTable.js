@@ -24,25 +24,37 @@ class ModelDelete extends React.Component {
         var indexModel = -1
         var i=0;
         rowData.endDate= new Date();
-        listModels.map((Model) => {
-            if(Model.modelGeneralData.modelRef === rowData.modelRef)
-            {
-                indexModel= i;
-            }
-            i=i+1;
-        }  );
+        if(listModels.length === 1)
+        {
+            indexModel=0;
+        }else {
+            listModels.map((Model) => {
+                if (Model.modelGeneralData.modelRef === rowData.modelRef) {
+                    indexModel = i;
+                }
+                i = i + 1;
+            });
+        }
         let modelField = "make.models["+indexModel+"]"
         change(form,`${modelField}.modelGeneralData.endDate`,new Date().getTime());
     }
 
 
     render() {
-
+        const { rowData} = this.props;
+        var button=(  <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
+            <i className='fa fa-remove'/>
+        </button>)
+        if(rowData && rowData.endDate !== null)
+        {
+            button=  ( <div>
+                <i className='fa fa-trash'/>
+            </div>);
+        }
         return (
+
             <div>
-                <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
-                    <i className='fa fa-remove'/>
-                </button>
+                {button}
             </div>
         );
     }
