@@ -49,6 +49,36 @@ class ModelDelete extends React.Component {
 }
 
 
+class ModelEdit extends React.Component {
+
+
+    constructor(props) {
+        super(props);
+
+    }
+
+
+    openModelDetailEdit = () => {
+        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form}}} = this.props;
+        let params={brandRef:brandRef,modelRef:rowData.modelRef}
+        fetchModel(params, form);
+
+    };
+
+    render() {
+
+        return (
+            <div>
+                <button type='button' className='btn btn-box-tool' onClick={this.openModelDetailEdit}>
+                    <i className='fa fa-edit'/>
+                </button>
+            </div>
+        );
+    }
+}
+
+
+
 class ModelDisplay extends React.Component {
 
 
@@ -60,7 +90,8 @@ class ModelDisplay extends React.Component {
     openModelDetail = () => {
         const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form}}} = this.props;
         let params={brandRef:brandRef,modelRef:rowData.modelRef}
-        fetchModel(params, form);
+        let  edit=true;
+        fetchModel(params, form, edit);
 
     };
 
@@ -84,7 +115,7 @@ class ModelDisplay extends React.Component {
         );
     }
 }
-const columns = ['modelRef', 'startDate','endDate', 'iconeDetail', 'iconeDelete'];
+const columns = ['modelRef', 'startDate','endDate', 'iconeDetail', 'iconeDelete','iconeEdit'];
 
 class ModelTable extends React.Component {
 
@@ -142,6 +173,17 @@ class ModelTable extends React.Component {
                     form: form,
                     listModels: listModels,
                     change: change
+                }
+            },
+            {
+                columnName: 'iconeEdit',
+                displayName: '',
+                customComponent: ModelEdit,
+                customComponentMetadata: {
+                    fetchModel: fetchModel,
+                    isPopupModelDetailLoade: isPopupModelDetailLoade,
+                    brandRef:brandRef,
+                    form: form
                 }
             }
 

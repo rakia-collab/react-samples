@@ -29,7 +29,7 @@ class ModelDetails extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage}, id, expModel, nbrNavTab, form, intl, indexModelTab} = this.props;
+        const {intl: {formatMessage}, id, expModel, nbrNavTab, form, intl, readOnly} = this.props;
 
 
         let nbrnewModels=[];
@@ -57,11 +57,13 @@ class ModelDetails extends React.Component {
                         <Col xs={6}>
 
                             <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
+                                            readOnly={readOnly}
                                             title={messages.dtFinTitle}/>
 
                         </Col>
                         <Col   xs={6}>
                             <SelectField  name={`${expModel}.modelGeneralData.vehicleType`}
+                                          readOnly={readOnly}
                                          options={typeVehicule}
                                          title={messages.typeVehicule}/>
                         </Col>
@@ -70,11 +72,13 @@ class ModelDetails extends React.Component {
 
                        <Col  xs={6}>
                        <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
+                                       readOnly={readOnly}
                                                 title={formatMessage(messages.dtDebutTitle)}/>
                        </Col>
                        <Col  xs={6} >
                            <Field name={`${expModel}.modelGeneralData.modelRef`}
                                   component={TextEntry}
+                                  readOnly={readOnly}
                                   title={formatMessage(messages.modelRefTitle)}/>
                        </Col>
 
@@ -85,13 +89,14 @@ class ModelDetails extends React.Component {
 
                         <Col xs={6}>
                             <SelectField name={`${expModel}.modelOtherData.vehiclecategory`}
-
+                                         readOnly={readOnly}
                                          options={categoryVehicule}
                                          title={messages.categoryVehicule}/>
                         </Col>
 
                         <Col  xs={6} >
                             <SelectField name={`${expModel}.modelOtherData.kindsconstructionmachinery`}
+                                         readOnly={readOnly}
                                          options={modeltype}
                                          title={messages.modelTypeTitle}/>
                         </Col>
@@ -103,13 +108,14 @@ class ModelDetails extends React.Component {
 
                             <SelectField name={`${expModel}.modelOtherData.specialconstructionmachinery`}
                                          options={modelspecialite}
-
+                                         readOnly={readOnly}
                                          title={messages.modelSpecialityTitle}/>
                     </Col>
                     <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.segment`}
                                          options={modelspecialite}
+                                         readOnly={readOnly}
                                          title={messages.segmentTitle}/>
                         </Col>
                 </Row>
@@ -117,13 +123,14 @@ class ModelDetails extends React.Component {
                  <Col  xs={6} >
                             <SelectField name={`${expModel}.modelOtherData.bssassettype`}
                                          options={modeltype}
+                                         readOnly={readOnly}
                                          title={messages.assetTypeBssTitle}/>
                  </Col>
                  <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.bssassetdetailtype`}
                                          options={modelspecialite}
-
+                                         readOnly={readOnly}
                                          title={messages.assetDetailBssTitle}/>
                  </Col>
                 </Row>
@@ -132,6 +139,7 @@ class ModelDetails extends React.Component {
 
                             <SelectField name={`${expModel}.modelOtherData.bssrate`}
                                          options={modelspecialite}
+                                         readOnly={readOnly}
                                          title={messages.assetRateBssTitle}/>
                         </Col>
                 </Row>

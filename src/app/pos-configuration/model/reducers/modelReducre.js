@@ -8,6 +8,7 @@ let initialState = {
     isModelDetailLoade: false,
     indexModelSelected:0,
     nbrModelNavTab:0,
+    readOnly:false,
     modelField:"make.models[0]"
 
 
@@ -17,7 +18,8 @@ function reducer(state = Immutable(initialState), action) {
     switch (action.type) {
         case actions.SHOW_Model_DETAIL_POPUP:
             return Immutable.merge(state,{
-                isPopupModelDetailLoade: action.modeload !== undefined ? action.modeload : !state.isPopupModelDetailLoade
+                isPopupModelDetailLoade: action.modeload !== undefined ? action.modeload: !state.isPopupModelDetailLoade
+
             });
         case actions.SHOW_Model_DETAIL:
             return Immutable.merge(state,{
@@ -41,6 +43,11 @@ function reducer(state = Immutable(initialState), action) {
         case actions.CHANGE_FILEDMODEL_PATH:
             return   Immutable.merge(state,{
                 modelField: action.result
+
+            });
+        case actions.CHANGE_READONLY_SUCCESS:
+            return Immutable.merge(state,{
+                readOnly: action.readonly
 
             });
 

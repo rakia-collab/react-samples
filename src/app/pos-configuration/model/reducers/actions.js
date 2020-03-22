@@ -8,8 +8,15 @@ export const FETCH_Model_FAIL= 'MODEL/FETCH_Model_FAIL';
 export const CHANGE_INDEX_MODEL_SELECTED= 'MODEL/CHANGE_INDEX_MODEL_SELECTED';
 export const CHANGE_NEWMODEL_NAVTAB_ADDED= 'MODEL/CHANGE_NEWMODEL_NAVTAB_ADDED';
 export const CHANGE_FILEDMODEL_PATH= 'MODEL/CHANGE_FILEDMODEL_PATH';
+export const CHANGE_READONLY_SUCCESS= 'MODEL/CHANGE_READONLY_SUCCESS';
 
 
+export function changeReadOnlyModel(edit= false){
+    return {
+        type: CHANGE_READONLY_SUCCESS,
+        readonly: edit
+    };
+}
 
 export function showPopupModelDetail(show){
     return {
@@ -24,7 +31,7 @@ export function showModelDetail(show){
         modeload: show
     };
 }
-export function fetchFullModel(param,form)
+export function fetchFullModel(param,form, edit =false)
 {
 
     return (dispatch, getState) => {
@@ -40,12 +47,13 @@ export function fetchFullModel(param,form)
             i=i+1;
             }  );
         dispatch(selectedModel(indexModelSelected));
+        dispatch(changeReadOnlyModel(edit));
        return dispatch({
         types: [FETCH_Model, FETCH_Model_SUCCESS, FETCH_Model_FAIL],
         promise: (client) => client.get('/assetconfig/make/model',{params: {brandRef: param.brandRef,modelRef:param.modelRef}}),
         afterSuccess: (dispatch, getState, result) => {
             dispatch(change(form, "make.models["+indexModelSelected+"]",result.data));
-            dispatch(showPopupModelDetail(true));
+            dispatch(showPopupModelDetail(true, edit));
         },
     })
     }

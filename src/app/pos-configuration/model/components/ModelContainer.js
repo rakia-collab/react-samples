@@ -86,11 +86,11 @@ const mapStateToProps = (state, props) => {
     var generalModels =[];
    if( make.models.length ===1) {
        listModels= make.models[0]
-       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
+       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
    }
    else
    {  make.models &&  make.models.map((Model) => {
-       Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
+       Model.modelGeneralData && generalModels.push({"modelRef":Model.modelGeneralData.modelRef, "startDate": Model.modelGeneralData.startDate,"endDate":Model.modelGeneralData.endDate,"vehicleType":Model.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
    });
        listModels= make.models
    }
@@ -108,7 +108,8 @@ const mapStateToProps = (state, props) => {
         isPopupModelDetailLoade: state.model.isPopupModelDetailLoade,
         indexModel,
         modelField,
-        nbrNavTab
+        nbrNavTab,
+        readOnly: state.model.readOnly
 
 
     };

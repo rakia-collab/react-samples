@@ -14,7 +14,7 @@ class TrimDetail extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage}, expTrim, nbrNavTab, id} = this.props;
+        const {intl: {formatMessage}, expTrim, nbrNavTab, id, readOnly} = this.props;
 
 
         /*let nbrNewTrims=[];
@@ -36,11 +36,13 @@ class TrimDetail extends React.Component {
                     <Box id={id+"box.infoTrim"} >
                         <Col  xs={4}>
                             <Field name={`${expTrim}.code`}
+                                   readOnly={readOnly}
                                    component={TextEntry}
                                    title={formatMessage(messages.trimCodeTitle)}/>
                         </Col>
                         <Col  xs={4} >
                             <Field name={`${expTrim}.levelDesignations`}
+                                   readOnly={readOnly}
                                    component={TextEntry}
                                    title={messages.trimFinitionTitle}/>
                         </Col>
