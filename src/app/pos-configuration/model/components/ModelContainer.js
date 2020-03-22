@@ -1,7 +1,7 @@
 import React from 'react';
-import {Box} from 'cassiopae-core';
+import {Box, EMPTY_OBJECT, GlobalMessages} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
-import {change, arrayPush, arrayRemove,formValueSelector} from 'redux-form';
+import {change, arrayPush, arrayRemove, formValueSelector, getFormValues} from 'redux-form';
 import ModelTable from './ModelTable';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
@@ -101,13 +101,15 @@ export const validateModel = (values, props, errors) => {
 const mapStateToProps = (state, props) => {
 
     const {form} = props;
+    const formValues = getFormValues(form);
     const selector = formValueSelector(form);
-    const make = selector(state, 'make');
+    const values = formValues(state) || EMPTY_OBJECT;
+    const make = values.make;
     var listModels = [];
     var generalModels =[];
-   if( make.models.length ===1) {
-       listModels= make.models
-       make.models[0].modelGeneralData && generalModels.push({"modelRef": make.models[0].modelGeneralData.modelRef, "startDate": make.models[0].modelGeneralData.startDate,"endDate":make.models[0].modelGeneralData.endDate,"vehicleType":make.models[0].modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
+   if( make.models && make.models.length ===1) {
+       listModels= make.models[0]
+       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
    }
    else
    {  make.models &&  make.models.map((Model) => {

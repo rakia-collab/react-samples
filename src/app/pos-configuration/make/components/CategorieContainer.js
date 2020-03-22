@@ -19,9 +19,9 @@ import {selectCategorie, removeCategorie} from '../reducers/actions';
 import CategoriePopup from './CategoriePopup';
 
 const options = [
-    {code: 'one', value: 'Asset Category'},
-    {code: 'two', value: 'Vehicule'},
-    {code: 'three', value: 'Asset Category DEL'},
+    {code: 'one', label: 'Asset Category'},
+    {code: 'two', label: 'Vehicule'},
+    {code: 'three', label: 'Asset Category DEL'},
 
 ];
 
