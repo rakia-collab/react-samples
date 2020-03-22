@@ -89,3 +89,26 @@ export const currencies = [
     {code: 'USD', label: 'US Dollar'},
     {code: 'TWD', label: 'Taiwan New Dollar'},
 ];
+
+export const logos = [
+    {code: 'AUDI', path: 'src/www/img/make/AUDI.png'},
+    {code: 'AlPHA ROMEO', path: 'src/www/img/make/AlPHAROMEO.png'},
+    {code: 'LADA', path: 'src/www/img/make/LADA.png'},
+    {code: 'BALKANCAR', path: 'src/www/img/make/BALKANCAR.png'},
+    {code: 'BMC', path: 'src/www/img/make/BMC.png'},
+    {code: 'BOBCAT', path: 'src/www/img/make/BOBCAT.png'},
+    {code: 'CADILLA', path: 'src/www/img/make/CADILLA.png'},
+    {code: 'CATERPILLAR', path: 'src/www/img/make/CATERPILLAR.png'},
+    {code: 'CHEVROLET', path: 'src/www/img/make/CHEVROLET.png'},
+    {code: 'CITROEN', path: 'src/www/img/make/CITROEN.png'},
+    {code: 'DACIA', path: 'src/www/img/make/DACIA.png'},
+    {code: 'HYUNDAI', path: 'src/www/img/make/Hyundai.png'},
+    {code: 'FIAT', path: 'src/www/img/make/FIAT.png'},
+    {code: 'JCB', path: 'src/www/img/make/jcb.png'},
+    {code: 'DAF', path: 'src/www/img/make/DAF.png'},
+    {code: 'ISUZU', path: 'src/www/img/make/isuzu.png'},
+    {code: 'BMW', path: 'src/www/img/make/bmw.png'},
+    {code: 'KOMATSU', path: 'src/www/img/make/KOMATSU.png'},
+    {code: 'LEXUS', path: 'src/www/img/make/Lexus.png'},
+    {code: 'MERCEDES', path: 'src/www/img/make/MERCEDES.png'},
+];

@@ -2,6 +2,7 @@
 import React from 'react'
 import {Row, Col, OverlayTrigger,} from "react-bootstrap";
 import {MAKE} from '../../index'
+import {logos} from '../../Constantes/SelectFields'
 import {hashHistory} from "react-router";
 
 
@@ -26,60 +27,70 @@ class MakesContainer extends React.Component {
     render() {
 
         let {make,showRemove} = this.props;
+        let path='src/www/img/make/DACIA.png';
+        if(make && make.makeGeneralData && make.makeGeneralData.brandRef) {
+            logos.map(logo => {
+                if (logo.code === make.makeGeneralData.brandRef) {
+                    path =  logo.path;
+                }
+            })
+        }
 
         return (
 
 
-            <Col xs={10} sm={4} md={3} lg={2} key={'make' + make.makeGeneralData.brandRef}   >
+            <Col  className='make' xs={12} sm={8} md={4} lg={2}  key={'make' + make.makeGeneralData.brandRef}   >
                 <a onClick={this.handleSelectMake} >
-                    <div className='thumbnail'>
-                        <header className='mainLayout-header'>
-                            <Row className='navbar'>
+
+                    <header  className='mainLayout-header'>
+                        <Row  className='navbar'>
 
                             <Col xs={5}  >
 
-                                <img src={"src/www/img/make/bmw.png"}/>
+                                <img src={path}/>
 
                             </Col>
                             <Col xs={5} className='text-gray text-bold' >
-                             {make.makeGeneralData.brandRef }
+                                {make.makeGeneralData.brandRef }
 
-                           </Col>
+                            </Col>
 
-                            </Row>
+                        </Row>
 
-                          </header>
+                    </header>
 
-                        <div className='box-body text-black'>
-                                <Row >
-                                    {showRemove && <button type="button" className="btn-primary btn-box-tool  pull-right" >
-                                        <i className="fa fa-remove"></i>
-                                    </button>
-                                    }
-                                    <Col>
-                                        <label>Make: </label>
-                                    {make.makeGeneralData.brandRef }
-                                    </Col>
-                                </Row>
-                                <Row >
-                                    <Col>
-                                        <label>Country: </label>
-                                    {make.makeGeneralData.countryCode }
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <label>Code: </label>
-                                    {make.makeGeneralData.currencyCode }
-                                    </Col>
-                                </Row>
-
-                        </div>
-                        <div className='box-footer'>
-
-                        </div>
+                    <div className='make-content text-black'>
+                        <Row >
+                            {showRemove && <button type="button" className="btn-primary btn-box-tool  pull-right" >
+                                <i className="fa fa-remove"></i>
+                            </button>
+                            }
+                            <Col className='make-content'>
+                                <img src={"src/www/img/make/network.png"} />
+                                 Network:
+                                {make.makeGeneralData.brandRef }
+                            </Col>
+                        </Row>
+                        <Row >
+                            <Col className='make-content'>
+                                <img src={"src/www/img/make/AssetTypes.png"} />
+                                Asset type:
+                                {make.makeGeneralData.countryCode }
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className='make-content'>
+                                <img src={"src/www/img/make/concession.png"} />
+                               Concession:
+                                {make.makeGeneralData.currencyCode }
+                            </Col>
+                        </Row>
 
                     </div>
+                    <div className='border text-black text-bold'>
+                        <img src={"src/www/img/make/modules.png"} /> 12 Models attached
+                    </div>
+
                 </a>
             </Col>
 
