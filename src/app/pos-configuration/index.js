@@ -53,6 +53,11 @@ export default {
                                    name: 'make',
                                    reducer: require('./make/reducers/makeReducer').default
                                }
+                               ,
+                               {
+                                   name: 'model',
+                                   reducer: require('./model/reducers/modelReducre').default
+                               }
 
                            );
                            callback(null, {main: require('./make/components/MakeContainer').default})
