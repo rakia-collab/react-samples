@@ -92,12 +92,12 @@ export const currencies = [
 
 export const logos = [
     {code: 'AUDI', path: 'src/www/img/make/AUDI.png'},
-    {code: 'AlPHA ROMEO', path: 'src/www/img/make/AlPHAROMEO.png'},
+    {code: 'ALFA ROMEO', path: 'src/www/img/make/AlPHAROMEO.png'},
     {code: 'LADA', path: 'src/www/img/make/LADA.png'},
-    {code: 'BALKANCAR', path: 'src/www/img/make/BALKANCAR.png'},
+    {code: 'BALKANKAR', path: 'src/www/img/make/BALKANCAR.png'},
     {code: 'BMC', path: 'src/www/img/make/BMC.png'},
     {code: 'BOBCAT', path: 'src/www/img/make/BOBCAT.png'},
-    {code: 'CADILLA', path: 'src/www/img/make/CADILLA.png'},
+    {code: 'CADILLAC', path: 'src/www/img/make/CADILLA.png'},
     {code: 'CATERPILLAR', path: 'src/www/img/make/CATERPILLAR.png'},
     {code: 'CHEVROLET', path: 'src/www/img/make/CHEVROLET.png'},
     {code: 'CITROEN', path: 'src/www/img/make/CITROEN.png'},
