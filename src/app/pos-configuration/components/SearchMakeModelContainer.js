@@ -23,8 +23,8 @@ class SearchMakeModelContainer extends React.Component {
     componentWillMount() {
     }
     handledFilterMakes = () =>{
-        const  {assetCategory, saleNetwork, brand, dealer,fetchFilterMakes, countryCode, currencyCode} = this.props;
-        const params = {assetCategory, saleNetwork, brand, dealer, countryCode, currencyCode};
+        const  {category, network, brand, dealerid,fetchFilterMakes, country, currency} = this.props;
+        const params = {category, network, brand, dealerid, country, currency};
         fetchFilterMakes(params);
     }
 
@@ -130,12 +130,12 @@ function mapStateToProps(state, props) {
     const values = formValues(state) || EMPTY_OBJECT;
 
        return {
-           assetCategory:values &&values.assetCategory ,
-           saleNetwork:values && values.saleNetwork,
+           category:values &&values.assetCategory ,
+           network:values && values.saleNetwork,
            brand: values && values.brand,
-           dealer: values &&values.dealer,
-           countryCode: values && values.countryCode,
-           currencyCode: values &&values.currencyCode
+           dealerid: values &&values.dealer,
+           country: values && values.countryCode,
+           currency: values &&values.currencyCode
 
     };
 };
