@@ -18,7 +18,7 @@ class TrimLevelContainer extends React.Component {
     render() {
 
 
-        const {intl: {formatMessage}, nbrNavTab} = this.props;
+        const {intl: {formatMessage}, id="config.box.trim.sactions", idBtTrim="config.box.trim.button.add"} = this.props;
         const btAddTrimTools=   (       <div className="box-tools-filter pull-right">
             <OverlayTrigger trigger="hover" placement="top"
                             overlay={<Tooltip>{formatMessage(messages.btAddTrimTitle)}</Tooltip>}>
@@ -31,27 +31,12 @@ class TrimLevelContainer extends React.Component {
         </div>);
 
 
-        let nbrnewTrims=[];
-        if(nbrNavTab>0) {
-            for (let i = 1; i <= nbrNavTab; i++) {
-                nbrnewTrims.push(
-                    <button type="button" className="btn-primary btn-danger btn-box-tool">
-                        {i}
-                    </button>
-                );
-            }
-        }
-        const   btToolsTrim  =(<div>
-            {nbrnewTrims}
-        </div>);
 
 
-        const detailtrimTitle=   (<div className="box-tools-filter pull-left">
-            <span  className="glyphicon glyphicon-th" />
-            {formatMessage(messages.detailTrimTitle)} </div> );
+
         return (
-            <Box  title={detailtrimTitle}  type='primary' tools={btAddTrimTools}>
-            <Box  withBoder={false} tools={btToolsTrim}>
+            <Box  title={formatMessage(messages.trimTitle)} id={id} collapsible={true}  >
+            <Box id={idBtTrim} withBoder={false} tools={btAddTrimTools}>
                 <NavTrimDetails  {...this.props} />
         </Box>
             </Box>)

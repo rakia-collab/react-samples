@@ -12,8 +12,9 @@ import {
 import {connect} from 'react-redux';
 import messages from '../Constantes/messages';
 import {injectIntl} from 'react-intl';
-import {saleNetworkList,assetCategoryList} from "../Constantes/SelectFields";
+import {saleNetworkList, assetCategoryList, currencies} from "../Constantes/SelectFields";
 import {fetchFilterMakes} from '../reducers/actions'
+import ReactFlagsSelect from "./ReactFlagsSelect";
 
 const FORM = 'formSearchMake';
 
@@ -22,11 +23,18 @@ class SearchMakeModelContainer extends React.Component {
     componentWillMount() {
     }
     handledFilterMakes = () =>{
-        const  {assetCategory, saleNetwork, brand, dealer,fetchFilterMakes} = this.props;
-        const params = {assetCategory, saleNetwork, brand, dealer};
+        const  {assetCategory, saleNetwork, brand, dealer,fetchFilterMakes, countryCode, currencyCode} = this.props;
+        const params = {assetCategory, saleNetwork, brand, dealer, countryCode, currencyCode};
         fetchFilterMakes(params);
     }
 
+    onSelectFlag = (countryCode) => {
+
+        let {form, change} = this.props;
+        if (countryCode) {
+            change(form, `countryCode`, countryCode);
+        }
+    };
     render() {
         const {intl: {formatMessage}} = this.props;
         const suffixSearch=   <span className='glyphicon glyphicon-search' />
@@ -49,11 +57,10 @@ class SearchMakeModelContainer extends React.Component {
                     <Row  >
 
                         <Col md={6}>
-                            <SelectField  name={`assetCategory`}
-                                options={assetCategoryList}
-                               title={formatMessage(messages.assetCategoryTitle)}
-                                          placeholder={`select Asset`}
-                                />
+                            <TextEntryField name="brand"
+                                            title={formatMessage(messages.brand)}
+                            />
+
                          </Col>
 
                         <Col md={6}>
@@ -65,17 +72,37 @@ class SearchMakeModelContainer extends React.Component {
                         </Col>
                     </Row>
                     <Row>
+                        <Col md={6} >
+                            <SelectField  name={`assetCategory`}
+                                          options={assetCategoryList}
+                                          title={formatMessage(messages.assetCategoryTitle)}
+                                          placeholder={`select Asset`}
+                            />
+
+                        </Col>
                         <Col md={6}>
                             <TextEntryField
                                 name="dealer"
                                 title={formatMessage(messages.concessionaireTitle)}
                              />
                         </Col>
-                        <Col md={6} >
 
-                            <TextEntryField name="brand"
-                                   title={formatMessage(messages.brand)}
-                                 />
+                    </Row>
+                    <Row>
+                        <Col md={6} >
+                                <div className='text-left'>
+                                    <label>{formatMessage(messages.country)}</label>
+                                </div>
+                                <ReactFlagsSelect name={`countryCode`}
+                                                  onSelect={this.onSelectFlag}
+                                                  defaultCountry="FR"/>
+
+                            </Col>
+
+                        <Col md={6}>
+                            <SelectField  name={`currencyCode`}
+                                          options={currencies}
+                                          title={formatMessage(messages.currency)}/>
                         </Col>
 
                     </Row>
@@ -106,7 +133,9 @@ function mapStateToProps(state, props) {
            assetCategory:values &&values.assetCategory ,
            saleNetwork:values && values.saleNetwork,
            brand: values && values.brand,
-           dealer: values &&values.dealer
+           dealer: values &&values.dealer,
+           countryCode: values && values.countryCode,
+           currencyCode: values &&values.currencyCode
 
     };
 };

@@ -34,7 +34,7 @@ class MakesContainer extends React.Component {
                 <a onClick={this.handleSelectMake} >
                     <div className='thumbnail'>
                         <header className='mainLayout-header'>
-                            <Row className='navbar navbar-static-top'>
+                            <Row className='navbar'>
 
                             <Col xs={5}  >
 

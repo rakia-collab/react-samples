@@ -17,9 +17,9 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
     }
 
     closeModel = () => {
-        const { form, make, arrayRemove, nbrNavTab, changeNbrNavTabAddedOfModel, showPopupModelDetail} = this.props;
+        const { form, make, arrayRemove, nbrNavTab, changeNbrNavTabAddedOfModel, showPopupModelDetail,selectedModel} = this.props;
 
-        if(nbrNavTab>0) {
+        if(nbrNavTab > 0) {
             let indexOFLastModel =  make.models.length -1 ;
             let totalOfNavTabAdded=nbrNavTab;
             make.models.map((Model) => {
@@ -30,6 +30,7 @@ const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":
                 }
 
             });
+            selectedModel(indexOFLastModel);
             let nombreTabAdded=0;
             changeNbrNavTabAddedOfModel(nombreTabAdded);
         }
@@ -84,8 +85,8 @@ const mapStateToProps = (state, props) => {
     var listModels = [];
     var generalModels =[];
    if( make.models.length ===1) {
-       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
        listModels= make.models[0]
+       listModels.modelGeneralData && generalModels.push({"modelRef":listModels.modelGeneralData.modelRef, "startDate": listModels.modelGeneralData.startDate,"endDate":listModels.modelGeneralData.endDate,"vehicleType":listModels.modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null});
    }
    else
    {  make.models &&  make.models.map((Model) => {

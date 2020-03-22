@@ -15,24 +15,57 @@ class NavTrimDetails extends React.Component {
     };
 
     render() {
-        const { intl,form  } = this.props;
+        const { intl, form, listModels, expModel, indexModel, nbrNavTab } = this.props;
 
-        const tab2    =[];
+        const trims    =[];
 
 
-        tab2.push({
-            id:"trim.tab.detail",
-            key: "tabTrimDetails",
-            title: "Trim level details",
-            body:  <TrimDetail form={form} intl={intl} {...this.props} />,
-            active: this.state.activeTabKey =="tabTrimDetails" ,
-        });
+    let trimIndex=0;
+        if(nbrNavTab > 0) {
+            trims.push({
+                id: "trim.tab0",
+                key: expModel + ".modelLevels[0]",
+                title: "Trim level",
+                body: <TrimDetail expTrim={expModel + ".modelLevels[0]"} form={form} intl={intl} {...this.props} />,
+                active: this.state.activeTabKey === expModel + ".modelLevels[0]"
+            });
+        }
+        else
+        {
+                if (listModels[indexModel].modelLevels == null || listModels[indexModel].modelLevels.length <= 1) {
+                    trims.push({
+                        id: "trim.tab0",
+                        key: expModel + ".modelLevels[0]",
+                        title: "Trim level",
+                        body: <TrimDetail expTrim={expModel + ".modelLevels[0]"} form={form}
+                                          intl={intl} {...this.props} />,
+                        active: this.state.activeTabKey === expModel + ".modelLevels[0]"
+                    });
+
+                } else {
+                    listModels[indexModel].modelLevels.map((trim) => {
+                        trims.push({
+                            id: "trim.tab" + trimIndex,
+                            key: expModel + ".modelLevels[" + trimIndex + "]",
+                            title: "Trim level " + (trimIndex == 0 ? '' : trimIndex),
+                            body: <TrimDetail expTrim={expModel + ".modelLevels[" + trimIndex + "]"} form={form}
+                                              intl={intl} {...this.props} />,
+                            active: this.state.activeTabKey === expModel + ".modelLevels[" + trimIndex + "]"
+                        });
+                        trimIndex = trimIndex + 1;
+                    })
+                }
+
+        }
+
+
+
 
 
 
 
         return (<NavTabs className='options'
-                         handleTabChange={this.handleTabTrimDetailsChange}  tabs={tab2}/>);
+                         handleTabChange={this.handleTabTrimDetailsChange}  tabs={trims}/>);
     }
 }
 

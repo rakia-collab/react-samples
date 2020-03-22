@@ -4,20 +4,32 @@ import messages from '../../Constantes/messages';
 import {change, Field, formValueSelector,getFormValues} from 'redux-form';
 import {typeVehicule,categoryVehicule, modelinspection, modeltype, modelspecialite} from '../../Constantes/SelectFields';
 import {connect} from 'react-redux'
+import TrimLevelContainer from "../../trimLevel/components/TrimLevelContainer";
 
 class ModelDetails extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {activeTabKey: "make.models[0].modelLevels[0]"}
+    }
+
+    handleTabTrimChange= (key) => {
+        this.setState({
+            activeTabKey: key,
+            expTrim: key
+        });
+    };
 
     handleEndDateChange = (event, endDate) => {
         debug('handleEndDateChange', 'endDate=', endDate);
         const {form, expModel, change} = this.props;
 
-        change(form, `${expModel}.modelGeneralData.modelRef`, endDate);
+        change(form, `${expModel}.modelGeneralData.dateFin`, endDate);
     };
 
     render() {
 
-        const {intl: {formatMessage}, navTabTrims, expModel, nbrNavTab,idBoxGen="config.box.model.generalDetail",idBoxOther="config.box.model.otherDetail"} = this.props;
+        const {intl: {formatMessage}, id, expModel, nbrNavTab, form, intl, indexModelTab} = this.props;
 
 
         let nbrnewModels=[];
@@ -31,22 +43,22 @@ class ModelDetails extends React.Component {
 
             }
         }
-        const   bttools  =(<div>
+        const   bttools  = nbrnewModels.length>1?(<div>
                             {nbrnewModels}
-                        </div>);
+                        </div>):[];
 
 
 
         return (
 
-                <Box type='primary' tools={bttools} >
-                    <Box collapsible={false} title={formatMessage(messages.generalInfoModelTitle)}  id={idBoxGen} >
+                <Box type='primary' id={id+ "box.global"} tools={bttools} >
+                    <Box collapsible={true} id={id+ "box.global.generalData"} title={formatMessage(messages.generalInfoModelTitle)}  >
                     <Row >
                         <Col xs={6}>
 
-                            <Field name={`${expModel}.modelGeneralData.modelRef`}
-                                   component={TextEntry}
-                                   title={formatMessage(messages.modelRefTitle)}/>
+                            <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
+                                            title={messages.dtFinTitle}/>
+
                         </Col>
                         <Col   xs={6}>
                             <SelectField  name={`${expModel}.modelGeneralData.vehicleType`}
@@ -61,13 +73,14 @@ class ModelDetails extends React.Component {
                                                 title={formatMessage(messages.dtDebutTitle)}/>
                        </Col>
                        <Col  xs={6} >
-                       <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
-                                                title={messages.dtFinTitle}/>
+                           <Field name={`${expModel}.modelGeneralData.modelRef`}
+                                  component={TextEntry}
+                                  title={formatMessage(messages.modelRefTitle)}/>
                        </Col>
 
                     </Row>
                     </Box>
-                    <Box title={formatMessage(messages.otherInfoModelTitle)} collapsible={true}  id={idBoxOther} >
+                    <Box id={id+ "box.global.otherData"} title={formatMessage(messages.otherInfoModelTitle)} collapsible={true}   >
                     <Row >
 
                         <Col xs={6}>
@@ -123,6 +136,8 @@ class ModelDetails extends React.Component {
                         </Col>
                 </Row>
                     </Box>
+
+                    <TrimLevelContainer {...this.props} />
 
                 </Box>
         );

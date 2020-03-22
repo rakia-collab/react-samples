@@ -14,19 +14,26 @@ class TrimDetail extends React.Component {
 
     render() {
 
-        const {intl: {formatMessage},handleCloseDetail,expTrim} = this.props;
+        const {intl: {formatMessage}, expTrim, nbrNavTab, id} = this.props;
 
 
-
-        const closeTools=     <div className="box-tools-filter pull-right">
-            <button type="button" className="btn btn-box-tool" onClick={handleCloseDetail} >
-                <i className="fa fa-remove"></i>
-            </button>
-
-        </div>
+        /*let nbrNewTrims=[];
+        if(nbrNavTab>0) {
+            for (let i = 1; i <= nbrNavTab; i++) {
+                nbrNewTrims.push(
+                    <button type="button" className="btn-primary btn-danger btn-box-tool">
+                        {i}
+                    </button>
+                );
+            }
+        }
+        const   btToolsTrim  =(<div>
+            {nbrNewTrims}
+        </div>);
+*/
         return (
 
-                    <Row >
+                    <Box id={id+"box.infoTrim"} >
                         <Col  xs={4}>
                             <Field name={`${expTrim}.code`}
                                    component={TextEntry}
@@ -38,7 +45,7 @@ class TrimDetail extends React.Component {
                                    title={messages.trimFinitionTitle}/>
                         </Col>
 
-                    </Row>
+                    </Box>
 
 
         )

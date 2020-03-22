@@ -84,3 +84,8 @@ export const saleNetworkList =[
     {code:"WEB", label:"Web"},
     {code:"OTHER", label:"OTHER"}
 ];
+export const currencies = [
+    {code: 'EUR', label: 'Euro'},
+    {code: 'USD', label: 'US Dollar'},
+    {code: 'TWD', label: 'Taiwan New Dollar'},
+];
