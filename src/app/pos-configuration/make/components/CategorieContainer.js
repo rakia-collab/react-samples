@@ -4,7 +4,7 @@ import {injectIntl} from 'react-intl';
 import each from "lodash/each";
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import {Button} from 'react-bootstrap';
+import {Button,OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {
     Box, Loader, fetchReferenceTableWithParams,
     getReferenceTable,
@@ -90,12 +90,16 @@ export class CategorieContainer extends Component {
             tools: (
                 <div title='Add Categorie' className='box-tools'>
                     <div data-toggle='btn-toggle' className='btn-group'>
+                        <OverlayTrigger trigger="hover" placement="top"
+                                        overlay={<Tooltip>{formatMessage(messages.btAddCategorTitle)}</Tooltip>}>
+
                         <Button bsStyle='danger'
                                 onClick={this.handleButtonClick}>
                             <i className='fa fa-plus'>
 
                             </i>
                         </Button>
+                        </OverlayTrigger>
                     </div>
                 </div>
             ),

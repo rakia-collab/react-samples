@@ -22,6 +22,8 @@ import {
 import {NEWMAKEMODEL} from '../index';
 import messages from '../Constantes/messages';
 import * as c from '../Constantes/const';
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+
 const FORM ='marqueForm'
  class StepContainer extends React.Component {
 
@@ -141,13 +143,15 @@ const FORM ='marqueForm'
                            steps={steps}
                            stepKey={stepKey}
                            onStepChange={this.handleStepChange}/>
+                        <OverlayTrigger trigger="hover" placement="top"
+                                        overlay={<Tooltip>{formatMessage(messages.btsaveMakeTitle)}</Tooltip>}>
 
                         <button type="submit" className="btn-primary btn-box-tool  pull-right" >
 
 
                                 {formatMessage(messages.submit)}
                         </button>
-
+                        </OverlayTrigger>
 
 
 
@@ -167,7 +171,7 @@ const validate = (values, props) => {
 
     let errors = {};
     errors = validateGeneralinfo(values, props, errors);
-   // errors = validateModel(values, props, errors);
+    errors = validateModel(values, props, errors);
     return errors;
 };
 

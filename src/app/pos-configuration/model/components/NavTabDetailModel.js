@@ -80,7 +80,7 @@ class NavTabDetailModel extends React.Component {
 
         return (
             <div>
-            <NavTabs className='options'
+            <NavTabs className='options' id="conf.model.navtab"
                          handleTabChange={this.handleTabModelChange}  tabs={newModels}/>
 
             </div>);

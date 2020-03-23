@@ -5,7 +5,7 @@ import {change, arrayPush, arrayRemove, formValueSelector, getFormValues} from '
 import ModelTable from './ModelTable';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import PopupModelDetails  from './PopupModelDetails';
-import {showPopupModelDetail, fetchFullModel, selectedModel, changeNbrNavTabAddedOfModel, changePathFiledOfModel } from "../reducers/actions";
+import {showPopupModelDetail, fetchFullModel, selectedModel,changeReadOnlyModel, changeNbrNavTabAddedOfModel, changePathFiledOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
 import setIn from 'redux-form/lib/structure/plain/setIn';
 const modelIni ={"modelGeneralData":{"modelref":null,"startdate":null,"enddate":null,"vehicletype":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelDesignationByLanguage":[{"lancode":null,"designation":null}],"modelLevels":[{"code":null,"levelDesignations":null}],"filteringByProduct":[{"product":null,"flagReturn":null,"user":null,"updateDate":null,"startDate":null,"endDate":null}],"filteringByAssetClass":[{"assetClass":null,"country":null,"flagdefault":null}],"filteringByCategory":[{"category":null,"flagdefault":null}]};
@@ -59,8 +59,8 @@ export const validateModel = (values, props, errors) => {
     };
 
     openModel = () => {
-        const {arrayPush, changeNbrNavTabAddedOfModel, showPopupModelDetail, selectedModel, make, form} = this.props;
-
+        const {arrayPush, changeNbrNavTabAddedOfModel, showPopupModelDetail, selectedModel, changeReadOnlyModel, make, form} = this.props;
+        changeReadOnlyModel(false)
         let index= make.models.length;
         arrayPush(form, 'make.models', modelIni);
         selectedModel(index);
@@ -88,9 +88,9 @@ export const validateModel = (values, props, errors) => {
 
         </div>);
 
-        return (<Box  tools={btTools} >
+        return (<Box id="box.popup.detail.model"  tools={btTools} >
                 <PopupModelDetails openNewModel={this.openNewModel}  {...this.props}  onClose={this.closeModel} isPopupModelDetailLoade={isPopupModelDetailLoade}  />
-                   <ModelTable  listModels={listModels} {...this.props} brandRef={make.makeGeneralData.brandRef}    fetchModel={fetchFullModel}  generalModels={generalModels} />
+                   <ModelTable formatMessage={formatMessage} listModels={listModels} {...this.props} brandRef={make.makeGeneralData.brandRef}    fetchModel={fetchFullModel}  generalModels={generalModels} />
 
             </Box>
         );
@@ -144,6 +144,7 @@ const mapDispatchToProps = {
     selectedModel,
     changeNbrNavTabAddedOfModel,
     changePathFiledOfModel,
+    changeReadOnlyModel,
     change,
     arrayPush,
     arrayRemove

@@ -46,7 +46,7 @@ class SearchMakeModelContainer extends React.Component {
 
         return (
                 <Row>
-                <Box type='primary' withBoder='true'   title={titleSearch} collapsible={true} tools={toolBox}  >
+                <Box   title={titleSearch} collapsible={true} tools={toolBox}  >
                     <Row  >
 
                         <Col md={6}>

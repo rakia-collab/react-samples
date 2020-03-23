@@ -48,7 +48,7 @@ class NavTrimDetails extends React.Component {
                             id: "trim.tab" + trimIndex,
                             key: expModel + ".modelLevels[" + trimIndex + "]",
                             title: "Trim level " + (trimIndex == 0 ? '' : trimIndex),
-                            body: <TrimDetail expTrim={expModel + ".modelLevels[" + trimIndex + "]"} form={form}
+                            body: <TrimDetail id='conf.trim.detail' expTrim={expModel + ".modelLevels[" + trimIndex + "]"} form={form}
                                               intl={intl} {...this.props} />,
                             active: this.state.activeTabKey === expModel + ".modelLevels[" + trimIndex + "]"
                         });
@@ -64,7 +64,7 @@ class NavTrimDetails extends React.Component {
 
 
 
-        return (<NavTabs className='options'
+        return (<NavTabs className='options' id="conf.navtab.model.trims.detail"
                          handleTabChange={this.handleTabTrimDetailsChange}  tabs={trims}/>);
     }
 }

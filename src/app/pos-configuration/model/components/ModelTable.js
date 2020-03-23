@@ -6,6 +6,8 @@ import {
     withAccessKeysAndCol,
     DateDisplay
 } from 'cassiopae-core';
+import { OverlayTrigger, Tooltip} from "react-bootstrap";
+import messages from "../../Constantes/messages";
 
 
 
@@ -41,15 +43,25 @@ class ModelDelete extends React.Component {
 
 
     render() {
-        const { rowData} = this.props;
-        var button=(  <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
+
+        const { rowData, metadata: {customComponentMetadata: {formatMessage }}} = this.props;
+
+        var button=(
+            <OverlayTrigger trigger="hover" placement="top"
+                            overlay={<Tooltip>{formatMessage(messages.btDeleteModelTitle)}</Tooltip>}>
+            <button type='button' className='btn btn-box-tool' onClick={this.changeEndDate}>
             <i className='fa fa-remove'/>
-        </button>)
+        </button>
+            </OverlayTrigger>)
+
         if(rowData && rowData.endDate !== undefined && rowData.endDate !== null)
         {
-            button=  ( <div>
+            button=  ( <OverlayTrigger trigger="hover" placement="top"
+                                       overlay={<Tooltip>{formatMessage(messages.deletedModelTitle)}</Tooltip>}>
+                <div>
                 <i className='fa fa-trash'/>
-            </div>);
+            </div>
+            </OverlayTrigger>);
         }
         return (
 
@@ -78,12 +90,16 @@ class ModelEdit extends React.Component {
     };
 
     render() {
+        const { metadata: {customComponentMetadata: {formatMessage }}} = this.props;
 
         return (
             <div>
+                <OverlayTrigger trigger="hover" placement="top"
+                                overlay={<Tooltip>{formatMessage(messages.btmodifyModelTitle)}</Tooltip>}>
                 <button type='button' className='btn btn-box-tool' onClick={this.openModelDetailEdit}>
                     <i className='fa fa-edit'/>
                 </button>
+                </OverlayTrigger>
             </div>
         );
     }
@@ -116,13 +132,17 @@ class ModelDisplay extends React.Component {
 
 
     render() {
-        const { metadata: {customComponentMetadata: {isPopupModelDetailLoade}}} = this.props;
+        const { metadata: {customComponentMetadata: {formatMessage}}} = this.props;
 
         return (
             <div>
-                 <button type='button' className='btn btn-box-tool' onClick={this.openModelDetail}>
+                <OverlayTrigger trigger="hover" placement="top"
+                                overlay={<Tooltip>{formatMessage(messages.btConsulterModelTitle)}</Tooltip>}>
+
+                <button type='button' className='btn btn-box-tool' onClick={this.openModelDetail}>
                     <i className='fa fa-search-plus'/>
                 </button>
+                </OverlayTrigger>
             </div>
         );
     }
@@ -141,7 +161,7 @@ class ModelTable extends React.Component {
 
     }
     render() {
-        const {listModels, fetchModel, change, generalModels, isPopupModelDetailLoade, brandRef, form} = this.props;
+        const {listModels, fetchModel, change, generalModels, isPopupModelDetailLoade, brandRef, form, formatMessage} = this.props;
 
 
         var columnMetadata = [
@@ -174,7 +194,8 @@ class ModelTable extends React.Component {
                     fetchModel: fetchModel,
                     isPopupModelDetailLoade: isPopupModelDetailLoade,
                     brandRef:brandRef,
-                    form: form
+                    form: form,
+                    formatMessage: formatMessage
                 }
             },
             {
@@ -184,7 +205,8 @@ class ModelTable extends React.Component {
                 customComponentMetadata: {
                     form: form,
                     listModels: listModels,
-                    change: change
+                    change: change,
+                    formatMessage: formatMessage
                 }
             },
             {
@@ -195,7 +217,8 @@ class ModelTable extends React.Component {
                     fetchModel: fetchModel,
                     isPopupModelDetailLoade: isPopupModelDetailLoade,
                     brandRef:brandRef,
-                    form: form
+                    form: form,
+                    formatMessage:formatMessage
                 }
             }
 

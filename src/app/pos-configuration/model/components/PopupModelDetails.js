@@ -2,7 +2,7 @@ import React from 'react';
 import messages from '../../Constantes/messages';
 import ModelDetailsContainer from'./ModelDetailsContainer'
 import {Modal} from 'cassiopae-core';
-
+import {OverlayTrigger, Tooltip} from 'react-bootstrap';
 
 class PopupModelDetail extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class PopupModelDetail extends React.Component {
 
 
         return (
-            <Modal title={titlePopup} ref='modal' className='skin-sopra large-modal' show={isPopupModelDetailLoade} onClose={onClose} >
+            <Modal id="conf.modal.model.detail" title={titlePopup} ref='modal' className='skin-sopra large-modal' show={isPopupModelDetailLoade} onClose={onClose} >
              <ModelDetailsContainer {...this.props}  form={form} intl={intl} />
             </Modal>
         );

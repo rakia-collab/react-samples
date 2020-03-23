@@ -14,7 +14,7 @@ class NavTabTrimLevel extends React.Component {
 
 
 
-        return (<NavTabs className='options'
+        return (<NavTabs className='options'  id="conf.model.trims.navtab"
                          handleTabChange={handleTabTrimChange }  tabs={trims}/>);
     }
 }
