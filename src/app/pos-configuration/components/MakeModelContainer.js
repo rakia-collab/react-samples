@@ -71,17 +71,18 @@ class MakeModelContainer extends React.Component {
 
                 <AccessKeysContext accessKeys={accessKeys} >
                     <Form  name={form} >
-                <Row className="box-header">
+                <Row className="toolbar-make box-header">
 
                     <ToolbarMakeModel handleShowSearch={this.handleShowSearch}  handleShowAdd={this.handleShowAdd}  handleShowRemove={this.handleShowRemove}/>
 
                 </Row>
 
 
-                <Row xs={8}>
+                <Row xs={8} className="make-marge" >
                     { isMakeSearchLoade &&
                         <SearchMakeModelContainer handleClose={this.handleClose} />
                     }
+
                     {makesList && makesList.map((makeModel) => {
                         return <MakesContainer showRemove={isMakesRemoveLoade} make={makeModel}/>
 

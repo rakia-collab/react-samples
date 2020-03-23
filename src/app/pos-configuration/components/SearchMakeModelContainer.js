@@ -12,9 +12,8 @@ import {
 import {connect} from 'react-redux';
 import messages from '../Constantes/messages';
 import {injectIntl} from 'react-intl';
-import {saleNetworkList, assetCategoryList, currencies} from "../Constantes/SelectFields";
-import {fetchFilterMakes} from '../reducers/actions'
-import ReactFlagsSelect from "./ReactFlagsSelect";
+import {saleNetworkList, assetCategoryList, currencies, countries} from "../Constantes/SelectFields";
+import {fetchFilterMakes} from '../reducers/actions';
 
 const FORM = 'formSearchMake';
 
@@ -28,13 +27,7 @@ class SearchMakeModelContainer extends React.Component {
         fetchFilterMakes(params);
     }
 
-    onSelectFlag = (countryCode) => {
 
-        let {form, change} = this.props;
-        if (countryCode) {
-            change(form, `countryCode`, countryCode);
-        }
-    };
     render() {
         const {intl: {formatMessage}} = this.props;
         const suffixSearch=   <span className='glyphicon glyphicon-search' />
@@ -90,12 +83,10 @@ class SearchMakeModelContainer extends React.Component {
                     </Row>
                     <Row>
                         <Col md={6} >
-                                <div className='text-left'>
-                                    <label>{formatMessage(messages.countryTitle)}</label>
-                                </div>
-                                <ReactFlagsSelect name={`countryCode`}
-                                                  onSelect={this.onSelectFlag}
-                                                  defaultCountry="FR"/>
+
+                                <SelectField name={`countryCode`}
+                                                  options={countries}
+                                                  title={formatMessage(messages.countryTitle)}/>
 
                             </Col>
 
