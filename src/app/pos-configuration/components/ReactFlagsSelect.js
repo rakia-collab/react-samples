@@ -26,12 +26,14 @@ class ReactFlagsSelect extends Component {
     }
 
     toggleOptions() {
+        event.preventDefault();
         !this.state.disabled && this.setState({
             openOptions: !this.state.openOptions
         });
     }
 
     toggleOptionsWithKeyboard(evt) {
+        event.preventDefault();
         evt.preventDefault();
         if (evt.keyCode === 27) {
             //esc key: hide options
@@ -140,13 +142,14 @@ class ReactFlagsSelect extends Component {
         let selectedLabel = countries.find(item => item.code === isSelected).label || this.props.customLabels[isSelected];
         return (
             <div className={`flag-select ${this.props.className ? this.props.className :  ""}`}>
-                <button
+                <span
                     ref="selectedFlag"
-                    style={{fontSize: `${selectedSize}px`}}
+                    style={{fontSize: `${selectedSize}px`, width: '600px'}}
                     className="flag-select__btn"
                     onClick={this.toggleOptions}
                     onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}
                     disabled={this.props.disabled}
+                    type="menu"
                     id="select_flag_button"
                     aria-haspopup="listbox"
                     aria-expanded={this.state.openOptions}
@@ -162,10 +165,10 @@ class ReactFlagsSelect extends Component {
                     {!isSelected &&
                     <span className="flag-select__option flag-select__option--placeholder">{this.props.placeholder}</span>
                     }
-                </button>
+                </span>
 
                 {this.state.openOptions &&
-                <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`}} className={`flag-select__options ${alignClass}`}>
+                <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`, width: '650px'}} className={`flag-select__options ${alignClass}`}>
                     {this.props.searchable && (
                         <div className="filterBox">
                             <TextEntry

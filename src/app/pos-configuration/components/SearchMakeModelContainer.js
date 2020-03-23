@@ -14,6 +14,7 @@ import messages from '../Constantes/messages';
 import {injectIntl} from 'react-intl';
 import {saleNetworkList, assetCategoryList, currencies, countries} from "../Constantes/SelectFields";
 import {fetchFilterMakes} from '../reducers/actions';
+import ReactFlagsSelect from "./ReactFlagsSelect";
 
 const FORM = 'formSearchMake';
 
@@ -21,11 +22,20 @@ class SearchMakeModelContainer extends React.Component {
 
     componentWillMount() {
     }
+
     handledFilterMakes = () =>{
         const  {category, network, brand, dealerid,fetchFilterMakes, country, currency} = this.props;
         const params = {category, network, brand, dealerid, country, currency};
         fetchFilterMakes(params);
     }
+
+    onSelectFlag = (countryCode) => {
+
+        let {form,  makegeneraldataExp, change} = this.props;
+        if (countryCode) {
+            change('countryCode', countryCode);
+        }
+    };
 
 
     render() {
@@ -83,10 +93,12 @@ class SearchMakeModelContainer extends React.Component {
                     </Row>
                     <Row>
                         <Col md={6} >
-
-                                <SelectField name={`countryCode`}
-                                                  options={countries}
-                                                  title={formatMessage(messages.countryTitle)}/>
+                            <div className='text-left'>
+                                <label>{formatMessage(messages.countryTitle)}</label>
+                            </div>
+                            <ReactFlagsSelect name={`countryCode`}
+                                              onSelect={this.onSelectFlag}
+                                              defaultCountry="FR"/>
 
                             </Col>
 
