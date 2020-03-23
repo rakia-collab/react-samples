@@ -63,7 +63,7 @@ const messages = defineMessages({
     assetDetailBssTitle: {id: 'config.messages.model.bss.detail.title', defaultMessage: 'BSS asset detail type'},
     assetRateBssTitle: {id: 'config.messages.model.bss.rate.title', defaultMessage: 'BSS set rate code'},
     bssAssetSegment: {id: 'config.messages.model.bss.segment.title', defaultMessage: 'BSS Asset Segment'},
-    saleTitle: {id: 'config.messages.search.salesTitle', defaultMessage: 'Sale network'},
+    saleTitle: {id: 'config.messages.search.salesTitle', defaultMessage: 'Sales network'},
     assetCategoryTitle: {id: 'config.messages.search.assetCategoryTitle', defaultMessage: 'Asset Category'},
     trimCodeTitle: {id: 'config.messages.search.trimCodeTitle', defaultMessage: 'Trim code '},
     trimFinitionTitle: {id: 'config.messages.search.trimFinitionTitle', defaultMessage: 'Finition'},

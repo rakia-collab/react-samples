@@ -17,13 +17,8 @@ import CardContainer from './CardContainer';
 
 import {selectCategorie, removeCategorie} from '../reducers/actions';
 import CategoriePopup from './CategoriePopup';
+import {saleNetworkList} from '../../Constantes/SelectFields'
 
-const options = [
-    {code: 'one', label: 'Asset Category'},
-    {code: 'two', label: 'Vehicule'},
-    {code: 'three', label: 'Asset Category DEL'},
-
-];
 
 export class CategorieContainer extends Component {
 
@@ -111,7 +106,7 @@ export class CategorieContainer extends Component {
                     <Row>
                         <div className="col-md-6">
                             <SelectField name='country'
-                                         options={options}
+                                         options={saleNetworkList}
                                          title={messages.sales}/>
                         </div>
 

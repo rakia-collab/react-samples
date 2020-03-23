@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {countries} from '../Constantes/SelectFields';
+import {
+
+    TextEntry
+} from 'cassiopae-core';
 
 class ReactFlagsSelect extends Component {
     constructor(props){
@@ -164,7 +168,7 @@ class ReactFlagsSelect extends Component {
                 <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`}} className={`flag-select__options ${alignClass}`}>
                     {this.props.searchable && (
                         <div className="filterBox">
-                            <input type="text"
+                            <TextEntry
                                    name={this.props.name}
                                    placeholder={this.props.searchPlaceholder}
                                    ref="filterText"
