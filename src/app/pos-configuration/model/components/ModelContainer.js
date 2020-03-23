@@ -109,7 +109,7 @@ const mapStateToProps = (state, props) => {
     var generalModels =[];
    if( make.models && make.models.length ===1) {
        listModels= make.models
-       listModels.modelGeneralData && generalModels.push({"modelRef":make.models[0].modelGeneralData.modelRef, "startDate": make.models[0].modelGeneralData.startDate,"endDate":make.models[0].modelGeneralData.endDate,"vehicleType":make.models[0].modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
+       listModels[0].modelGeneralData && generalModels.push({"modelRef": listModels[0].modelGeneralData.modelRef, "startDate": make.models[0].modelGeneralData.startDate,"endDate": listModels[0].modelGeneralData.endDate,"vehicleType": listModels[0].modelGeneralData.vehicleType, "iconeDetail":null, "iconeDelete":null, "iconeEdit":null});
    }
    else
    {  make.models &&  make.models.map((Model) => {

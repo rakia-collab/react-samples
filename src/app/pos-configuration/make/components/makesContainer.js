@@ -68,21 +68,21 @@ class MakesContainer extends React.Component {
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/network.png"} />
                                  Network:
-                                {make.makeGeneralData.brandRef }
+                                {make.makeOtherData.oemClassification }
                             </Col>
                         </Row>
                         <Row >
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/AssetTypes.png"} />
                                 Asset type:
-                                {make.makeGeneralData.countryCode }
+                                {make.makeOtherData.variantClassification }
                             </Col>
                         </Row>
                         <Row>
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/concession.png"} />
                                Concession:
-                                {make.makeGeneralData.dealer }
+                                {make.makeOtherData.dealer }
                             </Col>
                         </Row>
 
