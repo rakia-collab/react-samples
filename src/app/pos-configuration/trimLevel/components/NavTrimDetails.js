@@ -21,6 +21,7 @@ class NavTrimDetails extends React.Component {
 
 
     let trimIndex=0;
+     if(indexModel>=0) {
         if(nbrNavTab > 0) {
             trims.push({
                 id: "trim.tab0",
@@ -32,6 +33,7 @@ class NavTrimDetails extends React.Component {
         }
         else
         {
+
                 if (listModels[indexModel].modelLevels == null || listModels[indexModel].modelLevels.length <= 1) {
                     trims.push({
                         id: "trim.tab0",
@@ -48,14 +50,15 @@ class NavTrimDetails extends React.Component {
                             id: "trim.tab" + trimIndex,
                             key: expModel + ".modelLevels[" + trimIndex + "]",
                             title: "Trim level " + (trimIndex == 0 ? '' : trimIndex),
-                            body: <TrimDetail id='conf.trim.detail' expTrim={expModel + ".modelLevels[" + trimIndex + "]"} form={form}
+                            body: <TrimDetail id='conf.trim.detail'
+                                              expTrim={expModel + ".modelLevels[" + trimIndex + "]"} form={form}
                                               intl={intl} {...this.props} />,
                             active: this.state.activeTabKey === expModel + ".modelLevels[" + trimIndex + "]"
                         });
                         trimIndex = trimIndex + 1;
                     })
                 }
-
+            }
         }
 
 
