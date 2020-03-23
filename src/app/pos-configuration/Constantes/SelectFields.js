@@ -10,13 +10,18 @@ export const typeVehicule = [
 ];
 
 export const categoryVehicule = [
-    {code: 'one', label: 'Diners Club Hope Vehicle Type'},
-    {code: 'two', label: 'Large Type Bus'},
-    {code: 'three', label: 'Medium Size Bus'},
-    {code: 'four', label: 'Medium Size Truck"'},
-    {code: 'five', label: 'Medium Size Truck 5Ton Below'},
-    {code: 'six', label: 'Special Equipme'},
-    {code: 'eight', label: 'Other'}
+    {code: 'one', label: 'Compact Passerger Car'},
+    {code: 'two', label: 'Construction Machine'},
+    {code: 'three', label: 'Daehyeong Global Logistics Service'},
+    {code: 'four', label: 'Large size dump trucks'},
+    {code: 'five', label: 'Large Type Bus'},
+    {code: 'six', label: 'Large Type Passenger Car'},
+    {code: 'eight', label: 'Medium And Small Type Passenger Car'},
+    {code: 'nine', label: 'Medium Size Commercial Use'},
+    {code: 'teen', label: 'Medium Size Passenger Car'},
+    {code: 'eleven', label: 'Small Size Commercial Use'},
+    {code: 'twelve', label: 'Small Size Passenger Car'},
+    {code: 'thirteen', label: 'Sports'}
 
 ];
 
@@ -44,20 +49,41 @@ export const modelinspection = [
 ];
 
 export const modeltype = [
-    {code: 'one', label: 'Asphalt Finisher'},
-    {code: 'two', label: 'Asphalt Mixing Plant'},
+    {code: 'one', label: 'Gravel Digging Equipment'},
+    {code: 'two', label: 'Asphalt Finisher'},
     {code: 'three', label: 'Air Compressor'},
-    {code: 'four', label: 'Asphalt Spreader'},
-    {code: 'five', label: 'Medium Size Truck 5Ton Below'},
-    {code: 'six', label: 'Special Equipme'},
-    {code: 'eight', label: 'Other'}
+    {code: 'four', label: 'Aggregate Spreader'},
+    {code: 'five', label: 'Concrete Batching Plant'},
+    {code: 'six', label: 'Drill Machine'},
+    {code: 'eight', label: 'Aggregate Spreader'},
+    {code: 'nine', label: 'Tower Crane'},
+    {code: 'teen', label: 'Stone Crusher'},
+    {code: 'eleven', label: 'Special Construction Equipment'},
+    {code: 'twelve', label: 'Road Stabilizer'},
+    {code: 'thirteen', label: 'Pile Driver'}
+
+];
+
+
+export const bssAssetDetailList = [
+    {code: 'one', label: 'Bus 2'},
+    {code: 'two', label: 'Heavy equipment'},
+    {code: 'three', label: 'Pavement Equipment'},
+    {code: 'four', label: 'Passenger cars'},
+    {code: 'five', label: 'Small and Mid-size truck'},
+    {code: 'six', label: 'Dump Truck'},
+    {code: 'eight', label: 'Earth Work Equipment'},
+    {code: 'nine', label: 'Tractors'},
+    {code: 'teen', label: 'Special Equipment'},
+    {code: 'eleven', label: 'For construction purpose'},
+    {code: 'twelve', label: 'For Transportation'},
+    {code: 'thirteen', label: 'Not classified'}
 
 ];
 
 export const modelspecialite = [
     {code: 'one', label: 'Special construction 1'},
-    {code: 'two', label: 'Special construction 2'},
-    {code: 'three', label: 'Special construction 3'}
+    {code: 'two', label: 'Special construction 2'}
 
 ];
 
@@ -65,6 +91,52 @@ export const acttypeList =[
     {code:"pm", label:"PM"},
     {code:"part", label:"PART"}
 ];
+
+export const indusClassificationList =[
+    {code:"one", label:"Bus Lease Normal"},
+    {code:"two", label:"Domestic Passenger Car"},
+    {code:"three", label:"Domestic Turn"},
+    {code:"four", label:"Normal"},
+    {code:"five", label:"Other"}
+];
+
+
+export const regularInspectModelList =[
+    {code:"one", label:"Drill Machine"},
+    {code:"two", label:"Regular inspection"},
+    {code:"three", label:"Road Crusher(Special)"},
+    {code:"four", label:"Road Measurement Equipment(Special)"},
+    {code:"five", label:"Road Repair Truck(Special)"},
+    {code:"six", label:"Tower Crane"},
+    {code:"seven", label:"Tower Wagon for Tunnel(Special)"},
+    {code:"eight", label:"Truck Forklift(Special)"}
+];
+
+export const rateList =[
+    {code:"one", label:"0%"},
+    {code:"two", label:"0.44%"},
+    {code:"three", label:"0,60%"},
+    {code:"four", label:"0.64%"}
+];
+
+export const bssSegmentList =[
+    {code:"one", label:"Dump Truck"},
+    {code:"two", label:"For construction purpose"},
+    {code:"three", label:"For Transportation"},
+    {code:"four", label:"Passenger cars"},
+    {code:"five", label:"Trailer"}
+];
+export const segmentList =[
+    {code:"one", label:"A"},
+    {code:"two", label:"B"},
+    {code:"three", label:"C"},
+    {code:"four", label:"D"},
+    {code:"five", label:"E"},
+    {code:"six", label:"F"},
+    {code:"seven", label:"N"},
+    {code:"eight", label:"S"}
+];
+
 
 export const assetCategoryList =[
     {code:"CAR", label:"Voitures"},

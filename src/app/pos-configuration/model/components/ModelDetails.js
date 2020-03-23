@@ -2,7 +2,19 @@ import React from 'react';
 import {Box, Col,Row, TextEntry, DateEntryField, SelectField,Button} from 'cassiopae-core';
 import messages from '../../Constantes/messages';
 import {change, Field, formValueSelector,getFormValues} from 'redux-form';
-import {typeVehicule,categoryVehicule, modelinspection, modeltype, modelspecialite} from '../../Constantes/SelectFields';
+import {
+    typeVehicule,
+    categoryVehicule,
+    modelinspection,
+    modeltype,
+    modelspecialite,
+    bssAssetDetailList,
+    bssSegmentList,
+    segmentList,
+    indusClassificationList,
+    regularInspectModelList,
+    rateList
+} from '../../Constantes/SelectFields';
 import {connect} from 'react-redux'
 import TrimLevelContainer from "../../trimLevel/components/TrimLevelContainer";
 
@@ -54,13 +66,12 @@ class ModelDetails extends React.Component {
                 <Box type='primary' id={id+ "box.global"} tools={bttools} >
                     <Box collapsible={true} id={id+ "box.global.generalData"} title={formatMessage(messages.generalInfoModelTitle)}  >
                     <Row >
-                        <Col xs={6}>
-
-                            <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
+                        <Col  xs={6}>
+                            <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
                                             readOnly={readOnly}
-                                            title={messages.dtFinTitle}/>
-
+                                            title={formatMessage(messages.dtDebutTitle)}/>
                         </Col>
+
                         <Col   xs={6}>
                             <SelectField  name={`${expModel}.modelGeneralData.vehicleType`}
                                           readOnly={readOnly}
@@ -70,11 +81,13 @@ class ModelDetails extends React.Component {
                     </Row>
                         <Row >
 
-                       <Col  xs={6}>
-                       <DateEntryField name={`${expModel}.modelGeneralData.startDate`}
-                                       readOnly={readOnly}
-                                                title={formatMessage(messages.dtDebutTitle)}/>
-                       </Col>
+                         <Col xs={6}>
+
+                                <DateEntryField name={`${expModel}.modelGeneralData.endDate`}
+                                                readOnly={readOnly}
+                                                title={messages.dtFinTitle}/>
+
+                         </Col>
                        <Col  xs={6} >
                            <Field name={`${expModel}.modelGeneralData.modelRef`}
                                   component={TextEntry}
@@ -98,7 +111,7 @@ class ModelDetails extends React.Component {
                             <SelectField name={`${expModel}.modelOtherData.kindsconstructionmachinery`}
                                          readOnly={readOnly}
                                          options={modeltype}
-                                         title={messages.modelTypeTitle}/>
+                                         title={messages.modelSpecialityTitle}/>
                         </Col>
 
                     </Row>
@@ -109,12 +122,12 @@ class ModelDetails extends React.Component {
                             <SelectField name={`${expModel}.modelOtherData.specialconstructionmachinery`}
                                          options={modelspecialite}
                                          readOnly={readOnly}
-                                         title={messages.modelSpecialityTitle}/>
+                                         title={messages.modelTypeTitle}/>
                     </Col>
                     <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.segment`}
-                                         options={modelspecialite}
+                                         options={segmentList}
                                          readOnly={readOnly}
                                          title={messages.segmentTitle}/>
                         </Col>
@@ -129,20 +142,44 @@ class ModelDetails extends React.Component {
                  <Col xs={6} >
 
                             <SelectField name={`${expModel}.modelOtherData.bssassetdetailtype`}
-                                         options={modelspecialite}
+                                         options={bssAssetDetailList}
                                          readOnly={readOnly}
                                          title={messages.assetDetailBssTitle}/>
                  </Col>
                 </Row>
                  <Row>
-                        <Col xs={4}>
+                        <Col xs={6}>
 
                             <SelectField name={`${expModel}.modelOtherData.bssrate`}
-                                         options={modelspecialite}
+                                         options={rateList}
                                          readOnly={readOnly}
                                          title={messages.assetRateBssTitle}/>
                         </Col>
+                     <Col xs={6}>
+
+                         <SelectField name={`${expModel}.modelOtherData.bssassetsegment`}
+                                      options={bssSegmentList}
+                                      readOnly={readOnly}
+                                      title={messages.bssAssetSegment}/>
+                     </Col>
                 </Row>
+                        <Row >
+
+                            <Col xs={6}>
+                                <SelectField name={`${expModel}.modelOtherData.industrialmaterial`}
+                                             readOnly={readOnly}
+                                             options={indusClassificationList}
+                                             title={messages.industMaterielModelTitle}/>
+                            </Col>
+
+                            <Col  xs={6} >
+                                <SelectField name={`${expModel}.modelOtherData.regularinspectionmodel`}
+                                             readOnly={readOnly}
+                                             options={regularInspectModelList}
+                                             title={messages.regInspectorModelTitle}/>
+                            </Col>
+
+                        </Row>
                     </Box>
 
                     <TrimLevelContainer {...this.props} />
