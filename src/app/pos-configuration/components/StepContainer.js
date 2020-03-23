@@ -3,7 +3,6 @@ import {injectIntl} from 'react-intl';
 import {createSelector} from 'reselect';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
-import {toastr} from 'react-redux-toastr';
 import Immutable from 'seamless-immutable';
 import {reduxForm,change, formValueSelector, getFormValues, getFormSyncErrors, stopSubmit} from 'redux-form';
 import GenarlInfoMake, {validateGeneralinfo} from '../make/components/GenarlInfoMake';
@@ -52,13 +51,10 @@ const FORM ='marqueForm'
 
              saveMakeModel(data.make).then(() => {
                  notify.show(messages.notifySuccess, notify.SUCCESS);
-                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
 
              }).catch(error => {
                  const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
                  notify.show(errMsg, notify.WARNING);
-                 notify.show("Model reference is already exists", notify.ERROR);
-                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
 
              });
 
@@ -70,9 +66,7 @@ const FORM ='marqueForm'
 
              }).catch(error => {
                  const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
-                 notify.show("Make should be has at least a model", notify.WARNING);
-                 notify.show("Model reference is already exists", notify.ERROR);
-                 toastr.warning('WARNING', "Une erreur est survenue lors du chargement du deal.", c.toastOptions);
+                 notify.show(errMsg, notify.ERROR);
 
              });
 
@@ -171,7 +165,7 @@ const validate = (values, props) => {
 
     let errors = {};
     errors = validateGeneralinfo(values, props, errors);
-    errors = validateModel(values, props, errors);
+    //errors = validateModel(values, props, errors);
     return errors;
 };
 

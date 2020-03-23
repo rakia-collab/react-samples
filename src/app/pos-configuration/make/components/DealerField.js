@@ -29,13 +29,13 @@ class DealerField extends React.Component {
     handleSelectDealer = (selectedDealer) => {
         const {form, makeotherdataExp, change} = this.props;
         this.setState({searchPopupShow: false});
-        change(form, `${makeotherdataExp}.dealer.actnom`,selectedDealer.actnom);
+        change(form, `${makeotherdataExp}.dealer`,selectedDealer.actcode);
 
     };
 
     handleClearDealer= () => {
         const {form, change, makeExp} = this.props;
-        change(form, `${makeExp}.dealer.actnom`,'');
+        change(form, `${makeExp}.dealer`,'');
 
     };
 
@@ -63,7 +63,7 @@ class DealerField extends React.Component {
              <SearchEntryField
                  id={id + '.SearchEntry'}
                  key='name'
-                 name={`${makeotherdataExp}.dealer.actnom`}
+                 name={`${makeotherdataExp}.dealer`}
                  title='Dealer'
                  placeholder='Dealer'
                  readOnly={readOnly}
