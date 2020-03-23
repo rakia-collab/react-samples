@@ -74,7 +74,7 @@ const messages = defineMessages({
     btAddCategorTitle: {id: 'config.make.category.button', defaultMessage: 'Add Category'},
     btsaveMakeTitle: {id: 'config.make.save.button', defaultMessage: 'Save make'},
     btsaveModelTitle: {id: 'config.model.save.button', defaultMessage: 'Save model'},
-    btsajoutModelTitle: {id: 'config.model.add.button', defaultMessage: 'Add model'},
+    btsajoutModelTitle: {id: 'config.model.add.button', defaultMessage: 'Add new model'},
     btmodifyModelTitle: {id: 'config.model.modif.button', defaultMessage: 'Modify this model'},
     btConsulterModelTitle: {id: 'config.model.consulter.button', defaultMessage: 'Consult the details of this model'},
     btDeleteModelTitle: {id: 'config.model.delete.button', defaultMessage: 'Delete this model'},

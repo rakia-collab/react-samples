@@ -144,7 +144,7 @@ class ReactFlagsSelect extends Component {
             <div className={`flag-select ${this.props.className ? this.props.className :  ""}`}>
                 <span
                     ref="selectedFlag"
-                    style={{fontSize: `${selectedSize}px`, width: '600px'}}
+                    style={{fontSize: `${selectedSize}px`, width: '430px'}}
                     className="flag-select__btn"
                     onClick={this.toggleOptions}
                     onKeyUp={evt => this.toggleOptionsWithKeyboard(evt)}
@@ -168,7 +168,7 @@ class ReactFlagsSelect extends Component {
                 </span>
 
                 {this.state.openOptions &&
-                <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`, width: '650px'}} className={`flag-select__options ${alignClass}`}>
+                <ul tabIndex="-1" role="listbox" ref="flagOptions" style={{fontSize: `${optionsSize}px`, width: '450px'}} className={`flag-select__options ${alignClass}`}>
                     {this.props.searchable && (
                         <div className="filterBox">
                             <TextEntry
