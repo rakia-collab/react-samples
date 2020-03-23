@@ -49,7 +49,7 @@ export default class GenarlInfoMake extends React.Component {
 
         let {form,  makegeneraldataExp, change} = this.props;
         if (countryCode) {
-            change(form, `${makegeneraldataExp}.countryCode`, countryCode);
+            change(`${makegeneraldataExp}.countryCode`, countryCode);
         }
     };
     render() {
