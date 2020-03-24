@@ -27,17 +27,15 @@ class ModelDetailsContainer extends React.Component {
        if(validateModel(make))
        {
 
+           const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
+           changeNbrNavTabAddedOfModel(0);
+           notify.show("validation of model is succes", notify.SUCCESS);
            showPopupModelDetail(false);
        }
       else{
            notify.show("Model ref required", notify.ERROR);
        }
 
-        changeNbrNavTabAddedOfModel(0)
-        const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
-        changeNbrNavTabAddedOfModel(0);
-        notify.show("validation of model is succes", notify.SUCCESS);
-        showPopupModelDetail(false);
     }
 
     render() {
