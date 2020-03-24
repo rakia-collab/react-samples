@@ -151,10 +151,8 @@ export const assetCategoryList =[
 ];
 
 export const saleNetworkList =[
-    {code:"FS", label:"Finances boutique"},
-    {code:"REGC", label:"Réseau Centre"},
-    {code:"WEB", label:"Web"},
-    {code:"OTHER", label:"OTHER"}
+    {code: 'FS', label: 'Finance shop'},
+    {code: 'OTHER', label: 'Others'}
 ];
 export const currencies = [
     {code: 'EUR', label: 'Euro'},
