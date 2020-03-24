@@ -35,7 +35,12 @@ class MakesContainer extends React.Component {
                 }
             })
         }
-
+        var category;
+        var network;
+        if( make.filteringByNetworkAndCategory !== null) {
+            category=make.filteringByNetworkAndCategory.category
+            network=make.filteringByNetworkAndCategory.network
+        }
         return (
 
 
@@ -68,14 +73,14 @@ class MakesContainer extends React.Component {
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/network.png"} />
                                  Network:
-                                {make.makeOtherData.oemClassification }
+                                {network }
                             </Col>
                         </Row>
                         <Row >
                             <Col className='make-content'>
                                 <img src={"src/www/img/make/AssetTypes.png"} />
                                 Asset type:
-                                {make.makeOtherData.variantClassification }
+                                {category}
                             </Col>
                         </Row>
                         <Row>
