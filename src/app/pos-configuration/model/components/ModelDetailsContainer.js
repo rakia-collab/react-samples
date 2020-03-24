@@ -1,6 +1,6 @@
 import React from 'react';
 import messages from '../../Constantes/messages';
-import {Button, Div} from 'cassiopae-core';
+import {Button, Div, notify} from 'cassiopae-core';
 import {button, OverlayTrigger, Tooltip} from "react-bootstrap";
 import NavTabDetailModel from "./NavTabDetailModel";
 
@@ -23,7 +23,8 @@ class ModelDetailsContainer extends React.Component {
     handledValidate =()=>
     {
         const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
-        changeNbrNavTabAddedOfModel(0)
+        changeNbrNavTabAddedOfModel(0);
+        notify.show("validation of model is succes", notify.SUCCESS);
         showPopupModelDetail(false);
     }
 
