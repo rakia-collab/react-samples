@@ -19,7 +19,8 @@ export const UPDATE_MAKE_MODEL_FAIL ='MAKE/UPDATE_MAKE_MODEL_FAIL';
 
 export const SELECT_CATEGORIE = 'config/make/SELECT_CATEGORIE';
 export const REMOVE_CATEGORIE = 'config/make/REMOVE_CATEGORIE';
-
+export const SET_SELECTED_LIST = 'config/make/SET_SELECTED_LIST';
+export const SET_AVAILBLE_LIST = 'config/make/SET_AVAILBLE_LIST';
 
 
 export function fetchFullMakeByCode(makecode) {
@@ -66,16 +67,32 @@ export function updateMakeModel(formData) {
 }
 
 
-export function selectCategorie(index) {
+export function selectCategorie(listSelected) {
     return {
         type: SELECT_CATEGORIE,
-        index
+        listSelected
     };
 }
 
-export function removeCategorie(card) {
+export function removeCategorie(removeList) {
     return {
         type: REMOVE_CATEGORIE,
-        card
+        removeList
     };
+}
+    export function setAvailbleList(availbleList) {
+        return {
+            type: SET_AVAILBLE_LIST,
+            availbleList
+        };
+
+
+}
+export function setSelectedList(listSelected) {
+    return {
+        type: SET_SELECTED_LIST,
+        listSelected
+    };
+
+
 }

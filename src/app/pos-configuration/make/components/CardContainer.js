@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import Immutable from 'seamless-immutable';
 import Card from './Card';
 import {DropTarget} from 'react-dnd';
-
 class CardContainer extends Component {
 
     constructor(props) {
@@ -10,32 +10,36 @@ class CardContainer extends Component {
     }
 
     pushCard(card) {
-        let {removeCategorie} = this.props;
-        var mycards = this.state.cards;
+        let {removeCategorie, selectCategorie, list} = this.props;
+
+        var mycards = Immutable.asMutable(list, {deep: true});
         // removeCategorie(card);
         mycards.push(card)
         this.setState({cards: mycards})
+        selectCategorie(mycards);
     }
 
     removeCard(index) {
-        let {selectCategorie} = this.props;
-        var mycards = this.state.cards
+        let {removeCategorie, list,setAvailbleList} = this.props;
+        var mycards =  Immutable.asMutable(list, {deep: true});
         mycards.splice(index, 1)
-        this.setState({cards: mycards})
-        //selectCategorie(index);
+
+        setAvailbleList(mycards);
+        removeCategorie(mycards);
     }
 
     moveCard(dragIndex, hoverIndex) {
-        var mycards = this.state.cards
+        let {list, setAvailbleList} = this.props;
+        var mycards = Immutable.asMutable(list, {deep: true});
         const dragCard = mycards[dragIndex];
         mycards.splice(dragIndex, 1)
         mycards.splice(hoverIndex, 0, dragCard)
-        this.setState({cards: mycards})
+        setAvailbleList(mycards);
     }
 
     render() {
-        const {cards} = this.state;
-        const {canDrop, isOver, connectDropTarget, colorTable, iconTable, customComponentMetadata} = this.props;
+        const {canDrop, isOver, connectDropTarget, colorTable, iconTable, customComponentMetadata, list} = this.props;
+        let cards = Immutable.asMutable(list);
         const isActive = canDrop && isOver;
         const color = {"DONE": "panel-green", "TODO": "panel-red", "INPROG": "panel-grey"};
         const cardss = cards.map((card, i) => {

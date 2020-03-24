@@ -15,44 +15,33 @@ import {tables} from '../../../common/utils/tables';
 //import {fetchAuditStockPlanDealers} from '../reducers/actions'
 import CardContainer from './CardContainer';
 
-import {selectCategorie, removeCategorie} from '../reducers/actions';
+import {selectCategorie, removeCategorie, setAvailbleList, setSelectedList} from '../reducers/actions';
 import CategoriePopup from './CategoriePopup';
-import {saleNetworkList} from '../../Constantes/SelectFields'
 
+const options = [
+    {code: 'FS', label: 'Finance shop'},
+    {code: 'OTHER', label: 'Others'}
 
+];
+const categFS = [
+    {code: 'CAR', label: 'Cars'},
+    {code: 'MATERIAL', label: 'Material'},
+    {code: 'INTANGIBLE', label: 'Finance'},
+
+];
+
+const catOth =[{code: 'REALESTATE', label: 'Real Estate',id:'0'}];
 export class CategorieContainer extends Component {
 
     state = {
-        availbleList: [{id:'0',status:'blocking', firstName:'Asset Category'},{id:'1',status:'blocking', firstName:'Vehicule' }],
+        availbleList: [],
         showCategModal:false,
-        selectedList:[{id:'2',status:'blocking', firstName:'Asset 2'}],
+        selectedList:[],
     };
 
-    componentWillMount() {
-        //   this.props.fetchAuditStockPlanDealers();
-    }
 
-    componentDidMount() {
-        //this.props.fetchReferenceTableWithParams(tables.COLORJALON, {'DESTINATION': 'AUDIT'});
-        // this.props.fetchReferenceTableWithParams(tables.ICONJALAUDIT, {'DESTINATION': 'AUDIT'});
-    }
 
-    getListDealersByStatus() {
-        let intl = this.props.intl.formatMessage.bind(this.props.intl);
-        let columnCards = {
-            'TODO': [[{id:'0',status:'blocking', firstName:'Asset Category'}], intl(messages.availCategorie)],
-            'INPROG': [[{id:'1',status:'blocking', firstName:'Vehicule' }], intl(messages.selectedCategorie)],
 
-        };
-
-        const listStatus = [];
-        let index = 0;
-        each(columnCards, (value, key) => {
-            listStatus.push({list: value[0], title: value[1], index: ++index});
-
-        });
-        return listStatus;
-    }
     handleButtonClick = () => {
    this.setState({showCategModal:true});
     }
@@ -60,13 +49,32 @@ export class CategorieContainer extends Component {
     closeCategorieModal = () => {
         this.setState({showCategModal:false});
     }
+    handleChangeSales = (event, value) => {
+       let  {setAvailbleList,setSelectedList} = this.props
+        setSelectedList([]);
+        console.log('value*****************'+ value);
+      if(value === 'FS')
+      {
+          console.log('value*******FSSS**********'+ value);
+          setAvailbleList(categFS);
+      }
+      else{
+          console.log('value*******otherssss**********'+ value);
+          setAvailbleList(catOth);
 
+      }
+
+
+
+
+    };
     render() {
         const {
             colorTable,
             iconTable,
             intl: {formatMessage},
-            selectCategorie,removeCategorie
+            selectCategorie,removeCategorie,setAvailbleList,
+            availbleList, listSelected,
         } = this.props;
         let customComponentMetadata = {
             customComponentMetadata: {
@@ -74,7 +82,7 @@ export class CategorieContainer extends Component {
                 refParams: {'DESTINATION': 'AUDIT'}
             }
         };
-        const {availbleList, selectedList, showCategModal} = this.state;
+        const { showCategModal} = this.state;
         const title =   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             { formatMessage(messages.Filtrage)}
@@ -100,13 +108,12 @@ export class CategorieContainer extends Component {
             ),
             ...this.props
         };
-     const listStatus = this.getListDealersByStatus();
             return (
                 <Box title={title} type='primary'>
                     <Row>
                         <div className="col-md-6">
-                            <SelectField name='country'
-                                         options={saleNetworkList}
+                            <SelectField options={options}
+                                         onChange={this.handleChangeSales}
                                          title={messages.sales}/>
                         </div>
 
@@ -115,9 +122,11 @@ export class CategorieContainer extends Component {
                     <div className="col-md-6">
 
                         <Box title='Available categories' type='primary' {...newProps}>
-                        <CardContainer id='0' list={availbleList}
+                        <CardContainer id='0'
+                                       list={availbleList}
                                        removeCategorie={removeCategorie}
                                        selectCategorie={selectCategorie}
+                                       setAvailbleList={setAvailbleList}
                                        colorTable={[{code:'blocking', label:'white'}]}
                                        customComponentMetadata={customComponentMetadata}/>
 
@@ -127,9 +136,11 @@ export class CategorieContainer extends Component {
                     <div className="col-md-6">
                         <Box title='Selected categories' type='primary'>
 
-                        <CardContainer id='1' list={selectedList}
+                        <CardContainer id='1'
+                                       list={listSelected}
                                        selectCategorie={selectCategorie}
                                        removeCategorie={removeCategorie}
+                                       setAvailbleList={setAvailbleList}
                                        colorTable={[{code:'blocking', label:'white'}]}
                                        customComponentMetadata={customComponentMetadata}/>
                         </Box>
@@ -149,14 +160,15 @@ export class CategorieContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        dealers: [],
-        selectedListFromState: state.make.selectedList,
-        availbleListFromState: state.make.availbleList,
+        listSelected: state.make.listSelected || [],
+        availbleList: state.make.availbleList || [],
     }
 }
 const mapDispatchToProps = {
     selectCategorie,
     removeCategorie,
+    setAvailbleList,
+    setSelectedList,
     fetchReferenceTableWithParams,
     fetchReferenceTable
 };

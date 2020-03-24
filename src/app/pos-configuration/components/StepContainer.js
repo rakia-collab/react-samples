@@ -4,10 +4,14 @@ import {createSelector} from 'reselect';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
 import Immutable from 'seamless-immutable';
-import {reduxForm,change, formValueSelector, getFormValues, getFormSyncErrors, stopSubmit} from 'redux-form';
+import {reduxForm,change, formValueSelector, getFormValues, getFormSyncErrors, arrayPush} from 'redux-form';
 import GenarlInfoMake, {validateGeneralinfo} from '../make/components/GenarlInfoMake';
 import ModelContainer , {validateModel} from '../model/components/ModelContainer';
 import Filtrage from '../make/components/Filtrage';
+const filtersalesIni ={
+    "network" : null,
+    "category" : "null"
+};
 import {
     Div,
     MultiStep,
@@ -22,6 +26,14 @@ import {NEWMAKEMODEL} from '../index';
 import messages from '../Constantes/messages';
 import * as c from '../Constantes/const';
 import {OverlayTrigger, Tooltip} from 'react-bootstrap';
+const categFS = [
+    {code: 'CAR', label: 'Cars'},
+    {code: 'MATERIAL', label: 'Material'},
+    {code: 'INTANGIBLE', label: 'Finance'},
+
+];
+
+const catOth =[{code: 'REALESTATE', label: 'Real Estate',id:'0'}];
 
 const FORM ='marqueForm'
  class StepContainer extends React.Component {
@@ -41,16 +53,36 @@ const FORM ='marqueForm'
      };
 
      handleOnSubmit = (data) => {
-         let {saveMakeModel, updateMakeModel, location, change, form, dispatch, makeFormValues, touch, errors} = this.props;
+         let {saveMakeModel, updateMakeModel, location, change, form, dispatch, makeFormValues, touch, errors, listSelected, arrayPush} = this.props;
          errors = validate(makeFormValues, this.props);
          if (Object.keys(errors).length) {
              touch(errors);
              return;
          }
+
+         if(listSelected.length>0) {
+             let filteringByNetworkAndCategory = [];
+             listSelected.forEach((item) => {
+                 const found = categFS.find(element => element.code === item.code);
+                 let code ="FS"
+                 if (!found) {
+                     const found = catOth.find(element => element.code === item.code);
+                     code ="OTHER";
+                 }
+                 arrayPush(form, 'make.filteringByNetworkAndCategory', {network: code, category: item.code});
+
+
+             });
+
+         }
          if (location.pathname === NEWMAKEMODEL) {
 
-             saveMakeModel(data.make).then(() => {
-                 notify.show(messages.notifySuccess, notify.SUCCESS);
+             saveMakeModel(data.make).then((result) => {
+                 notify.show("Save Succes", notify.SUCCESS);
+                  result.controlsMsgList.forEach((control) => {
+                         notify.show(control.message, notify.WARNING);
+                    });
+
 
              }).catch(error => {
                  const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
@@ -61,8 +93,12 @@ const FORM ='marqueForm'
 
          }
          else
-             updateMakeModel(data.make).then(() => {
-                 notify.show(messages.notifySuccess, notify.SUCCESS);
+             updateMakeModel(data.make).then((result) => {
+                 notify.show("Update Succes", notify.SUCCESS);
+                 result.controlsMsgList.forEach((item) => {
+                         notify.show(item.message, notify.WARNING);
+                     });
+
 
              }).catch(error => {
                  const errMsg = ((error || {}).data || {}).message || messages.notifyFail;
@@ -195,11 +231,12 @@ function mapStateToProps(state, props) {
         form: FORM,
         errors: getFormSyncErrors(FORM)(state) || EMPTY_OBJECT,
         currentFields: state.form[FORM] ? state.form[FORM].registeredFields : [],
-        makeFormValues: values
+        makeFormValues: values,
+        listSelected: state.make.listSelected
     };
 }
 
 const mapDispatchToProps = {
-    change,
+    change,arrayPush
 };
 export default connect(mapStateToProps, null)(injectIntl(withRouter(StepContainer)));

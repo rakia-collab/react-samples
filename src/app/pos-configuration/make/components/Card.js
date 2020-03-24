@@ -21,8 +21,7 @@ class Card extends Component {
         const opacity = isDragging ? 0 : 1;
         return connectDragSource(connectDropTarget(
             <div className="card" style={{opacity}}>
-                <AuditCardComponent bgColor={{backgroundColor: this.getLabelFromRefTable(colorTable, card.status)}}
-                                    panelColorClassName={"panel " + color[card.status]}
+                <AuditCardComponent
                                     row={card}
                                     customComponentMetadata={customComponentMetadata}/>
 

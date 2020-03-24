@@ -20,7 +20,7 @@ export default class AuditCardComponent extends Component {
 
             <div className={panelColorClassName}>
                 <div className="panel-heading" style={bgColor}>
-                    {row.firstName} {row.lastName}
+                     {row.label}
 
                 </div>
 
