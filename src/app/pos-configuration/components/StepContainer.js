@@ -69,7 +69,7 @@ const FORM ='marqueForm'
                      const found = catOth.find(element => element.code === item.code);
                      code ="OTHER";
                  }
-                 arrayPush(form, 'make.filteringByNetworkAndCategory', {network: code, category: item.code});
+        //         arrayPush(form, 'make.filteringByNetworkAndCategory', {network: code, category: item.code});
 
 
              });

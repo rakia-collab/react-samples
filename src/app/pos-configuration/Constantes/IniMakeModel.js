@@ -3,12 +3,5 @@ export const dataInit= {
     "makeOtherData": {"dealer": null, "variantClassification": null, "oemClassification": null},
     "models":[],
     "makeDesignationByLanguage":[{"lancode":"FR","designation":null}],
-    "filteringByNetworkAndCategory" : [
-        {
-            "network" : "OTHER",
-            "category" : "REALESTATE"
-        }
-    ]
-
-
+    "filteringByNetworkAndCategory" : []
 }
