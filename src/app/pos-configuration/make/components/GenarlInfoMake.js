@@ -136,6 +136,9 @@ export default class GenarlInfoMake extends React.Component {
                     </Row>
 
                 </Box>
+                <LabelTraductionPopup
+                    onClose={this.closeModal}
+                    show={searchPopupShow}/>
             </div>
         );
     }

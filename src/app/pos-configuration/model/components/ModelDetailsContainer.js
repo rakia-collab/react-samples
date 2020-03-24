@@ -23,6 +23,17 @@ class ModelDetailsContainer extends React.Component {
 
     handledValidate =()=>
     {
+        const {make} = this.props;
+       if(validateModel(make))
+       {
+
+           showPopupModelDetail(false);
+       }
+      else{
+           notify.show("Model ref required", notify.ERROR);
+       }
+
+        changeNbrNavTabAddedOfModel(0)
         const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
         changeNbrNavTabAddedOfModel(0);
         notify.show("validation of model is succes", notify.SUCCESS);
@@ -64,3 +75,20 @@ class ModelDetailsContainer extends React.Component {
 }
 
 export default ModelDetailsContainer;
+export const validateModel = (make) => {
+let error= true;
+    let {models} = make;
+    (models || []).forEach((item, index) => {
+        let {modelGeneralData} = item;
+      if (!modelGeneralData.modelRef) {
+            error = false
+
+        }
+        if(!error)
+        {
+            return false;
+        }
+
+    });
+    return error;
+};
