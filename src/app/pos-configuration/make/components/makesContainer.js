@@ -38,8 +38,8 @@ class MakesContainer extends React.Component {
         var category;
         var network;
         if( make.filteringByNetworkAndCategory !== null) {
-            category=make.filteringByNetworkAndCategory.category
-            network=make.filteringByNetworkAndCategory.network
+            category=make.filteringByNetworkAndCategory[0].category
+            network=make.filteringByNetworkAndCategory[0].network
         }
         return (
 

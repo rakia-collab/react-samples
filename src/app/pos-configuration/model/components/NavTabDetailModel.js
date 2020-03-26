@@ -35,7 +35,7 @@ class NavTabDetailModel extends React.Component {
                     newModels.push({
                         id: "model.tab",
                         key: "make.models["+i+"]",
-                        title: "Model détail",
+                        title: "Model",
                         body: <ModelDetails indexModelTab={i} id={"model.tab" + i}  expModel={expModel} {...this.props}  form={form} intl={intl}/>,
                     });
 
@@ -48,7 +48,7 @@ class NavTabDetailModel extends React.Component {
                     newModels.push({
                         id: "model.tab" + i,
                         key: "make.models["+i+"]",
-                        title: "Model détail " + nbrNewModel,
+                        title: "Model " + nbrNewModel,
                         body: <ModelDetails indexModelTab={i} id={"model.tab" + i} expModel={this.state.expModel}  {...this.props}  form={form} intl={intl}/>,
                         active:  activeTabKey === "make.models["+i+"]",
                     });
@@ -66,7 +66,7 @@ class NavTabDetailModel extends React.Component {
             newModels.push({
                 id: "model.tab",
                 key: "make.models["+indexModel+"]",
-                title: "Model détail",
+                title: "Model",
                 body: <ModelDetails indexModelTab={indexModel} id={"model.tab"}   expModel={expModel} {...this.props} form={form} intl={intl}/>,
                 active: activeTabKey === "make.models["+indexModel+"]" ,
             });
