@@ -8,6 +8,7 @@ import {
 } from 'cassiopae-core';
 import { OverlayTrigger, Tooltip} from "react-bootstrap";
 import messages from "../../Constantes/messages";
+import {changeReadOnlyModel, selectedModel, showPopupModelDetail} from "../reducers/actions";
 
 
 
@@ -23,8 +24,8 @@ class ModelDelete extends React.Component {
 
     changeEndDate = () =>{
         const { rowData,metadata: {customComponentMetadata: {change, form, listModels}}} = this.props;
-        var indexModel = -1
-        var i=0;
+        let indexModel = -1
+        let i=0;
         rowData.endDate= new Date();
         if(listModels.length === 1)
         {
@@ -83,9 +84,31 @@ class ModelEdit extends React.Component {
 
 
     openModelDetailEdit = () => {
-        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form}}} = this.props;
+        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form, pathname, listModels, changeReadOnlyModel, selectedModel, showPopupModelDetail}}} = this.props;
         let params={brandRef:brandRef,modelRef:rowData.modelRef}
-        fetchModel(params, form);
+            rowData.endDate= new Date();
+
+        if(pathname.includes(brandRef)) {
+            fetchModel(params, form);
+        }else {
+            let  edit=false;
+            let indexModelSelected = -1
+            let i=0;
+            if(listModels.length === 1)
+            {
+                indexModelSelected=0;
+            }else {
+                listModels.map((Model) => {
+                    if (Model.modelGeneralData.modelRef === rowData.modelRef) {
+                        indexModelSelected = i;
+                    }
+                    i = i + 1;
+                });
+            }
+            selectedModel(indexModelSelected)
+            changeReadOnlyModel(edit)
+            showPopupModelDetail(true)
+        }
 
     };
 
@@ -116,10 +139,33 @@ class ModelDisplay extends React.Component {
     }
 
     openModelDetail = () => {
-        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form}}} = this.props;
-        let params={brandRef:brandRef,modelRef:rowData.modelRef}
+        const { rowData,metadata: {customComponentMetadata: { fetchModel, brandRef, form, pathname, listModels, changeReadOnlyModel, selectedModel, showPopupModelDetail}}} = this.props;
+        let params={brandRef:brandRef,modelRef:rowData.modelRef};
+
+        rowData.endDate= new Date();
+
         let  edit=true;
-        fetchModel(params, form, edit);
+        if(pathname.includes(brandRef)){
+            fetchModel(params, form, edit);
+        }else {
+            let  edit=true;
+            let indexModelSelected = -1
+            let i=0;
+            if(listModels.length === 1)
+            {
+                indexModelSelected=0;
+            }else {
+                listModels.map((Model) => {
+                    if (Model.modelGeneralData.modelRef === rowData.modelRef) {
+                        indexModelSelected = i;
+                    }
+                    i = i + 1;
+                });
+            }
+            changeReadOnlyModel(edit)
+            selectedModel(indexModelSelected)
+            showPopupModelDetail(true)
+        }
 
     };
 
@@ -161,7 +207,7 @@ class ModelTable extends React.Component {
 
     }
     render() {
-        const {listModels, fetchModel, change, generalModels, isPopupModelDetailLoade, brandRef, form, formatMessage} = this.props;
+        const {location: {pathname}, listModels, fetchModel, change, generalModels, showPopupModelDetail, brandRef, form, formatMessage, changeReadOnlyModel, selectedModel} = this.props;
 
 
         var columnMetadata = [
@@ -192,10 +238,14 @@ class ModelTable extends React.Component {
                 customComponent: ModelDisplay,
                 customComponentMetadata: {
                     fetchModel: fetchModel,
-                    isPopupModelDetailLoade: isPopupModelDetailLoade,
                     brandRef:brandRef,
                     form: form,
-                    formatMessage: formatMessage
+                    formatMessage: formatMessage,
+                    listModels: listModels,
+                    pathname: pathname,
+                    showPopupModelDetail: showPopupModelDetail,
+                    selectedModel:selectedModel,
+                    changeReadOnlyModel: changeReadOnlyModel
                 }
             },
             {
@@ -215,10 +265,14 @@ class ModelTable extends React.Component {
                 customComponent: ModelEdit,
                 customComponentMetadata: {
                     fetchModel: fetchModel,
-                    isPopupModelDetailLoade: isPopupModelDetailLoade,
                     brandRef:brandRef,
                     form: form,
-                    formatMessage:formatMessage
+                    formatMessage:formatMessage,
+                    listModels: listModels,
+                    pathname: pathname,
+                    showPopupModelDetail: showPopupModelDetail,
+                    selectedModel:selectedModel,
+                    changeReadOnlyModel: changeReadOnlyModel
                 }
             }
 

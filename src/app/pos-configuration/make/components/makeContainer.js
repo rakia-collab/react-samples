@@ -18,7 +18,7 @@ class makeContainer extends React.Component {
     componentDidMount() {
 
         const {
-            params: {makecode}, location: {pathname},fetchMake, initMakeModel, fetchFullMakeByCode
+            params: {makecode}, fetchMake, initMakeModel, fetchFullMakeByCode
         } = this.props;
         if (makecode) {
             fetchFullMakeByCode(makecode);

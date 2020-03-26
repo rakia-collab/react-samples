@@ -1,8 +1,22 @@
-export const SHOW_TRIM_DETAIL = 'TRIM/SHOW_TRIM_DETAIL';
 
-export function showTrimDetail(show){
+export const CHANGE_INDEX_TRIM_SELECTED = 'TRIM/CHANGE_INDEX_TRIM_SELECTED';
+export const CHANGE_NEWTRIM_NAVTAB_ADDED = 'TRIM/CHANGE_NEWTRIM_NAVTAB_ADDED';
+
+
+export function selectedTrim(index)
+{
     return {
-        type: SHOW_TRIM_DETAIL,
-        trimload: show
+        type:CHANGE_INDEX_TRIM_SELECTED,
+        result:index
     };
+
+}
+
+export function changeNbrNavTabAddedOfTrim(nombre)
+{
+    return {
+        type:CHANGE_NEWTRIM_NAVTAB_ADDED,
+        result:nombre
+    };
+
 }

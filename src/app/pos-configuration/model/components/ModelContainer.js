@@ -72,7 +72,7 @@ export const validateModel = (values, props, errors) => {
 
     render() {
 
-        const {intl: {formatMessage}, fetchFullModel, showPopupModelDetail, modelField,  listModels, generalModels, isPopupModelDetailLoade , indexModel, make} = this.props;
+        const {intl: {formatMessage} , location: {pathname}, fetchFullModel, showPopupModelDetail, modelField,  listModels, generalModels, isPopupModelDetailLoade , indexModel, make} = this.props;
         const titleModelInfo=   (<div className="box-tools-filter pull-left">
             <span  className="fa fa-tasks"/>
             {formatMessage(messages.ModelInfoTitle)} </div> );
@@ -117,12 +117,12 @@ const mapStateToProps = (state, props) => {
    });
        listModels= make.models
    }
-
-
-
-    const indexModel = state.model.indexModelSelected
-    const nbrNavTab=state.model.nbrModelNavTab
+    const indexModel = state.model.indexModelSelected;
+    const nbrNavTab=state.model.nbrModelNavTab;
     const modelField = state.model.modelField;
+
+    const indexTrim = state.trim.indexTrimSelected;
+    const nbrNavTabTrim=state.trim.nbrNavTabTrim;
 
     return {
         make,
@@ -132,7 +132,9 @@ const mapStateToProps = (state, props) => {
         indexModel,
         modelField,
         nbrNavTab,
-        readOnly: state.model.readOnly
+        readOnly: state.model.readOnly,
+        indexTrim,
+        nbrNavTabTrim
 
 
     };

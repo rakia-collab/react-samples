@@ -58,6 +58,11 @@ export default {
                                    name: 'model',
                                    reducer: require('./model/reducers/modelReducre').default
                                }
+                               ,
+                               {
+                                   name: 'trim',
+                                   reducer: require('./trimLevel/reducers/trimReducre').default
+                               }
 
                            );
                            callback(null, {main: require('./make/components/MakeContainer').default})

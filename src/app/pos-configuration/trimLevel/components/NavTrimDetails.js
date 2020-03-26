@@ -19,7 +19,7 @@ class NavTrimDetails extends React.Component {
 
         const trims    =[];
 
-
+//Affichage and modify trims for existing model
     let trimIndex=0;
      if(indexModel>=0) {
         if(nbrNavTab > 0) {
