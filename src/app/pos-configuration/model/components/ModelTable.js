@@ -242,7 +242,7 @@ class ModelTable extends React.Component {
                     form: form,
                     formatMessage: formatMessage,
                     listModels: listModels,
-                    pathname: pathname,
+                    pathname: pathname.replace('%20', ' '),
                     showPopupModelDetail: showPopupModelDetail,
                     selectedModel:selectedModel,
                     changeReadOnlyModel: changeReadOnlyModel
@@ -269,7 +269,7 @@ class ModelTable extends React.Component {
                     form: form,
                     formatMessage:formatMessage,
                     listModels: listModels,
-                    pathname: pathname,
+                    pathname: pathname.replace('%20', ' '),
                     showPopupModelDetail: showPopupModelDetail,
                     selectedModel:selectedModel,
                     changeReadOnlyModel: changeReadOnlyModel

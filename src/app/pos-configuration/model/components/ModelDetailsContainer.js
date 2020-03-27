@@ -5,7 +5,7 @@ import {button, OverlayTrigger, Tooltip} from "react-bootstrap";
 import NavTabDetailModel from "./NavTabDetailModel";
 
 
-const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null}};
+const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelLevels":[{"code":null,"levelDesignations":null}]};
 class ModelDetailsContainer extends React.Component {
 
 
@@ -27,8 +27,11 @@ class ModelDetailsContainer extends React.Component {
        if(validateModel(make))
        {
 
-           const {showPopupModelDetail, changeNbrNavTabAddedOfModel} = this.props;
+           const {showPopupModelDetail, changeNbrNavTabAddedOfModel, changeNbrNavTabAddedOfTrim, selectedTrim, selectedModel} = this.props;
            changeNbrNavTabAddedOfModel(0);
+           changeNbrNavTabAddedOfTrim(0);
+           selectedTrim(0);
+           selectedModel(0);
            notify.show("validation of model is succes", notify.SUCCESS);
            showPopupModelDetail(false);
        }

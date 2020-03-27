@@ -8,7 +8,8 @@ import PopupModelDetails  from './PopupModelDetails';
 import {showPopupModelDetail, fetchFullModel, selectedModel,changeReadOnlyModel, changeNbrNavTabAddedOfModel, changePathFiledOfModel } from "../reducers/actions";
 import {connect} from 'react-redux';
 import setIn from 'redux-form/lib/structure/plain/setIn';
-const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null}};
+import{selectedTrim,changeNbrNavTabAddedOfTrim} from '../../trimLevel/reducers/actions'
+const modelIni ={"modelGeneralData":{"modelRef":null,"startDate":null,"endDate":null,"vehicleType":null},"modelotherdata":{"regularinspectionmodel":null,"rbpvehicletype":null,"transactionfeesperspective":null,"specialconstructionmachinery":null,"kindsconstructionmachinery":null,"segment":null,"industrialmaterial":null,"vehiclecategory":null,"dateupdate":null,"userupdate":null,"year":null,"bssregistered":null,"bssgeneralpurpose":null,"bssrate":null,"bssassetsegment":null,"bssassetdetailtype":null,"bssassettype":null,"tiresize":null},"modelLevels":[{"code":null,"levelDesignations":null}]};
 export const validateModel = (values, props, errors) => {
 
     let {models} = values.make;
@@ -38,7 +39,7 @@ export const validateModel = (values, props, errors) => {
     }
 
     closeModel = () => {
-        const { form, make, arrayRemove, nbrNavTab, changeNbrNavTabAddedOfModel, showPopupModelDetail,selectedModel} = this.props;
+        const { form, make, arrayRemove, nbrNavTab, changeNbrNavTabAddedOfModel, showPopupModelDetail ,selectedModel, changeNbrNavTabAddedOfTrim, selectedTrim} = this.props;
 
         if(nbrNavTab > 0) {
             let indexOFLastModel =  make.models.length -1 ;
@@ -54,6 +55,8 @@ export const validateModel = (values, props, errors) => {
             selectedModel(indexOFLastModel);
             let nombreTabAdded=0;
             changeNbrNavTabAddedOfModel(nombreTabAdded);
+            changeNbrNavTabAddedOfTrim(nombreTabAdded);
+            selectedTrim(0);
         }
         showPopupModelDetail(false);
     };
@@ -145,8 +148,10 @@ const mapDispatchToProps = {
     fetchFullModel,
     selectedModel,
     changeNbrNavTabAddedOfModel,
+    changeNbrNavTabAddedOfTrim,
     changePathFiledOfModel,
     changeReadOnlyModel,
+    selectedTrim,
     change,
     arrayPush,
     arrayRemove
