@@ -9,10 +9,10 @@
 }
 .button{
   
-background-color : green;
+background-color : lightblue;
 color : white;
 font : inherit;
-border : 1px solid blue;
+border : 1px solid lightcoral;
 padding :8px;
 cursor : pointer;
 }
