@@ -10,6 +10,7 @@ import messages from './Constantes/messages';
 export const MAKEMODEL = "/configuration/makesModels";
 export const NEWMAKEMODEL = "/configuration/newMakesModels";
 export const MAKE= "/MAKE";
+export const WORKFLOW = "/WorkFlow/NewWorkFlow";
 
 
 export default {
@@ -20,6 +21,12 @@ export default {
             id: 'Model',
             route: MAKEMODEL,
             title: messages.configurationslTitle,
+            icon: 'fa fa-car'
+        },
+        {
+            id: 'WorkFlow',
+            route: WORKFLOW,
+            title: messages.newWorkflowlTitle,
             icon: 'fa fa-car'
         }
 
@@ -92,7 +99,14 @@ export default {
                            callback(null, {main: require('./make/components/MakeContainer').default})
                        })
                    }}
-            />
+            />,
+            <Route path={WORKFLOW} key={WORKFLOW}
+            getComponents={(nextState, callback) => {
+            require.ensure([], (require) => {
+                callback(null, {main: require('./WorkFlow/components/CustomDiagram').default})
+            })
+        }}
+        />
 
 
 
