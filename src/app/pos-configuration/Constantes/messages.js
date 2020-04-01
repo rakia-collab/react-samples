@@ -5,7 +5,7 @@ const messages = defineMessages({
 
     availCategorie: {id: 'pos.config.step.filter.categ', defaultMessage: 'Available Categorie'},
     selectedCategorie: {id: 'pos.config.step.filter.selected', defaultMessage: 'Selected Categorie'},
-
+    newWorkflowlTitle: {id: 'config.menu.configurations.new.workFlow', defaultMessage: 'New work flow'},
     configurationslTitle: {id: 'config.menu.configurations', defaultMessage: 'Make Model Configuration'},
     countryTitle: {id: 'config.messages.field.country.title', defaultMessage: 'Country'},
     modelTitle: {id: 'config.messages.field.modelTitle', defaultMessage: 'Model'},
