@@ -1,14 +1,13 @@
 .App {
   text-align: center;
 }
-.red{
+.Red{
   color:red;
 }
-.bold{
+.Bold{
   font-weight:bold;
 }
-.button{
-  
+.Button{
 background-color : blue;
 color : white;
 font : inherit;
@@ -16,7 +15,7 @@ border : 1px solid lightcoral;
 padding :8px;
 cursor : pointer;
 }
-.button:hover {
+.Button:hover {
   background-color:lightgreen;
   color:black;
 }
