@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import  './App.css';
 import  Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-
+import withclass from '../hoc/withClass';
+import Auxiliary from '../hoc/Auxiliary';
 
 class App extends Component {
 
@@ -91,11 +92,11 @@ class App extends Component {
      
 
     return (
-      <div className="App">
+        <Auxiliary>
         <button onClick={this.showCockpit}>remove cockpit</button>
         {CockpitComp}
         {persons}
-      </div>
+        </Auxiliary>
     );
   }
 }
