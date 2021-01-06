@@ -65,7 +65,7 @@
     "webpack-pwa-manifest": "^3.5.0"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "blueimp-canvas-to-blob": "^3.6.0",
     "bootstrap": "^3.3.6",
     "bowser": "^1.7.1",
