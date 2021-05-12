@@ -71,7 +71,7 @@
     "bowser": "^1.7.1",
     "buffer": "^5.0.6",
     "cassiopae-core": "git+https://innersource.soprasteria.com/cassiopae/pos/core/cassiopae-core.git#7c3ccdf8eb3fac7002ddb5e91f476ffe0e7c2a0d",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "classnames": "^2.2.3",
     "clipboard-js": "0.3.1",
     "create-react-class": "^15.6.3",
